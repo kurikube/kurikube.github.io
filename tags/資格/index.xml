@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>資格 on 携帯キャリアで勤めるエンジニアのブログ</title>
+    <link>https://kurikube.github.io/tags/%E8%B3%87%E6%A0%BC/</link>
+    <description>Recent content in 資格 on 携帯キャリアで勤めるエンジニアのブログ</description>
+    <image>
+      <url>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 11 Jan 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/tags/%E8%B3%87%E6%A0%BC/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CCNP合格したので、勉強法まとめて見た</title>
+      <link>https://kurikube.github.io/post/20210126/</link>
+      <pubDate>Tue, 11 Jan 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/20210126/</guid>
+      <description>Desc Text.</description>
+    </item>
+    
+  </channel>
+</rss>
