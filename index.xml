@@ -8,16 +8,6 @@
       <url>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 15 Sep 2020 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>初めての投稿</title>
-      <link>https://kurikube.github.io/post/20210123/</link>
-      <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
-      
-      <guid>https://kurikube.github.io/post/20210123/</guid>
-      <description>Desc Text.</description>
-    </item>
-    
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://kurikube.github.io/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
