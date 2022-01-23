@@ -19,5 +19,14 @@
       <description>Desc Text.</description>
     </item>
     
+    <item>
+      <title>初めての投稿</title>
+      <link>https://kurikube.github.io/post/20210123_2/</link>
+      <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/20210123_2/</guid>
+      <description>Desc Text.</description>
+    </item>
+    
   </channel>
 </rss>
