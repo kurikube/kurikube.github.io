@@ -1,3 +1,0 @@
-# kuriprogramer.github.io
-
-test
