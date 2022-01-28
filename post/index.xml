@@ -65,6 +65,15 @@
     </item>
     
     <item>
+      <title>OpenShift CodeReady ContainerをCentOSにインストールする</title>
+      <link>https://kurikube.github.io/post/20210401/</link>
+      <pubDate>Thu, 01 Apr 2021 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/20210401/</guid>
+      <description>Desc Text.</description>
+    </item>
+    
+    <item>
       <title>GitLab CI/CDを学ぶのにおすすめの書籍</title>
       <link>https://kurikube.github.io/post/20210124/</link>
       <pubDate>Sat, 23 Jan 2021 11:30:03 +0000</pubDate>
