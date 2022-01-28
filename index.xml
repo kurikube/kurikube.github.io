@@ -128,6 +128,15 @@
     </item>
     
     <item>
+      <title>Hugoで作ったwebサイトにyoutubeの動画を埋め込む</title>
+      <link>https://kurikube.github.io/post/20200125/</link>
+      <pubDate>Sat, 25 Jan 2020 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/20200125/</guid>
+      <description>Desc Text.</description>
+    </item>
+    
+    <item>
       <title>Docker install用のshell-script</title>
       <link>https://kurikube.github.io/post/20200124/</link>
       <pubDate>Fri, 24 Jan 2020 11:30:03 +0000</pubDate>
