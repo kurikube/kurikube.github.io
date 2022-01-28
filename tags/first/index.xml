@@ -9,22 +9,13 @@
       <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 23 Jan 2021 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/tags/first/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Sep 2020 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/tags/first/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>GitLab CI/CDを学ぶのにおすすめの書籍</title>
-      <link>https://kurikube.github.io/post/20210124/</link>
-      <pubDate>Sat, 23 Jan 2021 11:30:03 +0000</pubDate>
-      
-      <guid>https://kurikube.github.io/post/20210124/</guid>
-      <description>Desc Text.</description>
-    </item>
-    
-    <item>
-      <title>初めての投稿</title>
-      <link>https://kurikube.github.io/post/20210126/</link>
+      <title>OpenShift</title>
+      <link>https://kurikube.github.io/post/20210131/</link>
       <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/post/20210126/</guid>
+      <guid>https://kurikube.github.io/post/20210131/</guid>
       <description>Desc Text.</description>
     </item>
     
