@@ -9,7 +9,16 @@
       <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 27 Jan 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 28 Jan 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>scriptコマンドでコマンド実行の作業ログを保存する</title>
+      <link>https://kurikube.github.io/post/20210130/</link>
+      <pubDate>Fri, 28 Jan 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/20210130/</guid>
+      <description>Desc Text.</description>
+    </item>
+    
     <item>
       <title>Ubuntu 20.04.3 LTSにffmpegをインストールする</title>
       <link>https://kurikube.github.io/post/20210129/</link>
