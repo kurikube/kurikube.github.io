@@ -20,6 +20,15 @@
     </item>
     
     <item>
+      <title>CodeReady Containers（CRC）をリモート接続可能にする</title>
+      <link>https://kurikube.github.io/post/20220124/</link>
+      <pubDate>Fri, 28 Jan 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/20220124/</guid>
+      <description>Desc Text.</description>
+    </item>
+    
+    <item>
       <title>scriptコマンドでコマンド実行の作業ログを保存する</title>
       <link>https://kurikube.github.io/post/20210130/</link>
       <pubDate>Fri, 28 Jan 2022 11:30:03 +0000</pubDate>
