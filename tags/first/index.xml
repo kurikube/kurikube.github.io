@@ -9,13 +9,13 @@
       <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 15 Sep 2020 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/tags/first/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Jan 2020 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/tags/first/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>OpenShift</title>
-      <link>https://kurikube.github.io/post/20210131/</link>
-      <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
+      <title>Docker install用のshell-script</title>
+      <link>https://kurikube.github.io/post/20200124/</link>
+      <pubDate>Fri, 24 Jan 2020 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/post/20210131/</guid>
+      <guid>https://kurikube.github.io/post/20200124/</guid>
       <description>Desc Text.</description>
     </item>
     

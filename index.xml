@@ -127,6 +127,15 @@
       <description>Desc Text.</description>
     </item>
     
+    <item>
+      <title>Docker install用のshell-script</title>
+      <link>https://kurikube.github.io/post/20200124/</link>
+      <pubDate>Fri, 24 Jan 2020 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/20200124/</guid>
+      <description>Desc Text.</description>
+    </item>
+    
     
   </channel>
 </rss>
