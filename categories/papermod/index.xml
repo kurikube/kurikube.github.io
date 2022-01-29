@@ -1,30 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Linux on 携帯キャリアで勤めるエンジニアのブログ</title>
-    <link>https://kurikube.github.io/tags/linux/</link>
-    <description>Recent content in Linux on 携帯キャリアで勤めるエンジニアのブログ</description>
+    <title>Papermod on 携帯キャリアで勤めるエンジニアのブログ</title>
+    <link>https://kurikube.github.io/categories/papermod/</link>
+    <description>Recent content in Papermod on 携帯キャリアで勤めるエンジニアのブログ</description>
     <image>
       <url>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 03 Jan 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Jan 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/categories/papermod/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>hugo &#43; Papermod で作ったwebサイトに検索機能を追加する</title>
       <link>https://kurikube.github.io/post/20220103/</link>
       <pubDate>Mon, 03 Jan 2022 11:30:03 +0000</pubDate>
       
       <guid>https://kurikube.github.io/post/20220103/</guid>
-      <description>Desc Text.</description>
-    </item>
-    
-    <item>
-      <title>Slack APIを用いて一定期間より前のメッセージを自動削除する</title>
-      <link>https://kurikube.github.io/post/20220102/</link>
-      <pubDate>Sun, 02 Jan 2022 11:30:03 +0000</pubDate>
-      
-      <guid>https://kurikube.github.io/post/20220102/</guid>
       <description>Desc Text.</description>
     </item>
     

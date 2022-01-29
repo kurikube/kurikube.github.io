@@ -92,6 +92,15 @@
     </item>
     
     <item>
+      <title>hugo &#43; Papermod で作ったwebサイトに検索機能を追加する</title>
+      <link>https://kurikube.github.io/post/20220103/</link>
+      <pubDate>Mon, 03 Jan 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/20220103/</guid>
+      <description>Desc Text.</description>
+    </item>
+    
+    <item>
       <title>Slack APIを用いて一定期間より前のメッセージを自動削除する</title>
       <link>https://kurikube.github.io/post/20220102/</link>
       <pubDate>Sun, 02 Jan 2022 11:30:03 +0000</pubDate>

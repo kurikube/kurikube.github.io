@@ -210,16 +210,15 @@ make html このコマンドで、手元のローカル環境用のファイル�
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>Slack APIを用いて一定期間より前のメッセージを自動削除する
+<h2>hugo + Papermod で作ったwebサイトに検索機能を追加する
 </h2>
 </header>
 <section class=entry-content>
-<p>Slack APIとpythonを用いて一定期間より前のSlackのメッセージを削除するスクリプトの例を示す。 参考URLではlegacy Tokenを使用しているが、現在は使用できないので、OAuth Tokenを使用する必要があります。OAuth Tokenを利用するようにコードを修正しました。 また、chat.deleteメソッドとchannels.historyメソッドを使用しているが、channels.historyは使用できないので、conversations.historyメソッドを使用する必要がある。
-参考にしたURL
-https://michimani.net/post/programming-delete-old-slack-messages/ from datetime import datetime #日付を扱うため from time import sleep # 処理を一旦停止するため import json # json形式のデータを扱うため import re #正規表現の操作を行うため import sys # システムに関する処理を行うため import urllib.parse #URLを解析して構成要素を得るため import urllib.request #URLを開くため DELETE_URL = "https://slack.com/api/chat.delete" #メッセージを削除するためのSlackのAPIのURL HISTORY_URL = "https://slack.com/api/conversations.history" #メッセージの履歴を得るためのSlackのAPIのURL API_TOKEN = '*********************************' #メッセージに対する操作をする際に必要となるAPI_TOKEN※legacy Tokenは使用できないことに注意。各自で変更 TERM = 60 * 60 * 24 * 7 #1週間なので7を指定。ここの数字を変更することで、削除対象のメッセージの期間を変更できる def clean_old_message(channel_id): #メッセージを削除するための関数 print('Start cleaning message at channel "{}"....</p>
+<p>0. 背景 hugo-papermodには検索機能を使えるオプションが備わっているらしいのだが、ネットで探してもオプションの実装方法が出てこなかった。（2022/1月時点） そのため、hugoで検索機能を自分で実装することにした。
+参考にしたサイト https://blog.mamansoft.net/2019/11/11/add-search-page-in-blog-made-by-hugo/ </p>
 </section>
-<footer class=entry-footer><span title="2022-01-02 11:30:03 +0000 UTC">January 2, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to Slack APIを用いて一定期間より前のメッセージを自動削除する" href=https://kurikube.github.io/post/20220102/></a>
+<footer class=entry-footer><span title="2022-01-03 11:30:03 +0000 UTC">January 3, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to hugo + Papermod で作ったwebサイトに検索機能を追加する" href=https://kurikube.github.io/post/20220103/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
