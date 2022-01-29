@@ -92,6 +92,15 @@
     </item>
     
     <item>
+      <title>Slack APIを用いて一定期間より前のメッセージを自動削除する</title>
+      <link>https://kurikube.github.io/post/20220102/</link>
+      <pubDate>Sun, 02 Jan 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/20220102/</guid>
+      <description>Desc Text.</description>
+    </item>
+    
+    <item>
       <title>OpenShift CodeReady ContainerをCentOSにインストールする（2021年時点）</title>
       <link>https://kurikube.github.io/post/20210401/</link>
       <pubDate>Thu, 01 Apr 2021 11:30:03 +0000</pubDate>
@@ -161,8 +170,7 @@
       
       <guid>https://kurikube.github.io/search/</guid>
       <description>タイトル、本文、タグなどから記事を検索できます。
-空白区切りはOR検索になります。(AND検索はできません) #&amp;mdash; #title: &amp;ldquo;Search&amp;rdquo; # in any language you want #layout: &amp;ldquo;search&amp;rdquo; # is necessary
-url: &amp;ldquo;/archive&amp;rdquo; description: &amp;ldquo;Description for Search&amp;rdquo; #summary: &amp;ldquo;search&amp;rdquo; #&amp;mdash;</description>
+空白区切りはOR検索になります。(AND検索はできません)</description>
     </item>
     
   </channel>

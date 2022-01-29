@@ -19,5 +19,23 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Python</title>
+      <link>https://kurikube.github.io/categories/python/</link>
+      <pubDate>Sun, 02 Jan 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/categories/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Slack</title>
+      <link>https://kurikube.github.io/categories/slack/</link>
+      <pubDate>Sun, 02 Jan 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/categories/slack/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
