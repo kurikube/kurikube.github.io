@@ -36,7 +36,7 @@
 <meta name=twitter:title content="Knativeでサーバレスを実現する">
 <meta name=twitter:description content="Desc Text.">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://kurikube.github.io/post/"},{"@type":"ListItem","position":2,"name":"Knativeでサーバレスを実現する","item":"https://kurikube.github.io/post/knative/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Knativeでサーバレスを実現する","name":"Knativeでサーバレスを実現する","description":"Desc Text.","keywords":["kubernetes","knative"],"articleBody":"0. 前提  kubernetes, Dockerに関する基礎知識  1. 動作環境  EC2(t3.xlarge) Ubuntu  NAME=\"Ubuntu\" VERSION=\"20.04.3 LTS (Focal Fossa)\" ID=ubuntu ID_LIKE=debian PRETTY_NAME=\"Ubuntu 20.04.3 LTS\" VERSION_ID=\"20.04\" HOME_URL=\"https://www.ubuntu.com/\" SUPPORT_URL=\"https://help.ubuntu.com/\" BUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\" PRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\" VERSION_CODENAME=focal UBUNTU_CODENAME=focal  kind version 0.11.1 knative-serving v0.29.0 kn-quickstart Version: v1.2.0  knativeのサンプルアプリの動作には4cpuぐらい必要 ","wordCount":"34","inLanguage":"en","image":"https://kurikube.github.io/%3Cimage%20path/url%3E","datePublished":"2022-01-29T11:30:03Z","dateModified":"2022-01-29T11:30:03Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://kurikube.github.io/post/knative/"},"publisher":{"@type":"Organization","name":"携帯キャリアで勤めるエンジニアのブログ","logo":{"@type":"ImageObject","url":"https://kurikube.github.io/%3Clink%20/%20abs%20url%3E"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Knativeでサーバレスを実現する","name":"Knativeでサーバレスを実現する","description":"Desc Text.","keywords":["kubernetes","knative"],"articleBody":"0. 前提  kubernetes, Dockerに関する基礎知識  1. 動作環境  EC2(t3.xlarge) (※補足 t3.largeだとcpu不足で動作しませんでした。) Ubuntu  NAME=\"Ubuntu\" VERSION=\"20.04.3 LTS (Focal Fossa)\" ID=ubuntu ID_LIKE=debian PRETTY_NAME=\"Ubuntu 20.04.3 LTS\" VERSION_ID=\"20.04\" HOME_URL=\"https://www.ubuntu.com/\" SUPPORT_URL=\"https://help.ubuntu.com/\" BUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\" PRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\" VERSION_CODENAME=focal UBUNTU_CODENAME=focal  kind version 0.11.1 knative-serving v0.29.0 kn-quickstart Version: v1.2.0 Docker 20.10.7 npm v6.14.4  2. 試してみる 2.1 kind, kubectlのインストール  kindのインストール  https://kind.sigs.k8s.io/docs/user/quick-start/ を参考にインストールする\ncurl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64 chmod +x ./kind mv ./kind /usr/local/bin/kind  kubectlのインストール https://kubernetes.io/ja/docs/tasks/tools/install-kubectl/ を参考にインストール  sudo apt-get update \u0026\u0026 sudo apt-get install -y apt-transport-https gnupg2 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - echo \"deb https://apt.kubernetes.io/ kubernetes-xenial main\" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list sudo apt-get update sudo apt-get install -y kubectl 2.2 kn, kn-quickstartコマンドのインストール  knコマンドのインストール https://github.com/knative/client/releases から拾ってくる  wget https://github.com/knative/client/releases/download/knative-v1.2.0/kn-linux-amd64 chmod +x kn-linux-amd64 mv ./kn-linux-amd64 /usr/local/bin/kn  kn-quickstartコマンドのインストール https://github.com/knative-sandbox/kn-plugin-quickstart/releases からダウンロードする  wget https://github.com/knative-sandbox/kn-plugin-quickstart/releases/download/knative-v1.2.0/kn-quickstart-linux-amd64 chmod +x kn-quickstart-linux-amd64 mv ./kn-quickstart-linux-amd64 /usr/local/bin/kn-quickstart 2.3 npm, nodejsのインストール  npmのインストール  sudo apt install npm npm -v  nodejsのインストール  sudo apt install nodejs nodejs -v 2.4 knativeクラスタを立ち上げる kn quickstart kind kind get clusters 2.5 サンプルアプリケーションをデプロイする https://github.com/knative/docs/tree/main/code-samples/serving/hello-world/helloworld-nodejs　を参考にサンプルアプリをデプロイする nodejsプロジェクトを作成し、expressをインストールする\nmkdir knative-service-sample cd knative-service-sample npm init -y npm install express index.jsを作成する。index.jsの中身は下のようになる。\nconst express = require('express'); const app = express(); app.get('/', (req, res) = { console.log('Hello world received a request.'); const target = process.env.TARGET || 'World'; res.send(`Hello ${target}!\\n`); }); const port = process.env.PORT || 8080; app.listen(port, () = { console.log('Hello world listening on port', port); }); package.jsonを編集する。内容を下記のように編集する\n{ \"name\": \"knative-serving-helloworld\", \"version\": \"1.0.0\", \"description\": \"Simple hello world sample in Node\", \"main\": \"index.js\", \"scripts\": { \"start\": \"node index.js\" }, \"author\": \"\", \"license\": \"Apache-2.0\", \"dependencies\": { \"express\": \"^4.16.4\" } } Dockerfileを作成する。下記のように記載する\n# Use the official lightweight Node.js 12 image. # https://hub.docker.com/_/node FROM node:12-slim # Create and change to the app directory. WORKDIR /usr/src/app # Copy application dependency manifests to the container image. # A wildcard is used to ensure both package.json AND package-lock.json are copied. # Copying this separately prevents re-running npm install on every code change. COPY package*.json ./ # Install production dependencies. RUN npm install --only=production # Copy local code to the container image. COPY . ./ # Run the web service on container startup. CMD [ \"npm\", \"start\" ] .dockerigonerファイルを記載する\nDockerfile README.md node_modules npm-debug.log service.yamlを編集する usernameの部分は各自のDockerhubのユーザー名に変更する\napiVersion: serving.knative.dev/v1 kind: Service metadata: name: helloworld-nodejs namespace: default spec: template: spec: containers: - image: docker.io/{username}/helloworld-nodejs env: - name: TARGET value: \"Node.js Sample v1\" Dockerイメージをビルドする\ndocker build -t {username}/helloworld-nodejs . docker push {username}/helloworld-nodejs k8sクラスタにデプロイする\nkubectl apply --filename service.yaml サービスのエンドポイントを確認する\nkubectl get ksvc helloworld-nodejs --output=custom-columns=NAME:.metadata.name,URL:.status.url アプリにアクセスしてみる。\ncurl http://helloworld-nodejs.default.1.2.3.4.sslip.io 無事にデプロイできると最初はSTATUSがRunningだが途中からTerminatingになることが分かる。 別のターミナルでkubectl get po -wしながら、curl http://helloworld-nodejs.default.1.2.3.4.sslip.io してみると再度Podが立ち上がる。\nクラスタを片付ける kind delete clusters knative\n","wordCount":"395","inLanguage":"en","image":"https://kurikube.github.io/%3Cimage%20path/url%3E","datePublished":"2022-01-29T11:30:03Z","dateModified":"2022-01-29T11:30:03Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://kurikube.github.io/post/knative/"},"publisher":{"@type":"Organization","name":"携帯キャリアで勤めるエンジニアのブログ","logo":{"@type":"ImageObject","url":"https://kurikube.github.io/%3Clink%20/%20abs%20url%3E"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add('dark')</script>
@@ -83,7 +83,7 @@ Knativeでサーバレスを実現する
 <div class=post-description>
 Desc Text.
 </div>
-<div class=post-meta><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me&nbsp;|&nbsp;<a href=https://github.com/kurikube/hugo-blog/tree/main/content/post/knative/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a>
+<div class=post-meta><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me&nbsp;|&nbsp;<a href=https://github.com/kurikube/hugo-blog/tree/main/content/post/knative/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a>
 </div>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3014928890570116" crossorigin=anonymous></script>
 </header> <div class=toc>
@@ -97,7 +97,20 @@ Desc Text.
 <li>
 <a href=#1-%e5%8b%95%e4%bd%9c%e7%92%b0%e5%a2%83 aria-label="1. 動作環境">1. 動作環境</a></li>
 <li>
-<a href=#knative%e3%81%ae%e3%82%b5%e3%83%b3%e3%83%97%e3%83%ab%e3%82%a2%e3%83%97%e3%83%aa%e3%81%ae%e5%8b%95%e4%bd%9c%e3%81%ab%e3%81%af4cpu%e3%81%90%e3%82%89%e3%81%84%e5%bf%85%e8%a6%81 aria-label=knativeのサンプルアプリの動作には4cpuぐらい必要>knativeのサンプルアプリの動作には4cpuぐらい必要</a>
+<a href=#2-%e8%a9%a6%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b aria-label="2. 試してみる">2. 試してみる</a><ul>
+<li>
+<a href=#21-kind-kubectl%e3%81%ae%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab aria-label="2.1 kind, kubectlのインストール">2.1 kind, kubectlのインストール</a></li>
+<li>
+<a href=#22-kn-kn-quickstart%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e3%81%ae%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab aria-label="2.2 kn, kn-quickstartコマンドのインストール">2.2 kn, kn-quickstartコマンドのインストール</a></li>
+<li>
+<a href=#23-npm-nodejs%e3%81%ae%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab aria-label="2.3 npm, nodejsのインストール">2.3 npm, nodejsのインストール</a></li>
+<li>
+<a href=#24-knative%e3%82%af%e3%83%a9%e3%82%b9%e3%82%bf%e3%82%92%e7%ab%8b%e3%81%a1%e4%b8%8a%e3%81%92%e3%82%8b aria-label="2.4 knativeクラスタを立ち上げる">2.4 knativeクラスタを立ち上げる</a></li>
+<li>
+<a href=#25-%e3%82%b5%e3%83%b3%e3%83%97%e3%83%ab%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%92%e3%83%87%e3%83%97%e3%83%ad%e3%82%a4%e3%81%99%e3%82%8b aria-label="2.5 サンプルアプリケーションをデプロイする">2.5 サンプルアプリケーションをデプロイする</a></li></ul>
+</li>
+<li>
+<a href=#%e3%82%af%e3%83%a9%e3%82%b9%e3%82%bf%e3%82%92%e7%89%87%e4%bb%98%e3%81%91%e3%82%8b aria-label=クラスタを片付ける>クラスタを片付ける</a>
 </li>
 </ul>
 </div>
@@ -109,7 +122,7 @@ Desc Text.
 </ul>
 <h2 id=1-動作環境>1. 動作環境<a hidden class=anchor aria-hidden=true href=#1-動作環境>#</a></h2>
 <ul>
-<li>EC2(t3.xlarge)</li>
+<li>EC2(t3.xlarge) (※補足 t3.largeだとcpu不足で動作しませんでした。)</li>
 <li>Ubuntu</li>
 </ul>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>NAME<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Ubuntu&#34;</span>
@@ -128,8 +141,150 @@ UBUNTU_CODENAME<span style=color:#f92672>=</span>focal
 <li>kind version 0.11.1</li>
 <li>knative-serving v0.29.0</li>
 <li>kn-quickstart Version: v1.2.0</li>
+<li>Docker 20.10.7</li>
+<li>npm v6.14.4</li>
 </ul>
-<h2 id=knativeのサンプルアプリの動作には4cpuぐらい必要>knativeのサンプルアプリの動作には4cpuぐらい必要<a hidden class=anchor aria-hidden=true href=#knativeのサンプルアプリの動作には4cpuぐらい必要>#</a></h2>
+<h2 id=2-試してみる>2. 試してみる<a hidden class=anchor aria-hidden=true href=#2-試してみる>#</a></h2>
+<h3 id=21-kind-kubectlのインストール>2.1 kind, kubectlのインストール<a hidden class=anchor aria-hidden=true href=#21-kind-kubectlのインストール>#</a></h3>
+<ul>
+<li>kindのインストール</li>
+</ul>
+<p><a href=https://kind.sigs.k8s.io/docs/user/quick-start/>https://kind.sigs.k8s.io/docs/user/quick-start/</a> を参考にインストールする</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
+chmod +x ./kind
+mv ./kind /usr/local/bin/kind
+</code></pre></div><ul>
+<li>kubectlのインストール
+<a href=https://kubernetes.io/ja/docs/tasks/tools/install-kubectl/>https://kubernetes.io/ja/docs/tasks/tools/install-kubectl/</a> を参考にインストール</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>sudo apt-get update <span style=color:#f92672>&amp;&amp;</span> sudo apt-get install -y apt-transport-https gnupg2
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+echo <span style=color:#e6db74>&#34;deb https://apt.kubernetes.io/ kubernetes-xenial main&#34;</span> | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubectl
+</code></pre></div><h3 id=22-kn-kn-quickstartコマンドのインストール>2.2 kn, kn-quickstartコマンドのインストール<a hidden class=anchor aria-hidden=true href=#22-kn-kn-quickstartコマンドのインストール>#</a></h3>
+<ul>
+<li>knコマンドのインストール
+<a href=https://github.com/knative/client/releases>https://github.com/knative/client/releases</a> から拾ってくる</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>wget https://github.com/knative/client/releases/download/knative-v1.2.0/kn-linux-amd64
+chmod +x kn-linux-amd64
+mv ./kn-linux-amd64 /usr/local/bin/kn
+</code></pre></div><ul>
+<li>kn-quickstartコマンドのインストール
+<a href=https://github.com/knative-sandbox/kn-plugin-quickstart/releases>https://github.com/knative-sandbox/kn-plugin-quickstart/releases</a> からダウンロードする</li>
+</ul>
+<pre tabindex=0><code>wget https://github.com/knative-sandbox/kn-plugin-quickstart/releases/download/knative-v1.2.0/kn-quickstart-linux-amd64
+chmod +x kn-quickstart-linux-amd64
+mv ./kn-quickstart-linux-amd64 /usr/local/bin/kn-quickstart
+</code></pre><h3 id=23-npm-nodejsのインストール>2.3 npm, nodejsのインストール<a hidden class=anchor aria-hidden=true href=#23-npm-nodejsのインストール>#</a></h3>
+<ul>
+<li>npmのインストール</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>sudo apt install npm
+npm -v 
+</code></pre></div><ul>
+<li>nodejsのインストール</li>
+</ul>
+<pre tabindex=0><code>sudo apt install nodejs
+nodejs -v
+</code></pre><h3 id=24-knativeクラスタを立ち上げる>2.4 knativeクラスタを立ち上げる<a hidden class=anchor aria-hidden=true href=#24-knativeクラスタを立ち上げる>#</a></h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>kn quickstart kind
+
+kind get clusters
+</code></pre></div><h3 id=25-サンプルアプリケーションをデプロイする>2.5 サンプルアプリケーションをデプロイする<a hidden class=anchor aria-hidden=true href=#25-サンプルアプリケーションをデプロイする>#</a></h3>
+<p><a href=https://github.com/knative/docs/tree/main/code-samples/serving/hello-world/helloworld-nodejs>https://github.com/knative/docs/tree/main/code-samples/serving/hello-world/helloworld-nodejs</a>　を参考にサンプルアプリをデプロイする
+nodejsプロジェクトを作成し、expressをインストールする</p>
+<pre tabindex=0><code>mkdir knative-service-sample
+cd knative-service-sample
+npm init -y
+npm install express
+</code></pre><p>index.jsを作成する。index.jsの中身は下のようになる。</p>
+<pre tabindex=0><code>const express = require('express');
+const app = express();
+
+app.get('/', (req, res) =&gt; {
+  console.log('Hello world received a request.');
+
+  const target = process.env.TARGET || 'World';
+  res.send(`Hello ${target}!\n`);
+});
+
+const port = process.env.PORT || 8080;
+app.listen(port, () =&gt; {
+  console.log('Hello world listening on port', port);
+});
+</code></pre><p>package.jsonを編集する。内容を下記のように編集する</p>
+<pre tabindex=0><code>{
+  &quot;name&quot;: &quot;knative-serving-helloworld&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;Simple hello world sample in Node&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;node index.js&quot;
+  },
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;Apache-2.0&quot;,
+  &quot;dependencies&quot;: {
+    &quot;express&quot;: &quot;^4.16.4&quot;
+  }
+}
+</code></pre><p><code>Dockerfile</code>を作成する。下記のように記載する</p>
+<pre tabindex=0><code># Use the official lightweight Node.js 12 image.
+# https://hub.docker.com/_/node
+FROM node:12-slim
+
+# Create and change to the app directory.
+WORKDIR /usr/src/app
+
+# Copy application dependency manifests to the container image.
+# A wildcard is used to ensure both package.json AND package-lock.json are copied.
+# Copying this separately prevents re-running npm install on every code change.
+COPY package*.json ./
+
+# Install production dependencies.
+RUN npm install --only=production
+
+# Copy local code to the container image.
+COPY . ./
+
+# Run the web service on container startup.
+CMD [ &quot;npm&quot;, &quot;start&quot; ]
+
+</code></pre><p>.dockerigonerファイルを記載する</p>
+<pre tabindex=0><code>Dockerfile
+README.md
+node_modules
+npm-debug.log
+</code></pre><p>service.yamlを編集する usernameの部分は各自のDockerhubのユーザー名に変更する</p>
+<pre tabindex=0><code>apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: helloworld-nodejs
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+        - image: docker.io/{username}/helloworld-nodejs
+          env:
+            - name: TARGET
+              value: &quot;Node.js Sample v1&quot;
+</code></pre><p>Dockerイメージをビルドする</p>
+<pre tabindex=0><code>docker build -t {username}/helloworld-nodejs .
+
+docker push {username}/helloworld-nodejs
+</code></pre><p>k8sクラスタにデプロイする</p>
+<pre tabindex=0><code>kubectl apply --filename service.yaml
+</code></pre><p>サービスのエンドポイントを確認する</p>
+<pre tabindex=0><code>kubectl get ksvc helloworld-nodejs  --output=custom-columns=NAME:.metadata.name,URL:.status.url
+</code></pre><p>アプリにアクセスしてみる。</p>
+<pre tabindex=0><code>curl http://helloworld-nodejs.default.1.2.3.4.sslip.io
+</code></pre><p>無事にデプロイできると最初はSTATUSがRunningだが途中からTerminatingになることが分かる。
+別のターミナルで<code>kubectl get po -w</code>しながら、<code>curl http://helloworld-nodejs.default.1.2.3.4.sslip.io</code>
+してみると再度Podが立ち上がる。</p>
+<h2 id=クラスタを片付ける>クラスタを片付ける<a hidden class=anchor aria-hidden=true href=#クラスタを片付ける>#</a></h2>
+<p>kind delete clusters knative</p>
 </div>
 <footer class=post-footer>
 <ul class=post-tags>
