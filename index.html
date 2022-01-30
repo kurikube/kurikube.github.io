@@ -102,6 +102,17 @@
 </article>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Knativeでサーバレスを実現する
+</h2>
+</header>
+<section class=entry-content>
+<p>0. 前提 kubernetes, Dockerに関する基礎知識 1. 動作環境 EC2(t3.xlarge) Ubuntu NAME="Ubuntu" VERSION="20.04.3 LTS (Focal Fossa)" ID=ubuntu ID_LIKE=debian PRETTY_NAME="Ubuntu 20.04.3 LTS" VERSION_ID="20.04" HOME_URL="https://www.ubuntu.com/" SUPPORT_URL="https://help.ubuntu.com/" BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/" PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy" VERSION_CODENAME=focal UBUNTU_CODENAME=focal kind version 0.11.1 knative-serving v0.29.0 kn-quickstart Version: v1.2.0 knativeのサンプルアプリの動作には4cpuぐらい必要 </p>
+</section>
+<footer class=entry-footer><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to Knativeでサーバレスを実現する" href=https://kurikube.github.io/post/knative/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>最小インストールしたCentOS7にGUIを導入する
 </h2>
 </header>
@@ -143,10 +154,11 @@ CRCホストの/etc/hosts CRCセットアップ後、CRCを実行するホスト
 <p>背景 Linuxでコマンドの実行ログを保存したいことは非常に多いと思います。これは、後で見返せるようにするためでもありますし、派遣社員などの場合は自分の身を守るための手段にもなります。
 使用方法 script &lt;ログを保存したいファイル名> ファイル名を指定しなかった場合は、カレントディレクトリにtypescript というファイルで保存されます
 日付の入ったファイル名で保存したい場合
-script `date +%Y%m%d`.log このようにすれば日付名で作業ログを保存できます
-$ script スクリプトを開始しました、ファイルは typescript です $ date 2021年 3月 28日 日曜日 06:46:13 EDT 終了する場合はexitするかctrl+dを実行します
+script `date +%Y%m%d`.log このようにすれば日付名で作業ログを保存できます。
+実際に使ってみます。 $ script スクリプトを開始しました、ファイルは typescript です $ date 2021年 3月 28日 日曜日 06:46:13 EDT 終了する場合はexitするかctrl+dを実行します
 $ exit exit スクリプトを終了しました、ファイルは typescript です ファイルにログが残っているか確認する
-$ cat typescript スクリプトは 2021年03月28日 06時46分11秒 に開始しました$ date 2021年 3月 28日 日曜日 06:46:13 EDT $ exit exit スクリプトは 2021年03月28日 06時47分10秒 に終了しました きちんと記録されていました。 最後になりますが、ファイルへの追記方法を記載します。 同じファイルに追記したい場合はオプション-aを使うことで可能です。</p>
+$ cat typescript スクリプトは 2021年03月28日 06時46分11秒 に開始しました$ date 2021年 3月 28日 日曜日 06:46:13 EDT $ exit exit スクリプトは 2021年03月28日 06時47分10秒 に終了しました きちんと記録されていました。
+既存ファイルへの追記方法 最後になりますが、ファイルへの追記方法を記載します。 同じファイルに追記したい場合はオプション-aを使うことで可能です。</p>
 </section>
 <footer class=entry-footer><span title="2022-01-28 11:30:03 +0000 UTC">January 28, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to scriptコマンドでコマンド実行の作業ログを保存する" href=https://kurikube.github.io/post/20210130/></a>
@@ -223,19 +235,6 @@ make html このコマンドで、手元のローカル環境用のファイル�
 </section>
 <footer class=entry-footer><span title="2022-01-11 11:30:03 +0000 UTC">January 11, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to CCNP合格したので、勉強法まとめて見た" href=https://kurikube.github.io/post/20210126/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>OpenShift Code ReadyをCentosにインストールする（2022/1/29時点）
-</h2>
-</header>
-<section class=entry-content>
-<p>概要 OpenShift4.x以降はMinishiftがなくなり、OpenShift CodeReady Container（CRC）となっている。 以下では公式ドキュメントに沿って手元のベアメタルサーバへインストールを行う。このサーバで色々なことを試してみる。 https://crc.dev/crc/
-環境 ホストOS：CentOS7.7 構成図 マシン上でCRCをインストールすると自動的にNWが作成されてCRCが作成される 。 OpenShiftのWebコンソールへアクセスする際には、ベアメタルマシンへリモデスした上でマシン上のブラウザからアクセスする必要がある。 環境確認 [root@ip-172-31-19-74 ~]# cat /etc/redhat-release CentOS Linux release 7.7.1908 (Core) 手順 公式ドキュメントの手順に沿ってインストールする。
-1.NetworkManagerをインストールし、起動する [root@ip-172-31-19-74 ~]# yum -y install NetworkManager [root@ip-172-31-19-74 ~]# systemctl restart NetworkManager 2.資材をダウンロードして、解凍して、パスの通ったフォルダへ移動 [root@ip-172-31-19-74 ~]# yum -y install wget [root@ip-172-31-19-74 tmp]# curl -k -L https://developers.redhat.com/content-gateway/rest/mirror/pub/openshift-v4/clients/crc/latest/crc-linux-amd64.tar.xz -o /tmp/crc-linux-amd64.tar.xz #ダウンロードにかなり時間を要します。 [root@ip-172-31-19-74 ~]# cd /tmp [root@ip-172-31-19-74 tmp]# xz -dc /tmp/crc-linux-amd64.tar.xz | tar xfv - [root@ip-172-31-19-74 tmp]# cp -pi crc-linux-1....</p>
-</section>
-<footer class=entry-footer><span title="2022-01-10 11:30:03 +0000 UTC">January 10, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to OpenShift Code ReadyをCentosにインストールする（2022/1/29時点）" href=https://kurikube.github.io/post/20210131/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

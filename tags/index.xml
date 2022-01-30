@@ -9,7 +9,25 @@
       <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 28 Jan 2022 12:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 29 Jan 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>knative</title>
+      <link>https://kurikube.github.io/tags/knative/</link>
+      <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/tags/knative/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://kurikube.github.io/tags/kubernetes/</link>
+      <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Centos</title>
       <link>https://kurikube.github.io/tags/centos/</link>

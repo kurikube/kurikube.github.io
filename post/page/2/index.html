@@ -75,6 +75,19 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>OpenShift Code ReadyをCentosにインストールする（2022/1/29時点）
+</h2>
+</header>
+<section class=entry-content>
+<p>概要 OpenShift4.x以降はMinishiftがなくなり、OpenShift CodeReady Container（CRC）となっている。 以下では公式ドキュメントに沿って手元のベアメタルサーバへインストールを行う。このサーバで色々なことを試してみる。 https://crc.dev/crc/
+環境 ホストOS：CentOS7.7 構成図 マシン上でCRCをインストールすると自動的にNWが作成されてCRCが作成される 。 OpenShiftのWebコンソールへアクセスする際には、ベアメタルマシンへリモデスした上でマシン上のブラウザからアクセスする必要がある。 環境確認 [root@ip-172-31-19-74 ~]# cat /etc/redhat-release CentOS Linux release 7.7.1908 (Core) 手順 公式ドキュメントの手順に沿ってインストールする。
+1.NetworkManagerをインストールし、起動する [root@ip-172-31-19-74 ~]# yum -y install NetworkManager [root@ip-172-31-19-74 ~]# systemctl restart NetworkManager 2.資材をダウンロードして、解凍して、パスの通ったフォルダへ移動 [root@ip-172-31-19-74 ~]# yum -y install wget [root@ip-172-31-19-74 tmp]# curl -k -L https://developers.redhat.com/content-gateway/rest/mirror/pub/openshift-v4/clients/crc/latest/crc-linux-amd64.tar.xz -o /tmp/crc-linux-amd64.tar.xz #ダウンロードにかなり時間を要します。 [root@ip-172-31-19-74 ~]# cd /tmp [root@ip-172-31-19-74 tmp]# xz -dc /tmp/crc-linux-amd64.tar.xz | tar xfv - [root@ip-172-31-19-74 tmp]# cp -pi crc-linux-1....</p>
+</section>
+<footer class=entry-footer><span title="2022-01-10 11:30:03 +0000 UTC">January 10, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to OpenShift Code ReadyをCentosにインストールする（2022/1/29時点）" href=https://kurikube.github.io/post/20210131/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>hugo + Papermod で作ったwebサイトに検索機能を追加する
 </h2>
 </header>
