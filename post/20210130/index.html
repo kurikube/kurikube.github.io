@@ -36,7 +36,7 @@
 <meta name=twitter:title content="scriptコマンドでコマンド実行の作業ログを保存する">
 <meta name=twitter:description content="Desc Text.">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://kurikube.github.io/post/"},{"@type":"ListItem","position":2,"name":"scriptコマンドでコマンド実行の作業ログを保存する","item":"https://kurikube.github.io/post/20210130/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"scriptコマンドでコマンド実行の作業ログを保存する","name":"scriptコマンドでコマンド実行の作業ログを保存する","description":"Desc Text.","keywords":["script"],"articleBody":"背景 Linuxでコマンドの実行ログを保存したいことは非常に多いと思います。これは、後で見返せるようにするためでもありますし、派遣社員などの場合は自分の身を守るための手段にもなります。\n使用方法 script  ファイル名を指定しなかった場合は、カレントディレクトリにtypescript というファイルで保存されます\n日付の入ったファイル名で保存したい場合\nscript `date +%Y%m%d`.log このようにすれば日付名で作業ログを保存できます。\n実際に使ってみます。 $ script スクリプトを開始しました、ファイルは typescript です $ date 2021年 3月 28日 日曜日 06:46:13 EDT 終了する場合はexitするかctrl+dを実行します\n$ exit exit スクリプトを終了しました、ファイルは typescript です ファイルにログが残っているか確認する\n$ cat typescript スクリプトは 2021年03月28日 06時46分11秒 に開始しました$ date 2021年 3月 28日 日曜日 06:46:13 EDT $ exit exit スクリプトは 2021年03月28日 06時47分10秒 に終了しました きちんと記録されていました。\n既存ファイルへの追記方法 最後になりますが、ファイルへの追記方法を記載します。 同じファイルに追記したい場合はオプション-aを使うことで可能です。\n","wordCount":"59","inLanguage":"en","image":"https://kurikube.github.io/%3Cimage%20path/url%3E","datePublished":"2022-01-28T11:30:03Z","dateModified":"2022-01-28T11:30:03Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://kurikube.github.io/post/20210130/"},"publisher":{"@type":"Organization","name":"通信キャリアで勤めるエンジニアのブログ","logo":{"@type":"ImageObject","url":"https://kurikube.github.io/images/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"scriptコマンドでコマンド実行の作業ログを保存する","name":"scriptコマンドでコマンド実行の作業ログを保存する","description":"Desc Text.","keywords":["script"],"articleBody":"背景 Linuxでコマンドの実行ログを保存したいことは非常に多いと思います。これは、後で見返せるようにするためでもありますし、派遣社員などの場合は自分の身を守るための手段にもなります。\n使用方法 script  ファイル名を指定しなかった場合は、カレントディレクトリにtypescript というファイルで保存されます\n日付の入ったファイル名で保存したい場合\nscript `date +%Y%m%d`.log このようにすれば日付名で作業ログを保存できます。\n実際に使ってみます。 $ script スクリプトを開始しました、ファイルは typescript です $ date 2021年 3月 28日 日曜日 06:46:13 EDT 終了する場合はexitするかctrl+dを実行します\n$ exit exit スクリプトを終了しました、ファイルは typescript です ファイルにログが残っているか確認する\n$ cat typescript スクリプトは 2021年03月28日 06時46分11秒 に開始しました$ date 2021年 3月 28日 日曜日 06:46:13 EDT $ exit exit スクリプトは 2021年03月28日 06時47分10秒 に終了しました きちんと記録されていました。\n既存ファイルへの追記方法 次に、ファイルへの追記方法を記載します。 同じファイルに追記したい場合はオプション-aを使うことで可能です。\nログファイルをlessコマンドで綺麗に読むためには scriptコマンドで取得したログにエスケープシーケンスが含まれる場合、普通のテキストとして読むとエスケープシーケンスがESCのように表示され可読性が非常に落ちます。この場合、\nless -R で読むと綺麗に読むことができます。\n参考記事  https://qiita.com/networkelements/items/aa4aec5417306b4c7e71 https://mk-55.hatenablog.com/entry/2017/05/21/013930  ","wordCount":"67","inLanguage":"en","image":"https://kurikube.github.io/%3Cimage%20path/url%3E","datePublished":"2022-01-28T11:30:03Z","dateModified":"2022-01-28T11:30:03Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://kurikube.github.io/post/20210130/"},"publisher":{"@type":"Organization","name":"通信キャリアで勤めるエンジニアのブログ","logo":{"@type":"ImageObject","url":"https://kurikube.github.io/images/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add('dark')</script>
@@ -99,7 +99,11 @@ Desc Text.
 <li>
 <a href=#%e5%ae%9f%e9%9a%9b%e3%81%ab%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%81%be%e3%81%99 aria-label=実際に使ってみます。>実際に使ってみます。</a></li>
 <li>
-<a href=#%e6%97%a2%e5%ad%98%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%81%b8%e3%81%ae%e8%bf%bd%e8%a8%98%e6%96%b9%e6%b3%95 aria-label=既存ファイルへの追記方法>既存ファイルへの追記方法</a>
+<a href=#%e6%97%a2%e5%ad%98%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%81%b8%e3%81%ae%e8%bf%bd%e8%a8%98%e6%96%b9%e6%b3%95 aria-label=既存ファイルへの追記方法>既存ファイルへの追記方法</a></li>
+<li>
+<a href=#%e3%83%ad%e3%82%b0%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%82%92less%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e3%81%a7%e7%b6%ba%e9%ba%97%e3%81%ab%e8%aa%ad%e3%82%80%e3%81%9f%e3%82%81%e3%81%ab%e3%81%af aria-label=ログファイルをlessコマンドで綺麗に読むためには>ログファイルを<code>less</code>コマンドで綺麗に読むためには</a></li>
+<li>
+<a href=#%e5%8f%82%e8%80%83%e8%a8%98%e4%ba%8b aria-label=参考記事>参考記事</a>
 </li>
 </ul>
 </div>
@@ -134,8 +138,17 @@ exit
  に終了しました
 </code></pre></div><p>きちんと記録されていました。</p>
 <h2 id=既存ファイルへの追記方法>既存ファイルへの追記方法<a hidden class=anchor aria-hidden=true href=#既存ファイルへの追記方法>#</a></h2>
-<p>最後になりますが、ファイルへの追記方法を記載します。
+<p>次に、ファイルへの追記方法を記載します。
 同じファイルに追記したい場合はオプション<code>-a</code>を使うことで可能です。</p>
+<h2 id=ログファイルをlessコマンドで綺麗に読むためには>ログファイルを<code>less</code>コマンドで綺麗に読むためには<a hidden class=anchor aria-hidden=true href=#ログファイルをlessコマンドで綺麗に読むためには>#</a></h2>
+<p><code>script</code>コマンドで取得したログにエスケープシーケンスが含まれる場合、普通のテキストとして読むとエスケープシーケンスが<code>ESC</code>のように表示され可読性が非常に落ちます。この場合、</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>less -R
+</code></pre></div><p>で読むと綺麗に読むことができます。</p>
+<h2 id=参考記事>参考記事<a hidden class=anchor aria-hidden=true href=#参考記事>#</a></h2>
+<ul>
+<li><a href=https://qiita.com/networkelements/items/aa4aec5417306b4c7e71>https://qiita.com/networkelements/items/aa4aec5417306b4c7e71</a></li>
+<li><a href=https://mk-55.hatenablog.com/entry/2017/05/21/013930>https://mk-55.hatenablog.com/entry/2017/05/21/013930</a></li>
+</ul>
 </div>
 <footer class=post-footer>
 <ul class=post-tags>

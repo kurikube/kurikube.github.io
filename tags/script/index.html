@@ -85,7 +85,10 @@ script `date +%Y%m%d`.log このようにすれば日付名で作業ログを保
 実際に使ってみます。 $ script スクリプトを開始しました、ファイルは typescript です $ date 2021年 3月 28日 日曜日 06:46:13 EDT 終了する場合はexitするかctrl+dを実行します
 $ exit exit スクリプトを終了しました、ファイルは typescript です ファイルにログが残っているか確認する
 $ cat typescript スクリプトは 2021年03月28日 06時46分11秒 に開始しました$ date 2021年 3月 28日 日曜日 06:46:13 EDT $ exit exit スクリプトは 2021年03月28日 06時47分10秒 に終了しました きちんと記録されていました。
-既存ファイルへの追記方法 最後になりますが、ファイルへの追記方法を記載します。 同じファイルに追記したい場合はオプション-aを使うことで可能です。</p>
+既存ファイルへの追記方法 次に、ファイルへの追記方法を記載します。 同じファイルに追記したい場合はオプション-aを使うことで可能です。
+ログファイルをlessコマンドで綺麗に読むためには scriptコマンドで取得したログにエスケープシーケンスが含まれる場合、普通のテキストとして読むとエスケープシーケンスがESCのように表示され可読性が非常に落ちます。この場合、
+less -R で読むと綺麗に読むことができます。
+参考記事 https://qiita.com/networkelements/items/aa4aec5417306b4c7e71 https://mk-55.hatenablog.com/entry/2017/05/21/013930 </p>
 </section>
 <footer class=entry-footer><span title="2022-01-28 11:30:03 +0000 UTC">January 28, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to scriptコマンドでコマンド実行の作業ログを保存する" href=https://kurikube.github.io/post/20210130/></a>
