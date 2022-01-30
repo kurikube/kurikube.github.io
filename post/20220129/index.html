@@ -3,7 +3,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>Apple M1搭載のMacBook Airにawsコマンドをインストールする | 携帯キャリアで勤めるエンジニアのブログ</title>
+<title>Apple M1搭載のMacBook Airにawsコマンドをインストールする | 通信キャリアで勤めるエンジニアのブログ</title>
 <meta name=keywords content="AWS,Mac">
 <meta name=description content="Desc Text.">
 <meta name=author content="Me">
@@ -30,20 +30,20 @@
 <meta property="og:url" content="https://kurikube.github.io/post/20220129/">
 <meta property="og:image" content="https://kurikube.github.io/%3Cimage%20path/url%3E"><meta property="article:section" content="post">
 <meta property="article:published_time" content="2020-09-15T11:30:03+00:00">
-<meta property="article:modified_time" content="2020-09-15T11:30:03+00:00"><meta property="og:site_name" content="携帯キャリアで働くエンジニアのブログ">
+<meta property="article:modified_time" content="2020-09-15T11:30:03+00:00"><meta property="og:site_name" content="通信キャリアで働くエンジニアのブログ">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://kurikube.github.io/%3Cimage%20path/url%3E">
 <meta name=twitter:title content="Apple M1搭載のMacBook Airにawsコマンドをインストールする">
 <meta name=twitter:description content="Desc Text.">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://kurikube.github.io/post/"},{"@type":"ListItem","position":2,"name":"Apple M1搭載のMacBook Airにawsコマンドをインストールする","item":"https://kurikube.github.io/post/20220129/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Apple M1搭載のMacBook Airにawsコマンドをインストールする","name":"Apple M1搭載のMacBook Airにawsコマンドをインストールする","description":"Desc Text.","keywords":["AWS","Mac"],"articleBody":"背景  Apple M1チップ搭載のMacbookだとVirtual Boxなどの一部アプリケーションが動きません。 aws コマンドを正常にインストールできるか検証してみました。  手順  pkgファイルのダウンロード  % curl \"https://awscli.amazonaws.com/AWSCLIV2.pkg\" -o \"AWSCLIV2.pkg\" % Total % Received % Xferd Average Speed Time Time Time Current Dload Upload Total Spent Left Speed 100 25.3M 100 25.3M 0 0 10.7M 0 0:00:02 0:00:02 --:--:-- 10.7M pkgのインストール  % sudo installer -pkg AWSCLIV2.pkg -target / Password: installer: Package name is AWS Command Line Interface installer: Installing at base path / installer: The install was successful. 正常にインストールできたか確認する  % aws --version aws-cli/2.2.29 Python/3.8.8 Darwin/20.3.0 exe/x86_64 prompt/off 結論  Apple M1 チップ搭載のMacbookでもawsコマンドをインストールすることが可能でした  参考サイト  https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv2-mac.html#cliv2-mac-install-cmd  ","wordCount":"86","inLanguage":"en","image":"https://kurikube.github.io/%3Cimage%20path/url%3E","datePublished":"2020-09-15T11:30:03Z","dateModified":"2020-09-15T11:30:03Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://kurikube.github.io/post/20220129/"},"publisher":{"@type":"Organization","name":"携帯キャリアで勤めるエンジニアのブログ","logo":{"@type":"ImageObject","url":"https://kurikube.github.io/%3Clink%20/%20abs%20url%3E"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Apple M1搭載のMacBook Airにawsコマンドをインストールする","name":"Apple M1搭載のMacBook Airにawsコマンドをインストールする","description":"Desc Text.","keywords":["AWS","Mac"],"articleBody":"背景  Apple M1チップ搭載のMacbookだとVirtual Boxなどの一部アプリケーションが動きません。 aws コマンドを正常にインストールできるか検証してみました。  手順  pkgファイルのダウンロード  % curl \"https://awscli.amazonaws.com/AWSCLIV2.pkg\" -o \"AWSCLIV2.pkg\" % Total % Received % Xferd Average Speed Time Time Time Current Dload Upload Total Spent Left Speed 100 25.3M 100 25.3M 0 0 10.7M 0 0:00:02 0:00:02 --:--:-- 10.7M pkgのインストール  % sudo installer -pkg AWSCLIV2.pkg -target / Password: installer: Package name is AWS Command Line Interface installer: Installing at base path / installer: The install was successful. 正常にインストールできたか確認する  % aws --version aws-cli/2.2.29 Python/3.8.8 Darwin/20.3.0 exe/x86_64 prompt/off 結論  Apple M1 チップ搭載のMacbookでもawsコマンドをインストールすることが可能でした  参考サイト  https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv2-mac.html#cliv2-mac-install-cmd  ","wordCount":"86","inLanguage":"en","image":"https://kurikube.github.io/%3Cimage%20path/url%3E","datePublished":"2020-09-15T11:30:03Z","dateModified":"2020-09-15T11:30:03Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://kurikube.github.io/post/20220129/"},"publisher":{"@type":"Organization","name":"通信キャリアで勤めるエンジニアのブログ","logo":{"@type":"ImageObject","url":"https://kurikube.github.io/%3Clink%20/%20abs%20url%3E"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add('dark')</script>
 <header class=header>
 <nav class=nav>
 <div class=logo>
-<a href=https://kurikube.github.io/ accesskey=h title="携帯キャリアで勤めるエンジニアのブログ (Alt + H)">携帯キャリアで勤めるエンジニアのブログ</a>
+<a href=https://kurikube.github.io/ accesskey=h title="通信キャリアで勤めるエンジニアのブログ (Alt + H)">通信キャリアで勤めるエンジニアのブログ</a>
 <span class=logo-switches>
 <button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
@@ -179,7 +179,7 @@ aws-cli/2.2.29 Python/3.8.8 Darwin/20.3.0 exe/x86_64 prompt/off
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2022 <a href=https://kurikube.github.io/>携帯キャリアで勤めるエンジニアのブログ</a></span>
+<span>&copy; 2022 <a href=https://kurikube.github.io/>通信キャリアで勤めるエンジニアのブログ</a></span>
 <span>
 Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
