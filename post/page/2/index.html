@@ -75,6 +75,26 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Pelicanを使って静的サイトを構築する
+</h2>
+</header>
+<section class=entry-content>
+<p>0.Pelicanとは Python製の静的サイトジェネレータ。静的サイトジェネレータにも様々なものがあるが、下記の理由で今回はPelicanを利用することにした。
+開発が活発。(GitHubのスターの数も良好。) themeも様々なものが選べる。 1.実行環境 MacBook Air (M1, 2020) m1チップ venvの仮想環境で実行 GitHub, GitHub Actions Python 3.9.9 Pelican versino 4.7.1 2.試しに利用してみる 2.0 pelican用の仮想環境を作成する venvで作成する
+下のコマンドは/Users/ユーザ名で実行しました。適宜読者の環境に合わせて変更してください。
+python3 -m venv venv 2.1 インストール Python製のパッケージであるため、pip経由でインストールする。 markdownには標準で未対応のため、Markdownを利用できるようにmarkdownのパッケージをインストールする。 (省略可能)GitHub Pagesへの操作を可能にするためghp-importをインストールする
+pip install pelican markdown ghp-import 2.2 Pelican環境構築 pelican-quickstart を実行すると対話形式でセッティングが始まる。
+2.3記事を記載する content ディレクトリ以下にmarkdownで記事をかく。
+記事の先頭にはpelicanの決まりでいくつか内容を記載し、その下に投稿したい内容を記載する
+2.4 記事を生成する markdownを作成したら、下記のコマンドでHTMLファイルを生成する
+make html このコマンドで、手元のローカル環境用のファイルが生成される
+2.5 記事をローカルで確認する make serve http://localhost:8000 開いて確認可能</p>
+</section>
+<footer class=entry-footer><span title="2022-01-26 01:30:03 +0000 UTC">January 26, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to Pelicanを使って静的サイトを構築する" href=https://kurikube.github.io/post/20210127/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>CCNP合格したので、勉強法まとめて見た
 </h2>
 </header>
@@ -185,18 +205,6 @@ VMware徹底入門 販売元のVMwareが執筆しているということもあ�
 </section>
 <footer class=entry-footer><span title="2020-01-25 11:30:03 +0000 UTC">January 25, 2020</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to Hugoで作ったwebサイトにyoutubeの動画を埋め込む" href=https://kurikube.github.io/post/20200125/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Docker install用のshell-script
-</h2>
-</header>
-<section class=entry-content>
-<p>CentOSにDockerをインストールするためのシェルスクリプトになります。 root権限で実行が楽ですが、セキュリティ的によく無いです。
-yum -y update yum -y upgrade yum install -y yum-utils device-mapper-persistent-data lvm2 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo yum install -y docker-ce docker-ce-cli containerd.io systemctl start docker systemctl enable docker </p>
-</section>
-<footer class=entry-footer><span title="2020-01-24 11:30:03 +0000 UTC">January 24, 2020</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to Docker install用のshell-script" href=https://kurikube.github.io/post/20200124/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

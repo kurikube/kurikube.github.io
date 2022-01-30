@@ -20,6 +20,15 @@
     </item>
     
     <item>
+      <title>kindでJaegerを動かす(2022/1/30)</title>
+      <link>https://kurikube.github.io/post/jaeger/</link>
+      <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/jaeger/</guid>
+      <description>kind (kubernets in docker)でJaegerを試してみました</description>
+    </item>
+    
+    <item>
       <title>Knativeでサーバレスを実現する</title>
       <link>https://kurikube.github.io/post/knative/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
