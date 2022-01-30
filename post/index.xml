@@ -9,7 +9,16 @@
       <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 29 Jan 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 Jan 2022 01:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DockerでJaegerを動かす(2022/1/30)</title>
+      <link>https://kurikube.github.io/post/jaeger/</link>
+      <pubDate>Sun, 30 Jan 2022 01:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/jaeger/</guid>
+      <description>DockerでJaegerを試してみました。分散トレーシングとは何かを知らないので、Jaegerを機に学習してみることにしました。</description>
+    </item>
+    
     <item>
       <title>Hugo &#43; Papermod でカテゴリで分類する方法</title>
       <link>https://kurikube.github.io/post/20220101/</link>
@@ -26,15 +35,6 @@
       
       <guid>https://kurikube.github.io/post/keda/</guid>
       <description>Desc Text.</description>
-    </item>
-    
-    <item>
-      <title>kindでJaegerを動かす(2022/1/30)</title>
-      <link>https://kurikube.github.io/post/jaeger/</link>
-      <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
-      
-      <guid>https://kurikube.github.io/post/jaeger/</guid>
-      <description>kind (kubernets in docker)でJaegerを試してみました</description>
     </item>
     
     <item>

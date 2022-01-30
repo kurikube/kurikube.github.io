@@ -3,7 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://kurikube.github.io/categories/</loc>
-    <lastmod>2022-01-29T11:30:03+00:00</lastmod>
+    <lastmod>2022-01-30T01:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/post/jaeger/</loc>
+    <lastmod>2022-01-30T01:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/tags/jaeger/</loc>
+    <lastmod>2022-01-30T01:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/categories/kubernetes/</loc>
+    <lastmod>2022-01-30T01:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/categories/linux/</loc>
+    <lastmod>2022-01-30T01:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/post/</loc>
+    <lastmod>2022-01-30T01:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/tags/</loc>
+    <lastmod>2022-01-30T01:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/</loc>
+    <lastmod>2022-01-30T01:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/categories/hugo/</loc>
     <lastmod>2022-01-29T11:30:03+00:00</lastmod>
@@ -11,16 +32,10 @@
     <loc>https://kurikube.github.io/post/20220101/</loc>
     <lastmod>2022-01-29T11:30:03+00:00</lastmod>
   </url><url>
-    <loc>https://kurikube.github.io/tags/jaeger/</loc>
-    <lastmod>2022-01-29T11:30:03+00:00</lastmod>
-  </url><url>
     <loc>https://kurikube.github.io/post/keda/</loc>
     <lastmod>2022-01-29T11:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/tags/kinc/</loc>
-    <lastmod>2022-01-29T11:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://kurikube.github.io/post/jaeger/</loc>
     <lastmod>2022-01-29T11:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/tags/knative/</loc>
@@ -32,22 +47,10 @@
     <loc>https://kurikube.github.io/tags/kubernetes/</loc>
     <lastmod>2022-01-29T11:30:03+00:00</lastmod>
   </url><url>
-    <loc>https://kurikube.github.io/categories/linux/</loc>
-    <lastmod>2022-01-29T11:30:03+00:00</lastmod>
-  </url><url>
     <loc>https://kurikube.github.io/categories/papermod/</loc>
     <lastmod>2022-01-29T11:30:03+00:00</lastmod>
   </url><url>
-    <loc>https://kurikube.github.io/post/</loc>
-    <lastmod>2022-01-29T11:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://kurikube.github.io/tags/</loc>
-    <lastmod>2022-01-29T11:30:03+00:00</lastmod>
-  </url><url>
     <loc>https://kurikube.github.io/categories/%E3%82%B5%E3%83%BC%E3%83%90%E3%83%AC%E3%82%B9/</loc>
-    <lastmod>2022-01-29T11:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://kurikube.github.io/</loc>
     <lastmod>2022-01-29T11:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/tags/centos/</loc>

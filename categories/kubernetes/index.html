@@ -3,11 +3,11 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>Linux | 通信キャリアで勤めるエンジニアのブログ</title>
+<title>kubernetes | 通信キャリアで勤めるエンジニアのブログ</title>
 <meta name=keywords content>
 <meta name=description content="通信キャリアで働くエンジニアのブログ">
 <meta name=author content="Me">
-<link rel=canonical href=https://kurikube.github.io/categories/linux/>
+<link rel=canonical href=https://kurikube.github.io/categories/kubernetes/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
 <meta name=msvalidate.01 content="XYZabc">
@@ -20,17 +20,17 @@
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
 <meta name=generator content="Hugo 0.92.1">
-<link rel=alternate type=application/rss+xml href=https://kurikube.github.io/categories/linux/index.xml>
+<link rel=alternate type=application/rss+xml href=https://kurikube.github.io/categories/kubernetes/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 </noscript>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-123-45','auto'),ga('send','pageview'))</script><meta property="og:title" content="Linux">
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-123-45','auto'),ga('send','pageview'))</script><meta property="og:title" content="kubernetes">
 <meta property="og:description" content="通信キャリアで働くエンジニアのブログ">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://kurikube.github.io/categories/linux/"><meta property="og:image" content="https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="og:site_name" content="通信キャリアで働くエンジニアのブログ">
+<meta property="og:url" content="https://kurikube.github.io/categories/kubernetes/"><meta property="og:image" content="https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="og:site_name" content="通信キャリアで働くエンジニアのブログ">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E">
-<meta name=twitter:title content="Linux">
+<meta name=twitter:title content="kubernetes">
 <meta name=twitter:description content="通信キャリアで働くエンジニアのブログ">
 </head>
 <body class=list id=top>
@@ -70,7 +70,7 @@
 </header>
 <main class=main>
 <header class=page-header><div class=breadcrumbs><a href=https://kurikube.github.io/>Home</a>&nbsp;»&nbsp;<a href=https://kurikube.github.io/categories/>Categories</a></div>
-<h1>Linux</h1>
+<h1>kubernetes</h1>
 </header>
 <article class="post-entry tag-entry">
 <header class=entry-header>
@@ -84,42 +84,6 @@
 </section>
 <footer class=entry-footer><span title="2022-01-30 01:30:03 +0000 UTC">January 30, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to DockerでJaegerを動かす(2022/1/30)" href=https://kurikube.github.io/post/jaeger/></a>
-</article>
-<article class="post-entry tag-entry">
-<header class=entry-header>
-<h2>KEDA v2をkindで動かしてみる
-</h2>
-</header>
-<section class=entry-content>
-<p>0.前提 kubernetes, helmに関する初歩的な知識 1.動作環境 EC2 (t3.xlarge) Ubuntu 20.04.03 LTS kind version 0.11.1 Docker 20.10.7 helm v3.8.0 go 1.17 2. KEDAをHelmでインストールする https://keda.sh/docs/2.5/deploy/ を参考に、インストールする 2.1 Helm リポジトリを追加する ubuntu@ip-172-31-27-87:~$ helm repo add kedacore https://kedacore.github.io/charts "kedacore" has been added to your repositories 2.2 Helmのリポジトリをアップデートする ubuntu@ip-172-31-27-87:~$ helm repo update Hang tight while we grab the latest from your chart repositories... ...Successfully got an update from the "kedacore" chart repository Update Complete....</p>
-</section>
-<footer class=entry-footer><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to KEDA v2をkindで動かしてみる" href=https://kurikube.github.io/post/keda/></a>
-</article>
-<article class="post-entry tag-entry">
-<header class=entry-header>
-<h2>Knativeでサーバレスを実現する
-</h2>
-</header>
-<section class=entry-content>
-<p>0. 前提 kubernetes, Dockerに関する基礎知識 1. 動作環境 EC2(t3.xlarge) (※補足 t3.largeだとcpu不足で動作しませんでした。) Ubuntu NAME="Ubuntu" VERSION="20.04.3 LTS (Focal Fossa)" ID=ubuntu ID_LIKE=debian PRETTY_NAME="Ubuntu 20.04.3 LTS" VERSION_ID="20.04" HOME_URL="https://www.ubuntu.com/" SUPPORT_URL="https://help.ubuntu.com/" BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/" PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy" VERSION_CODENAME=focal UBUNTU_CODENAME=focal kind version 0.11.1 knative-serving v0.29.0 kn-quickstart Version: v1.2.0 Docker 20.10.7 npm v6.14.4 2. 試してみる 2.1 kind, kubectlのインストール kindのインストール https://kind.sigs.k8s.io/docs/user/quick-start/ を参考にインストールする
-curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64 chmod +x ./kind mv ./kind /usr/local/bin/kind kubectlのインストール https://kubernetes.io/ja/docs/tasks/tools/install-kubectl/ を参考にインストール sudo apt-get update && sudo apt-get install -y apt-transport-https gnupg2 curl -s https://packages....</p>
-</section>
-<footer class=entry-footer><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to Knativeでサーバレスを実現する" href=https://kurikube.github.io/post/knative/></a>
-</article>
-<article class="post-entry tag-entry">
-<header class=entry-header>
-<h2>OpenShift Code ReadyをCentosにインストールする（2022/1/29時点）
-</h2>
-</header>
-<section class=entry-content>
-<p>概要 OpenShift4.x以降はMinishiftがなくなり、OpenShift CodeReady Container（CRC）となっている。 以下では公式ドキュメントに沿って手元のベアメタルサーバへインストールを行う。このサーバで色々なことを試してみる。 https://crc.dev/crc/
-環境 ホストOS：CentOS7.7 構成図 マシン上でCRCをインストールすると自動的にNWが作成されてCRCが作成される 。 OpenShiftのWebコンソールへアクセスする際には、ベアメタルマシンへリモデスした上でマシン上のブラウザからアクセスする必要がある。 環境確認 [root@ip-172-31-19-74 ~]# cat /etc/redhat-release CentOS Linux release 7.7.1908 (Core) 手順 公式ドキュメントの手順に沿ってインストールする。
-1.NetworkManagerをインストールし、起動する [root@ip-172-31-19-74 ~]# yum -y install NetworkManager [root@ip-172-31-19-74 ~]# systemctl restart NetworkManager 2.資材をダウンロードして、解凍して、パスの通ったフォルダへ移動 [root@ip-172-31-19-74 ~]# yum -y install wget [root@ip-172-31-19-74 tmp]# curl -k -L https://developers.redhat.com/content-gateway/rest/mirror/pub/openshift-v4/clients/crc/latest/crc-linux-amd64.tar.xz -o /tmp/crc-linux-amd64.tar.xz #ダウンロードにかなり時間を要します。 [root@ip-172-31-19-74 ~]# cd /tmp [root@ip-172-31-19-74 tmp]# xz -dc /tmp/crc-linux-amd64.tar.xz | tar xfv - [root@ip-172-31-19-74 tmp]# cp -pi crc-linux-1....</p>
-</section>
-<footer class=entry-footer><span title="2022-01-10 11:30:03 +0000 UTC">January 10, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to OpenShift Code ReadyをCentosにインストールする（2022/1/29時点）" href=https://kurikube.github.io/post/20210131/></a>
 </article>
 </main>
 <footer class=footer>
