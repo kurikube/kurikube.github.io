@@ -36,7 +36,7 @@
 <meta name=twitter:title content="KEDA v2をkindで動かしてみる">
 <meta name=twitter:description content="Desc Text.">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://kurikube.github.io/post/"},{"@type":"ListItem","position":2,"name":"KEDA v2をkindで動かしてみる","item":"https://kurikube.github.io/post/keda/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"KEDA v2をkindで動かしてみる","name":"KEDA v2をkindで動かしてみる","description":"Desc Text.","keywords":["kinc"],"articleBody":"0.前提  kubernetes, helmに関する初歩的な知識  1.動作環境  EC2 (t3.xlarge) Ubuntu 20.04.03 LTS kind version 0.11.1 Docker 20.10.7 helm v3.8.0  ","wordCount":"16","inLanguage":"en","image":"https://kurikube.github.io/%3Cimage%20path/url%3E","datePublished":"2022-01-29T11:30:03Z","dateModified":"2022-01-29T11:30:03Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://kurikube.github.io/post/keda/"},"publisher":{"@type":"Organization","name":"通信キャリアで勤めるエンジニアのブログ","logo":{"@type":"ImageObject","url":"https://kurikube.github.io/%3Clink%20/%20abs%20url%3E"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"KEDA v2をkindで動かしてみる","name":"KEDA v2をkindで動かしてみる","description":"Desc Text.","keywords":["kinc"],"articleBody":"0.前提  kubernetes, helmに関する初歩的な知識  1.動作環境  EC2 (t3.xlarge) Ubuntu 20.04.03 LTS kind version 0.11.1 Docker 20.10.7 helm v3.8.0 go 1.17  2. KEDAをHelmでインストールする  https://keda.sh/docs/2.5/deploy/ を参考に、インストールする  2.1 Helm リポジトリを追加する ubuntu@ip-172-31-27-87:~$ helm repo add kedacore https://kedacore.github.io/charts \"kedacore\" has been added to your repositories 2.2 Helmのリポジトリをアップデートする ubuntu@ip-172-31-27-87:~$ helm repo update Hang tight while we grab the latest from your chart repositories... ...Successfully got an update from the \"kedacore\" chart repository Update Complete. ⎈Happy Helming!⎈ 2.3 kedaをhelmチャートでインストールする ubuntu@ip-172-31-27-87:~$ kubectl create namespace keda namespace/keda created ubuntu@ip-172-31-27-87:~$ helm install keda kedacore/keda --namespace keda NAME: keda LAST DEPLOYED: Sun Jan 30 05:15:51 2022 NAMESPACE: keda STATUS: deployed REVISION: 1 TEST SUITE: None 2.4 kedaでインストールされたコンポーネントを確認する ubuntu@ip-172-31-27-87:~$ kubectl get all -n keda NAME READY STATUS RESTARTS AGE pod/keda-operator-5748df494c-qfk8c 1/1 Running 0 2m13s pod/keda-operator-metrics-apiserver-cb649dd48-lkxtw 1/1 Running 0 2m13s NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE service/keda-operator-metrics-apiserver ClusterIP 10.96.44.179  443/TCP,80/TCP 2m13s NAME READY UP-TO-DATE AVAILABLE AGE deployment.apps/keda-operator 1/1 1 1 2m13s deployment.apps/keda-operator-metrics-apiserver 1/1 1 1 2m13s NAME DESIRED CURRENT READY AGE replicaset.apps/keda-operator-5748df494c 1 1 1 2m13s replicaset.apps/keda-operator-metrics-apiserver-cb649dd48 1 1 1 2m13s サンプルアプリをデプロイする 3.1 RabbitMQ https://github.com/kedacore/sample-go-rabbitmq を参考に、サンプルアプリをkindクラスタにデプロイしてみます。\n手順は以下の通り\n サンプルアプリのgitリポジトリをcloneする helmでRabbitMQのキューを作成する RabbitMQのコンシューマーをデプロイする メッセージをキューにパブリッシュする (オプション)お片付け  3.1.1 サンプルアプリのgitリポジトリをcloneする git clone https://github.com/kedacore/sample-go-rabbitmq cd sample-go-rabbitmq 3.1.2 helmでRabbitMQのキューを作成する Bitnamiのリポジトリを追加する\nhelm repo add bitnami https://charts.bitnami.com/bitnami helm v3かつkindを利用しているので、下記の方法でインストールする\nhelm install rabbitmq --set auth.username=user --set auth.password=PASSWORD --set volumePermissions.enabled=true bitnami/rabbitmq 3.1.3 RabbitMQがデプロイされたことを確認する kubectl get po NAME READY STATUS RESTARTS AGE rabbitmq-0 1/1 Running 0 50s 3.1.4 RabbitMQのコンシューマーをデプロイする kubectl apply -f deploy/deploy-consumer.yaml デプロイの状態を確認する\nkubectl get deploy NAME READY UP-TO-DATE AVAILABLE AGE rabbitmq-consumer 0/0 0 0 32s Podがひとつも起動していないことが分かる。これはRabbit MQのキューが一つもないからです。Podが増えるかこれから確認してみます。\n3.1.5 メッセージをキューにパブリッシュする kubectl apply -f deploy/deploy-publisher-job.yaml デプロイメントの状態を確認する。下からも分かるように次第にPodが増加しています。\nkubectl get deploy -w kubectl get deploy -w NAME READY UP-TO-DATE AVAILABLE AGE rabbitmq-consumer 1/1 1 1 4m26s kubectl get deploy -w NAME READY UP-TO-DATE AVAILABLE AGE rabbitmq-consumer 4/4 4 4 4m36s kubectl get deploy NAME READY UP-TO-DATE AVAILABLE AGE rabbitmq-consumer 8/16 16 8 5m3s 下記のコマンドで、Podあたりの処理するメッセージ数を確認できます。\nkubectl get hpa キューが空になり、一定の時間が経過するとPodは０にスケールダウンします。\nkubectl get deploy -w NAME READY UP-TO-DATE AVAILABLE AGE rabbitmq-consumer 0/0 0 0 7m25s 3.1.6 (オプション)お片付け kubectl delete job rabbitmq-publish kubectl delete ScaledObject rabbitmq-consumer kubectl delete deploy rabbitmq-consumer helm delete rabbitmq 最後に 今回はKEDAをインストールし、実際にサンプルアプリをデプロイしてみました。kubernetesのサーバレスアプリである、Knativeに関してもKnativeでサーバレスを実現するで触れているので良かったら読んでみて下さい。\n","wordCount":"332","inLanguage":"en","image":"https://kurikube.github.io/%3Cimage%20path/url%3E","datePublished":"2022-01-29T11:30:03Z","dateModified":"2022-01-29T11:30:03Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://kurikube.github.io/post/keda/"},"publisher":{"@type":"Organization","name":"通信キャリアで勤めるエンジニアのブログ","logo":{"@type":"ImageObject","url":"https://kurikube.github.io/%3Clink%20/%20abs%20url%3E"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add('dark')</script>
@@ -83,7 +83,7 @@ KEDA v2をkindで動かしてみる
 <div class=post-description>
 Desc Text.
 </div>
-<div class=post-meta><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me&nbsp;|&nbsp;<a href=https://github.com/kurikube/hugo-blog/tree/main/content/post/keda/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a>
+<div class=post-meta><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me&nbsp;|&nbsp;<a href=https://github.com/kurikube/hugo-blog/tree/main/content/post/keda/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a>
 </div>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3014928890570116" crossorigin=anonymous></script>
 </header> <div class=toc>
@@ -95,7 +95,39 @@ Desc Text.
 <li>
 <a href=#0%e5%89%8d%e6%8f%90 aria-label=0.前提>0.前提</a></li>
 <li>
-<a href=#1%e5%8b%95%e4%bd%9c%e7%92%b0%e5%a2%83 aria-label=1.動作環境>1.動作環境</a>
+<a href=#1%e5%8b%95%e4%bd%9c%e7%92%b0%e5%a2%83 aria-label=1.動作環境>1.動作環境</a></li>
+<li>
+<a href=#2-keda%e3%82%92helm%e3%81%a7%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e3%81%99%e3%82%8b aria-label="2. KEDAをHelmでインストールする">2. KEDAをHelmでインストールする</a><ul>
+<li>
+<a href=#21-helm-%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b aria-label="2.1 Helm リポジトリを追加する">2.1 Helm リポジトリを追加する</a></li>
+<li>
+<a href=#22-helm%e3%81%ae%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%82%92%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88%e3%81%99%e3%82%8b aria-label="2.2 Helmのリポジトリをアップデートする">2.2 Helmのリポジトリをアップデートする</a></li>
+<li>
+<a href=#23-keda%e3%82%92helm%e3%83%81%e3%83%a3%e3%83%bc%e3%83%88%e3%81%a7%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e3%81%99%e3%82%8b aria-label="2.3 kedaをhelmチャートでインストールする">2.3 kedaをhelmチャートでインストールする</a></li>
+<li>
+<a href=#24-keda%e3%81%a7%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e3%81%95%e3%82%8c%e3%81%9f%e3%82%b3%e3%83%b3%e3%83%9d%e3%83%bc%e3%83%8d%e3%83%b3%e3%83%88%e3%82%92%e7%a2%ba%e8%aa%8d%e3%81%99%e3%82%8b aria-label="2.4 kedaでインストールされたコンポーネントを確認する">2.4 kedaでインストールされたコンポーネントを確認する</a></li></ul>
+</li>
+<li>
+<a href=#%e3%82%b5%e3%83%b3%e3%83%97%e3%83%ab%e3%82%a2%e3%83%97%e3%83%aa%e3%82%92%e3%83%87%e3%83%97%e3%83%ad%e3%82%a4%e3%81%99%e3%82%8b aria-label=サンプルアプリをデプロイする>サンプルアプリをデプロイする</a><ul>
+<li>
+<a href=#31-rabbitmq aria-label="3.1 RabbitMQ">3.1 RabbitMQ</a><ul>
+<li>
+<a href=#311-%e3%82%b5%e3%83%b3%e3%83%97%e3%83%ab%e3%82%a2%e3%83%97%e3%83%aa%e3%81%aegit%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%82%92clone%e3%81%99%e3%82%8b aria-label="3.1.1 サンプルアプリのgitリポジトリをcloneする">3.1.1 サンプルアプリのgitリポジトリをcloneする</a></li>
+<li>
+<a href=#312-helm%e3%81%a7rabbitmq%e3%81%ae%e3%82%ad%e3%83%a5%e3%83%bc%e3%82%92%e4%bd%9c%e6%88%90%e3%81%99%e3%82%8b aria-label="3.1.2 helmでRabbitMQのキューを作成する">3.1.2 helmでRabbitMQのキューを作成する</a></li>
+<li>
+<a href=#313-rabbitmq%e3%81%8c%e3%83%87%e3%83%97%e3%83%ad%e3%82%a4%e3%81%95%e3%82%8c%e3%81%9f%e3%81%93%e3%81%a8%e3%82%92%e7%a2%ba%e8%aa%8d%e3%81%99%e3%82%8b aria-label="3.1.3 RabbitMQがデプロイされたことを確認する">3.1.3 RabbitMQがデプロイされたことを確認する</a></li>
+<li>
+<a href=#314-rabbitmq%e3%81%ae%e3%82%b3%e3%83%b3%e3%82%b7%e3%83%a5%e3%83%bc%e3%83%9e%e3%83%bc%e3%82%92%e3%83%87%e3%83%97%e3%83%ad%e3%82%a4%e3%81%99%e3%82%8b aria-label="3.1.4 RabbitMQのコンシューマーをデプロイする">3.1.4 RabbitMQのコンシューマーをデプロイする</a></li>
+<li>
+<a href=#315-%e3%83%a1%e3%83%83%e3%82%bb%e3%83%bc%e3%82%b8%e3%82%92%e3%82%ad%e3%83%a5%e3%83%bc%e3%81%ab%e3%83%91%e3%83%96%e3%83%aa%e3%83%83%e3%82%b7%e3%83%a5%e3%81%99%e3%82%8b aria-label="3.1.5 メッセージをキューにパブリッシュする">3.1.5 メッセージをキューにパブリッシュする</a></li>
+<li>
+<a href=#316-%e3%82%aa%e3%83%97%e3%82%b7%e3%83%a7%e3%83%b3%e3%81%8a%e7%89%87%e4%bb%98%e3%81%91 aria-label="3.1.6 (オプション)お片付け">3.1.6 (オプション)お片付け</a></li></ul>
+</li>
+<li>
+<a href=#%e6%9c%80%e5%be%8c%e3%81%ab aria-label=最後に>最後に</a>
+</li>
+</ul>
 </li>
 </ul>
 </div>
@@ -112,7 +144,106 @@ Desc Text.
 <li>kind version 0.11.1</li>
 <li>Docker 20.10.7</li>
 <li><a href=https://helm.sh/ja/docs/intro/install/>helm</a> v3.8.0</li>
+<li><a href=https://golangstart.com/no_apt/>go</a> 1.17</li>
 </ul>
+<h2 id=2-kedaをhelmでインストールする>2. KEDAをHelmでインストールする<a hidden class=anchor aria-hidden=true href=#2-kedaをhelmでインストールする>#</a></h2>
+<ul>
+<li><a href=https://keda.sh/docs/2.5/deploy/>https://keda.sh/docs/2.5/deploy/</a> を参考に、インストールする</li>
+</ul>
+<h3 id=21-helm-リポジトリを追加する>2.1 Helm リポジトリを追加する<a hidden class=anchor aria-hidden=true href=#21-helm-リポジトリを追加する>#</a></h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>ubuntu@ip-172-31-27-87:~$ helm repo add kedacore https://kedacore.github.io/charts
+<span style=color:#e6db74>&#34;kedacore&#34;</span> has been added to your repositories
+</code></pre></div><h3 id=22-helmのリポジトリをアップデートする>2.2 Helmのリポジトリをアップデートする<a hidden class=anchor aria-hidden=true href=#22-helmのリポジトリをアップデートする>#</a></h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>ubuntu@ip-172-31-27-87:~$ helm repo update
+Hang tight <span style=color:#66d9ef>while</span> we grab the latest from your chart repositories...
+...Successfully got an update from the <span style=color:#e6db74>&#34;kedacore&#34;</span> chart repository
+Update Complete. ⎈Happy Helming!⎈
+</code></pre></div><h3 id=23-kedaをhelmチャートでインストールする>2.3 kedaをhelmチャートでインストールする<a hidden class=anchor aria-hidden=true href=#23-kedaをhelmチャートでインストールする>#</a></h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>ubuntu@ip-172-31-27-87:~$ kubectl create namespace keda
+namespace/keda created
+ubuntu@ip-172-31-27-87:~$ helm install keda kedacore/keda --namespace keda
+NAME: keda
+LAST DEPLOYED: Sun Jan <span style=color:#ae81ff>30</span> 05:15:51 <span style=color:#ae81ff>2022</span>
+NAMESPACE: keda
+STATUS: deployed
+REVISION: <span style=color:#ae81ff>1</span>
+TEST SUITE: None
+</code></pre></div><h3 id=24-kedaでインストールされたコンポーネントを確認する>2.4 kedaでインストールされたコンポーネントを確認する<a hidden class=anchor aria-hidden=true href=#24-kedaでインストールされたコンポーネントを確認する>#</a></h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>ubuntu@ip-172-31-27-87:~$ kubectl get all -n keda
+NAME                                                  READY   STATUS    RESTARTS   AGE
+pod/keda-operator-5748df494c-qfk8c                    1/1     Running   <span style=color:#ae81ff>0</span>          2m13s
+pod/keda-operator-metrics-apiserver-cb649dd48-lkxtw   1/1     Running   <span style=color:#ae81ff>0</span>          2m13s
+
+NAME                                      TYPE        CLUSTER-IP     EXTERNAL-IP   PORT<span style=color:#f92672>(</span>S<span style=color:#f92672>)</span>          AGE
+service/keda-operator-metrics-apiserver   ClusterIP   10.96.44.179   &lt;none&gt;        443/TCP,80/TCP   2m13s
+
+NAME                                              READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/keda-operator                     1/1     <span style=color:#ae81ff>1</span>            <span style=color:#ae81ff>1</span>           2m13s
+deployment.apps/keda-operator-metrics-apiserver   1/1     <span style=color:#ae81ff>1</span>            <span style=color:#ae81ff>1</span>           2m13s
+
+NAME                                                        DESIRED   CURRENT   READY   AGE
+replicaset.apps/keda-operator-5748df494c                    <span style=color:#ae81ff>1</span>         <span style=color:#ae81ff>1</span>         <span style=color:#ae81ff>1</span>       2m13s
+replicaset.apps/keda-operator-metrics-apiserver-cb649dd48   <span style=color:#ae81ff>1</span>         <span style=color:#ae81ff>1</span>         <span style=color:#ae81ff>1</span>       2m13s
+</code></pre></div><h2 id=サンプルアプリをデプロイする>サンプルアプリをデプロイする<a hidden class=anchor aria-hidden=true href=#サンプルアプリをデプロイする>#</a></h2>
+<h3 id=31-rabbitmq>3.1 RabbitMQ<a hidden class=anchor aria-hidden=true href=#31-rabbitmq>#</a></h3>
+<p><a href=https://github.com/kedacore/sample-go-rabbitmq>https://github.com/kedacore/sample-go-rabbitmq</a> を参考に、サンプルアプリを<code>kind</code>クラスタにデプロイしてみます。</p>
+<p>手順は以下の通り</p>
+<ul>
+<li>サンプルアプリのgitリポジトリをcloneする</li>
+<li>helmでRabbitMQのキューを作成する</li>
+<li>RabbitMQのコンシューマーをデプロイする</li>
+<li>メッセージをキューにパブリッシュする</li>
+<li>(オプション)お片付け</li>
+</ul>
+<h4 id=311-サンプルアプリのgitリポジトリをcloneする>3.1.1 サンプルアプリのgitリポジトリをcloneする<a hidden class=anchor aria-hidden=true href=#311-サンプルアプリのgitリポジトリをcloneする>#</a></h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>git clone https://github.com/kedacore/sample-go-rabbitmq
+cd sample-go-rabbitmq
+</code></pre></div><h4 id=312-helmでrabbitmqのキューを作成する>3.1.2 helmでRabbitMQのキューを作成する<a hidden class=anchor aria-hidden=true href=#312-helmでrabbitmqのキューを作成する>#</a></h4>
+<p>Bitnamiのリポジトリを追加する</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>helm repo add bitnami https://charts.bitnami.com/bitnami
+</code></pre></div><p><strong>helm v3</strong>かつ<strong>kind</strong>を利用しているので、下記の方法でインストールする</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>helm install rabbitmq --set auth.username<span style=color:#f92672>=</span>user --set auth.password<span style=color:#f92672>=</span>PASSWORD --set volumePermissions.enabled<span style=color:#f92672>=</span>true bitnami/rabbitmq
+</code></pre></div><h4 id=313-rabbitmqがデプロイされたことを確認する>3.1.3 RabbitMQがデプロイされたことを確認する<a hidden class=anchor aria-hidden=true href=#313-rabbitmqがデプロイされたことを確認する>#</a></h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>kubectl get po
+NAME         READY   STATUS    RESTARTS   AGE
+rabbitmq-0   1/1     Running   <span style=color:#ae81ff>0</span>          50s
+</code></pre></div><h4 id=314-rabbitmqのコンシューマーをデプロイする>3.1.4 RabbitMQのコンシューマーをデプロイする<a hidden class=anchor aria-hidden=true href=#314-rabbitmqのコンシューマーをデプロイする>#</a></h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>kubectl apply -f deploy/deploy-consumer.yaml
+</code></pre></div><p>デプロイの状態を確認する</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>kubectl get deploy
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+rabbitmq-consumer   0/0     <span style=color:#ae81ff>0</span>            <span style=color:#ae81ff>0</span>           32s
+</code></pre></div><p>Podがひとつも起動していないことが分かる。これはRabbit MQのキューが一つもないからです。Podが増えるかこれから確認してみます。</p>
+<h4 id=315-メッセージをキューにパブリッシュする>3.1.5 メッセージをキューにパブリッシュする<a hidden class=anchor aria-hidden=true href=#315-メッセージをキューにパブリッシュする>#</a></h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>kubectl apply -f deploy/deploy-publisher-job.yaml
+</code></pre></div><p>デプロイメントの状態を確認する。下からも分かるように次第にPodが増加しています。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>kubectl get deploy -w
+
+kubectl get deploy -w
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+rabbitmq-consumer   1/1     <span style=color:#ae81ff>1</span>            <span style=color:#ae81ff>1</span>           4m26s
+
+kubectl get deploy -w
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+rabbitmq-consumer   4/4     <span style=color:#ae81ff>4</span>            <span style=color:#ae81ff>4</span>           4m36s
+
+kubectl get deploy
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+rabbitmq-consumer   8/16    <span style=color:#ae81ff>16</span>           <span style=color:#ae81ff>8</span>           5m3s
+
+</code></pre></div><p>下記のコマンドで、Podあたりの処理するメッセージ数を確認できます。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>kubectl get hpa
+</code></pre></div><p>キューが空になり、一定の時間が経過するとPodは０にスケールダウンします。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell> kubectl get deploy -w
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+rabbitmq-consumer   0/0     <span style=color:#ae81ff>0</span>            <span style=color:#ae81ff>0</span>           7m25s
+</code></pre></div><h4 id=316-オプションお片付け>3.1.6 (オプション)お片付け<a hidden class=anchor aria-hidden=true href=#316-オプションお片付け>#</a></h4>
+<pre tabindex=0><code>kubectl delete job rabbitmq-publish
+kubectl delete ScaledObject rabbitmq-consumer
+kubectl delete deploy rabbitmq-consumer
+helm delete rabbitmq
+</code></pre><h3 id=最後に>最後に<a hidden class=anchor aria-hidden=true href=#最後に>#</a></h3>
+<p>今回はKEDAをインストールし、実際にサンプルアプリをデプロイしてみました。kubernetesのサーバレスアプリである、<code>Knative</code>に関しても<a href=https://kurikube.github.io/post/knative/>Knativeでサーバレスを実現する</a>で触れているので良かったら読んでみて下さい。</p>
 </div>
 <footer class=post-footer>
 <ul class=post-tags>
