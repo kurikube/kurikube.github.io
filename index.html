@@ -95,7 +95,7 @@
 </h2>
 </header>
 <section class=entry-content>
-<p>やることは2つある。 1. config.yamlの`menu.mainにcategoriesを追加する menu: main: - identifier: categories name: categories url: /categories/ weight: 10 2. archetypes/default.mdのtagsの下に、categories: ["Hugo","Papermod"]のような感じで記載する。tagsと同じ感じですね。 </p>
+<p>やることは2つあります。 1. config.yamlの`menu.mainにcategoriesを追加します menu: main: - identifier: categories name: categories url: /categories/ weight: 10 2. archetypes/default.mdのtagsの下に、categories: ["Hugo","Papermod"]のような感じで記載すします。tagsと同じ感じですね。 </p>
 </section>
 <footer class=entry-footer><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to Hugo + Papermod でカテゴリで分類する方法" href=https://kurikube.github.io/post/20220101/></a>
@@ -143,7 +143,8 @@ CRCホストの/etc/hosts CRCセットアップ後、CRCを実行するホスト
 <p>背景 Linuxでコマンドの実行ログを保存したいことは非常に多いと思います。これは、後で見返せるようにするためでもありますし、派遣社員などの場合は自分の身を守るための手段にもなります。
 使用方法 script &lt;ログを保存したいファイル名> ファイル名を指定しなかった場合は、カレントディレクトリにtypescript というファイルで保存されます
 日付の入ったファイル名で保存したい場合
-script `date +%Y%m%d`.log $ script スクリプトを開始しました、ファイルは typescript です $ date 2021年 3月 28日 日曜日 06:46:13 EDT 終了する場合はexitするかctrl+dを実行します
+script `date +%Y%m%d`.log このようにすれば日付名で作業ログを保存できます
+$ script スクリプトを開始しました、ファイルは typescript です $ date 2021年 3月 28日 日曜日 06:46:13 EDT 終了する場合はexitするかctrl+dを実行します
 $ exit exit スクリプトを終了しました、ファイルは typescript です ファイルにログが残っているか確認する
 $ cat typescript スクリプトは 2021年03月28日 06時46分11秒 に開始しました$ date 2021年 3月 28日 日曜日 06:46:13 EDT $ exit exit スクリプトは 2021年03月28日 06時47分10秒 に終了しました きちんと記録されていました。 最後になりますが、ファイルへの追記方法を記載します。 同じファイルに追記したい場合はオプション-aを使うことで可能です。</p>
 </section>
