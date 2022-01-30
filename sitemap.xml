@@ -2,19 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://kurikube.github.io/categories/</loc>
+    <lastmod>2022-01-29T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/categories/hugo/</loc>
+    <lastmod>2022-01-29T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/post/20220101/</loc>
+    <lastmod>2022-01-29T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/categories/papermod/</loc>
+    <lastmod>2022-01-29T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/post/</loc>
+    <lastmod>2022-01-29T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/</loc>
+    <lastmod>2022-01-29T11:30:03+00:00</lastmod>
+  </url><url>
     <loc>https://kurikube.github.io/tags/centos/</loc>
     <lastmod>2022-01-28T12:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/tags/gui/</loc>
     <lastmod>2022-01-28T12:30:03+00:00</lastmod>
   </url><url>
-    <loc>https://kurikube.github.io/post/</loc>
-    <lastmod>2022-01-28T12:30:03+00:00</lastmod>
-  </url><url>
     <loc>https://kurikube.github.io/tags/</loc>
-    <lastmod>2022-01-28T12:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://kurikube.github.io/</loc>
     <lastmod>2022-01-28T12:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/post/20220128/</loc>
@@ -74,25 +86,16 @@
     <loc>https://kurikube.github.io/tags/%E8%B3%87%E6%A0%BC/</loc>
     <lastmod>2022-01-11T11:30:03+00:00</lastmod>
   </url><url>
-    <loc>https://kurikube.github.io/categories/</loc>
-    <lastmod>2022-01-10T11:30:03+00:00</lastmod>
-  </url><url>
     <loc>https://kurikube.github.io/categories/linux/</loc>
     <lastmod>2022-01-10T11:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/post/20210131/</loc>
     <lastmod>2022-01-10T11:30:03+00:00</lastmod>
   </url><url>
-    <loc>https://kurikube.github.io/categories/hugo/</loc>
-    <lastmod>2022-01-03T12:30:03+00:00</lastmod>
-  </url><url>
     <loc>https://kurikube.github.io/post/20220103/</loc>
     <lastmod>2022-01-03T12:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/tags/linux/</loc>
-    <lastmod>2022-01-03T12:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://kurikube.github.io/categories/papermod/</loc>
     <lastmod>2022-01-03T12:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/categories/python/</loc>
