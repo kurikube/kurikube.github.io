@@ -9,7 +9,16 @@
       <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 30 Jan 2022 01:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 31 Jan 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DockerをCentOSにインストールするためのシェルスクリプト</title>
+      <link>https://kurikube.github.io/post/20220130/</link>
+      <pubDate>Mon, 31 Jan 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/20220130/</guid>
+      <description>Desc Text.</description>
+    </item>
+    
     <item>
       <title>DockerでJaegerを動かす(2022/1/30)</title>
       <link>https://kurikube.github.io/post/jaeger/</link>

@@ -3,11 +3,11 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>Centos | 通信キャリアで勤めるエンジニアのブログ</title>
+<title>Docker | 通信キャリアで勤めるエンジニアのブログ</title>
 <meta name=keywords content>
 <meta name=description content="通信キャリアで働くエンジニアのブログ">
 <meta name=author content="Me">
-<link rel=canonical href=https://kurikube.github.io/tags/centos/>
+<link rel=canonical href=https://kurikube.github.io/tags/docker/>
 <meta name=google-site-verification content="XYZabc">
 <meta name=yandex-verification content="XYZabc">
 <meta name=msvalidate.01 content="XYZabc">
@@ -20,17 +20,17 @@
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
 <meta name=generator content="Hugo 0.92.1">
-<link rel=alternate type=application/rss+xml href=https://kurikube.github.io/tags/centos/index.xml>
+<link rel=alternate type=application/rss+xml href=https://kurikube.github.io/tags/docker/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 </noscript>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-123-45','auto'),ga('send','pageview'))</script><meta property="og:title" content="Centos">
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-123-45','auto'),ga('send','pageview'))</script><meta property="og:title" content="Docker">
 <meta property="og:description" content="通信キャリアで働くエンジニアのブログ">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://kurikube.github.io/tags/centos/"><meta property="og:image" content="https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="og:site_name" content="通信キャリアで働くエンジニアのブログ">
+<meta property="og:url" content="https://kurikube.github.io/tags/docker/"><meta property="og:image" content="https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="og:site_name" content="通信キャリアで働くエンジニアのブログ">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E">
-<meta name=twitter:title content="Centos">
+<meta name=twitter:title content="Docker">
 <meta name=twitter:description content="通信キャリアで働くエンジニアのブログ">
 </head>
 <body class=list id=top>
@@ -70,7 +70,7 @@
 </header>
 <main class=main>
 <header class=page-header><div class=breadcrumbs><a href=https://kurikube.github.io/>Home</a>&nbsp;»&nbsp;<a href=https://kurikube.github.io/tags/>Tags</a></div>
-<h1>Centos</h1>
+<h1>Docker</h1>
 </header>
 <article class="post-entry tag-entry">
 <header class=entry-header>
@@ -82,39 +82,6 @@
 </section>
 <footer class=entry-footer><span title="2022-01-31 11:30:03 +0000 UTC">January 31, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to DockerをCentOSにインストールするためのシェルスクリプト" href=https://kurikube.github.io/post/20220130/></a>
-</article>
-<article class="post-entry tag-entry">
-<header class=entry-header>
-<h2>最小インストールしたCentOS7にGUIを導入する
-</h2>
-</header>
-<section class=entry-content>
-<p>背景 CentOS7を新規インストール時、不要なパッケージを入れたくなかったので「Minimal ISO」のイメージを使用しました。当然ながらGUI環境が入ってなかったので、GUIを使えるように、追加でインストールを行いました。
-GUI環境のインストール まずはGUI環境を以下のコマンドでインストールします。「groupinstall」を使えば、関連するパッケージ群を1つのグループとしてまとめてインストール可能です。
-sudo yum -y groupinstall "GNOME Desktop" GUIを有効化する GUI環境一式のインストール完了したら、以下のコマンドでGUIを有効にします。
-startx 有効化すると以下のような初期設定画面が表示されるので、言語設定などをします。 初期設定が完了すると、GUI環境で作業ができるようになる。 GUI環境で起動するようにする GUI環境は整ったが、このままではシステムを再起動するとCUIに戻ってしまいます。
-次回起動時もGUI環境で立ち上げたい場合は、システム起動時のランレベルを変えてあげる必要があります。ランレベルは簡単に言えば「起動モード」みたいなものです。
-sudo systemctl set-default graphical.target これで次回起動時からGUI環境で立ち上がるようになります。ちなみに、「やっぱり起動時はCUIにしたい」というときは以下のコマンドで元に戻せます。
-sudo systemctl set-default multi-user.target </p>
-</section>
-<footer class=entry-footer><span title="2022-01-28 12:30:03 +0000 UTC">January 28, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to 最小インストールしたCentOS7にGUIを導入する" href=https://kurikube.github.io/post/20220128/></a>
-</article>
-<article class="post-entry tag-entry">
-<header class=entry-header>
-<h2>CentOS 7 にGoogle Chromeをインストールする
-</h2>
-</header>
-<section class=entry-content>
-<p>背景 CentOS 7 にはデフォルトでFirefoxがインストールされてます。しかし、Google Chromeの方がより便利なこともあるので、Chromeをインストールする方法を紹介します
-環境確認 [cloudg@localhost ~]$ cat /etc/redhat-release CentOS Linux release 7.9.2009 (Core) レポジトリファイルの作成 [cloudg@localhost ~]$ vi /etc/yum.repos.d/google.chrome.repo 下記の内容を記載する。
-[google-chrome] name=google-chrome baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch enabled=1 gpgcheck=1 gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub インストール [cloudg@localhost ~]$ yum install google-chrome-stable Internet の部分にGoogle Chromeが表示される 起動方法 下記コマンドで起動できる
-[cloudg@localhost ~]# google-chrome エラーが発生する場合 下記のエラーが発生することがある。
-[root@localhost ~]# google-chrome [4206:4206:0327/064251.530967:ERROR:zygote_host_impl_linux.cc(90)] Running as root without --no-sandbox is not supported. See https://crbug.com/63818 /opt/google/chrome/google-chromeの一番最後の行を変更する
-vi /opt/google/chrome/google-chrome exec -a "$0" "$HERE/chrome" "$@" --no-sandbox --user-data-dir=~ これで問題なく起動できるようになります。</p>
-</section>
-<footer class=entry-footer><span title="2022-01-27 11:30:03 +0000 UTC">January 27, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to CentOS 7 にGoogle Chromeをインストールする" href=https://kurikube.github.io/post/20220131/></a>
 </article>
 </main>
 <footer class=footer>

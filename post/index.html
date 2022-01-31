@@ -75,6 +75,17 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>DockerをCentOSにインストールするためのシェルスクリプト
+</h2>
+</header>
+<section class=entry-content>
+<p> CentOSにDockerをインストールするためのシェルスクリプトになります。 root権限で実行が楽です。セキュリティ的によく無いですが。 yum -y update yum -y upgrade yum install -y yum-utils device-mapper-persistent-data lvm2 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo yum install -y docker-ce docker-ce-cli containerd.io systemctl start docker systemctl enable docker </p>
+</section>
+<footer class=entry-footer><span title="2022-01-31 11:30:03 +0000 UTC">January 31, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to DockerをCentOSにインストールするためのシェルスクリプト" href=https://kurikube.github.io/post/20220130/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>DockerでJaegerを動かす(2022/1/30)
 </h2>
 </header>
@@ -201,21 +212,6 @@ vi /opt/google/chrome/google-chrome exec -a "$0" "$HERE/chrome" "$@" --no-sandbo
 </section>
 <footer class=entry-footer><span title="2022-01-27 11:30:03 +0000 UTC">January 27, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to Ubuntu 20.04.3 LTSにffmpegをインストールする" href=https://kurikube.github.io/post/20210129/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>SquidでProxyサーバを構築する
-</h2>
-</header>
-<section class=entry-content>
-<p>CentOSでプロキシサーバを構築する 背景 業務でインターネット接続ができないサーバから、インターネットに接続できるサーバをproxyとして外部NWと通信する必要があった。今後も似たようなことは多いと思われるのでこちらにまとめる。 Proxyとして動作させるサーバへSquidをセットアップする yumでインストールを行う sudo yum update sudo yum install squid バージョンを確認して正常にインストール出来ていることを確認する。 squid -v Squidの自動起動設定を行い、再起動する。 sudo systemctl enable squid sudo systemctl restart squid 4.Squidがポート3128を使用していることを確認する。
-sudo lsof -i:3128 5.出力例
-COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME squid 21800 squid 11u IPv6 37157 0t0 TCP *:squid (LISTEN) 6.firewallの穴あけ
-デフォルトではSquidのポートは3128が設定されており、Port番号3128へ送られるパケットは受け取れるように設定する。
-sudo firewall-cmd --zone=public --permanent --add-port=3128/tcp #許可ポートの追加 sudo firewall-cmd --reload #設定反映 sudo firewall-cmd --zone=public --list-all #結果確認(portに3128が追加されていることを確認） proxy clientへのセットアップ proxyを踏み台にプライベートIPでclientにSSHする。 それぞれの設定ファイルにプロキシの設定を記入する。...</p>
-</section>
-<footer class=entry-footer><span title="2022-01-26 11:30:03 +0000 UTC">January 26, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to SquidでProxyサーバを構築する" href=https://kurikube.github.io/post/20210128/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
