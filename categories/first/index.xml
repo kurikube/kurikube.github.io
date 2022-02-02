@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>first on 通信キャリアで勤めるエンジニアのブログ</title>
-    <link>https://kurikube.github.io/tags/first/</link>
+    <link>https://kurikube.github.io/categories/first/</link>
     <description>Recent content in first on 通信キャリアで勤めるエンジニアのブログ</description>
     <image>
       <url>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 31 Jan 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/tags/first/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 31 Jan 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/categories/first/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CentOSのCPU・Memory・Disk・GPU使用率を測定する</title>
       <link>https://kurikube.github.io/post/resource_sokutei/</link>
@@ -17,24 +17,6 @@
       
       <guid>https://kurikube.github.io/post/resource_sokutei/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
-    </item>
-    
-    <item>
-      <title>Docker install用のshell-script</title>
-      <link>https://kurikube.github.io/post/20200124/</link>
-      <pubDate>Fri, 24 Jan 2020 11:30:03 +0000</pubDate>
-      
-      <guid>https://kurikube.github.io/post/20200124/</guid>
-      <description>Desc Text.</description>
-    </item>
-    
-    <item>
-      <title>Google Adsense掲載に至るまで（執筆中）</title>
-      <link>https://kurikube.github.io/post/20200101/</link>
-      <pubDate>Wed, 01 Jan 2020 11:30:03 +0000</pubDate>
-      
-      <guid>https://kurikube.github.io/post/20200101/</guid>
-      <description>Desc Text.</description>
     </item>
     
   </channel>
