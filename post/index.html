@@ -80,8 +80,8 @@
 </header>
 <section class=entry-content>
 <p>背景 業務でCentOSをインストールしたGPUサーバの
-CPU Memory Disk GPU の使用率を測定する必要があったので、その際に行った作業のメモを残す
-CPU・Memory sarコマンドのインストール sudo yum -y install sysstat CPU・Memoryの使用率取得 sar -P ALL 1 300 > cpu.out #1秒間隔で300回測定→5分測定 sar -r 1 300 > mem.out #1秒間隔で300回測定→5分測定 ディスク容量 ※調べたいパス毎 for i in {1..300} ; do du -sh &lt;ファイルパス>; sleep 1 ; done > disk.out GPU使用率 以下をそれぞれ整形し、ファイルに出力するようにする
+CPU Memory Disk GPU の使用率を測定する必要があったので、その際に行った作業のメモを残します
+CPU・Memory sarコマンドのインストール sudo yum -y install sysstat CPU・Memoryの使用率取得 sar -P ALL 1 300 > cpu.out #1秒間隔で300回測定→5分測定 sar -r 1 300 > mem.out #1秒間隔で300回測定→5分測定 ディスク容量 ※調べたいパス毎 for i in {1..300} ; do du -sh &lt;ファイルパス>; sleep 1 ; done > disk.out GPU使用率 以下をそれぞれ整形し、ファイルに出力するようにします
 プロセッサ・メモリ nvidia-smi -l 1 --query-gpu=timestamp,index,utilization.gpu,utilization.memory --format=csv,nounits エンコーダ・デコーダ nvidia-smi -q | grep -v Stats | grep -e Encoder -e Decoder | xargs -L 1 echo `date +'%Y/%m/%d %I:%M:%S',` </p>
 </section>
 <footer class=entry-footer><span title="2022-01-31 11:30:03 +0000 UTC">January 31, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
