@@ -20,7 +20,7 @@
     </item>
     
     <item>
-      <title>Minikubeをリモートからアクセスして利用できるようにする</title>
+      <title>リモート環境に立てたMinikubeで公開しているロードバランサーを外部から利用可能にする</title>
       <link>https://kurikube.github.io/post/minikube_remote/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
       
