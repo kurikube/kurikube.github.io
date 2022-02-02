@@ -9,7 +9,16 @@
       <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 28 Jan 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/tags/openshift/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 29 Jan 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/tags/openshift/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OpenShift Interactive Learning Portal ①Deploying Applications From Images</title>
+      <link>https://kurikube.github.io/post/crc_openshift_interactive_learning_portal/</link>
+      <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/crc_openshift_interactive_learning_portal/</guid>
+      <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
+    </item>
+    
     <item>
       <title>CodeReady Containers（CRC）をリモート接続可能にする</title>
       <link>https://kurikube.github.io/post/20220124/</link>

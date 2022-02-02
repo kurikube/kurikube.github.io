@@ -74,6 +74,26 @@
 </header>
 <article class="post-entry tag-entry">
 <header class=entry-header>
+<h2>OpenShift Interactive Learning Portal ①Deploying Applications From Images
+</h2>
+</header>
+<section class=entry-content>
+<p>はじめに OpenShift Interactive Learning Portal の Deploying Applications From Images コースをCodeReady Container環境で行う。
+https://learn.openshift.com/introduction/deploying-images/
+学習内容 OpenShiftを使用する場合、アプリケーションを追加する方法はいくつかある。 主な方法は次のとおり。
+既存のコンテナイメージからアプリケーションをデプロイする Source-to-Imageビルダーを使用して、Gitリポジトリーに含まれているソースコードからビルドおよびデプロイする DockerfileのGitリポジトリに含まれるソースコードからビルドしてデプロイする このコースでは、OpenShift Webコンソールおよびocコマンドをを使用して、既存のコンテナイメージからアプリケーションをデプロイする方法を学習する。
+環境 以下で作成したCodeReady Container環境を使用 http://10.88.10.20:8080/open.knowledge/view/40?offset=0
+Deploying Using the Command Line developerユーザでログインする。
+[crc@codeready ~]$ oc login -u developer -p developer Login successful. projectは以前作成した「myproject」を使用する。
+[crc@codeready ~]$ oc project Using project "myproject" on server "https://api.crc.testing:6443". デプロイするimageの名前を指定して、それがコマンドラインから有効かどうかを確認するには、oc new-app –searchコマンドを使用する。
+→以下の表示結果からは、Docuer Hubレジストリにimageがあることが分かる。
+[crc@codeready ~]$ oc new-app --search openshiftkatacoda/blog-django-py Docker images (oc new-app --docker-image=&lt;docker-image> [--code=&lt;source>]) ----- openshiftkatacoda/blog-django-py Registry: Docker Hub Tags: latest imageをデプロイするには次のコマンドを実行する。...</p>
+</section>
+<footer class=entry-footer><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to OpenShift Interactive Learning Portal ①Deploying Applications From Images" href=https://kurikube.github.io/post/crc_openshift_interactive_learning_portal/></a>
+</article>
+<article class="post-entry tag-entry">
+<header class=entry-header>
 <h2>CodeReady Containers（CRC）をリモート接続可能にする
 </h2>
 </header>

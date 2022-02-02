@@ -65,6 +65,15 @@
     </item>
     
     <item>
+      <title>OpenShift Interactive Learning Portal ①Deploying Applications From Images</title>
+      <link>https://kurikube.github.io/post/crc_openshift_interactive_learning_portal/</link>
+      <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/crc_openshift_interactive_learning_portal/</guid>
+      <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
+    </item>
+    
+    <item>
       <title>リモート環境に立てたMinikubeで公開しているロードバランサーを外部から利用可能にする</title>
       <link>https://kurikube.github.io/post/minikube_remote/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
