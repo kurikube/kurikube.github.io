@@ -92,7 +92,8 @@
 </h2>
 </header>
 <section class=entry-content>
-<p>CentOSにDockerをインストールするためのシェルスクリプトです。 root権限での実行が楽ですが、セキュリティ的によく無いので、sudoを付けての実行をおすすめします。
+<p>CentOSにDockerをインストールするためのシェルスクリプトです。
+root権限での実行が楽ですが、セキュリティ的によく無いので、sudoを付けての実行をおすすめします。
 yum -y update yum -y upgrade yum install -y yum-utils device-mapper-persistent-data lvm2 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo yum install -y docker-ce docker-ce-cli containerd.io systemctl start docker systemctl enable docker </p>
 </section>
 <footer class=entry-footer><span title="2021-01-24 11:30:03 +0000 UTC">January 24, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
