@@ -1,0 +1,867 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>OpenShift環境でKubernetes公式チュートリアルをやってみる | 通信キャリアで勤めるエンジニアのブログ</title>
+<meta name=keywords content="OpenShift">
+<meta name=description content="某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。">
+<meta name=author content="Me">
+<link rel=canonical href=https://kurikube.github.io/>
+<meta name=google-site-verification content="XYZabc">
+<meta name=yandex-verification content="XYZabc">
+<meta name=msvalidate.01 content="XYZabc">
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css integrity="sha256-yIlj/i15RiAA/Q+xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://kurikube.github.io/images/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://kurikube.github.io/images/favicon16.ico>
+<link rel=icon type=image/png sizes=32x32 href=https://kurikube.github.io/images/favicon32.ico>
+<link rel=apple-touch-icon href=https://kurikube.github.io/%3Clink%20/%20abs%20url%3E>
+<link rel=mask-icon href=https://kurikube.github.io/%3Clink%20/%20abs%20url%3E>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<meta name=generator content="Hugo 0.92.1">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+</noscript>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-123-45','auto'),ga('send','pageview'))</script><meta property="og:title" content="OpenShift環境でKubernetes公式チュートリアルをやってみる">
+<meta property="og:description" content="某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://kurikube.github.io/post/openshift_k8s_tutorial/">
+<meta property="og:image" content="https://kurikube.github.io/%3Cimage%20path/url%3E"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2022-02-03T11:30:03+00:00">
+<meta property="article:modified_time" content="2022-02-03T11:30:03+00:00"><meta property="og:site_name" content="通信キャリアで働くエンジニアのブログ">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://kurikube.github.io/%3Cimage%20path/url%3E">
+<meta name=twitter:title content="OpenShift環境でKubernetes公式チュートリアルをやってみる">
+<meta name=twitter:description content="某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://kurikube.github.io/post/"},{"@type":"ListItem","position":2,"name":"OpenShift環境でKubernetes公式チュートリアルをやってみる","item":"https://kurikube.github.io/post/openshift_k8s_tutorial/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"OpenShift環境でKubernetes公式チュートリアルをやってみる","name":"OpenShift環境でKubernetes公式チュートリアルをやってみる","description":"某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。","keywords":["OpenShift"],"articleBody":"はじめに OpenShiftの勉強をするにあたり、CodeReady Container環境を使ってKubernetes公式チュートリアルを一通りやってみる。\n学習内容 公式チュートリアルでは、Deploymentの作成、状態確認、外部公開、スケールアウト、アップデート、ロールバックを行う。 https://kubernetes.io/ja/docs/tutorials/kubernetes-basics/\n環境 以下で作成したCodeReady Container環境を使用 https://zenn.dev/eastvillage/articles/2843306d0d99b3\nModule 1 - Create a Kubernetes cluster Cluster details この章ではクラスターの起動と状態確認を行う。\nクラスターの起動と状態確認 Code Ready Containerのバージョンを確認する。\n[centos@ip-172-31-19-74 ~]$ crc version WARN A new version (1.39.0) has been published on https://developers.redhat.com/content-gateway/file/pub/openshift-v4/clients/crc/1.39.0/crc-linux-amd64.tar.xz CodeReady Containers version: 1.38.0+659b2cbd OpenShift version: 4.9.12 (embedded in executable) OpenShift APIを実行するコマンドラインツールocのバージョンとマスターノードのバージョンを確認する。\n[centos@ip-172-31-19-74 ~]$ oc version Client Version: 4.9.12 Kubernetes Version: v1.22.3+e790d7f クラスターの詳細確認 クラスターの詳細情報を取得する。\n[centos@ip-172-31-19-74 ~]$ oc cluster-info Kubernetes control plane is running at https://api.crc.testing:6443 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'. 全てのノード情報を取得する。CRC環境では1つのノードのみが実行されており、ステータスはReadyとなっている。\n[centos@ip-172-31-19-74 ~]$ oc get nodes NAME STATUS ROLES AGE VERSION crc-xxcfw-master-0 Ready master,worker 30d v1.22.3+e790d7f Module2 - Deploy an app この章では、ocを使ってアプリのデプロイを行う。\nアプリのデプロイ oc create deploymentを使用してアプリを起動する。\n[centos@ip-172-31-19-74 ~]$ oc create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1 deployment.apps/kubernetes-bootcamp created デプロイを作成したときに実行されたこと\n アプリケーションのインスタンスを実行できる適切なノードを検索した アプリケーションをそのノードで実行するようにスケジュールした 必要に応じて新しいノードでインスタンスを再スケジュールするようにクラスタを構成した  デプロイのリストを表示する。\n[centos@ip-172-31-19-74 ~]$ oc get deploy NAME READY UP-TO-DATE AVAILABLE AGE kubernetes-bootcamp 1/1 1 1 13s もちろん、--dry-run -o yamlを付けてyamlを表示することも可能。\n[centos@ip-172-31-19-74 ~]$ oc create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1 --dry-run -o yaml W0204 23:04:59.900200 4025 helpers.go:555] --dry-run is deprecated and can be replaced with --dry-run=client. apiVersion: apps/v1 kind: Deployment metadata: creationTimestamp: null labels: app: kubernetes-bootcamp name: kubernetes-bootcamp spec: replicas: 1 selector: matchLabels: app: kubernetes-bootcamp strategy: {} template: metadata: creationTimestamp: null labels: app: kubernetes-bootcamp spec: containers: - image: gcr.io/google-samples/kubernetes-bootcamp:v1 name: kubernetes-bootcamp resources: {} status: {} アプリへの通信 OpenShift内で実行されるPodは、Kubernetesと同様に分離されたプライベートネットワークで実行されている。デフォルトでは同じクラスタ内の他のPodとServiceからは表示されるが、そのネットワーク外には表示されない。外部ネットワークとPodを通信させるためにはproxyまたはexposeを使用する。\noc proxyを実行するとクラスタのプライベートネットワークに通信を転送するプロキシを作成できる。プロキシはCtr-Cを押すことで終了できる。\n[centos@ip-172-31-19-74 ~]$ oc proxy Starting to serve on 127.0.0.1:8001 別のターミナルを起動して、プロキシ経由でAPIエンドポイントへアクセスし、バージョン情報を取得できる。\n[centos@ip-172-31-19-74 ~]$ curl localhost:8001/version { \"major\": \"1\", \"minor\": \"22\", \"gitVersion\": \"v1.22.3+e790d7f\", \"gitCommit\": \"3a0f2c90b43e6cffd07f57b5b78dd9f083e47ee2\", \"gitTreeState\": \"clean\", \"buildDate\": \"2021-12-14T02:10:38Z\", \"goVersion\": \"go1.16.6\", \"compiler\": \"gc\", \"platform\": \"linux/amd64\" Module3 - Explore your app アプリの設定を確認する 先ほどのシナリオでデプロイされたPodが1つ起動している。\n[centos@ip-172-31-19-74 ~]$ oc get po NAME READY STATUS RESTARTS AGE kubernetes-bootcamp-57978f5f5d-ft6vs 1/1 Running 0 93s コンテナの詳細情報を表示するにはoc describe podsを使用する。\n[centos@ip-172-31-19-74 ~]$ oc describe pods Name: kubernetes-bootcamp-57978f5f5d-ft6vs Namespace: default Priority: 0 Node: crc-xxcfw-master-0/192.168.126.11 Start Time: Fri, 04 Feb 2022 23:04:36 +0000 Labels: app=kubernetes-bootcamp pod-template-hash=57978f5f5d Annotations: k8s.v1.cni.cncf.io/network-status: [{ \"name\": \"openshift-sdn\", \"interface\": \"eth0\", \"ips\": [ \"10.217.0.57\" ], \"default\": true, \"dns\": {} }] k8s.v1.cni.cncf.io/networks-status: [{ \"name\": \"openshift-sdn\", \"interface\": \"eth0\", \"ips\": [ \"10.217.0.57\" ], \"default\": true, \"dns\": {} }] Status: Running IP: 10.217.0.57 IPs: IP: 10.217.0.57 Controlled By: ReplicaSet/kubernetes-bootcamp-57978f5f5d Containers: kubernetes-bootcamp: Container ID: cri-o://606d252709fb35c3a9df5592fe36fc3169377d8f7be5b8fecc81448e8d77ac5b Image: gcr.io/google-samples/kubernetes-bootcamp:v1 Image ID: gcr.io/google-samples/kubernetes-bootcamp@sha256:0d6b8ee63bb57c5f5b6156f446b3bc3b3c143d233037f3a2f00e279c8fcc64af Port:  Host Port:  State: Running Started: Fri, 04 Feb 2022 23:04:47 +0000 Ready: True Restart Count: 0 Environment:  Mounts: /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-69mkv (ro) Conditions: Type Status Initialized True Ready True ContainersReady True PodScheduled True Volumes: kube-api-access-69mkv: Type: Projected (a volume that contains injected data from multiple sources) TokenExpirationSeconds: 3607 ConfigMapName: kube-root-ca.crt ConfigMapOptional:  DownwardAPI: true ConfigMapName: openshift-service-ca.crt ConfigMapOptional:  QoS Class: BestEffort Node-Selectors:  Tolerations: node.kubernetes.io/not-ready:NoExecute op=Exists for 300s node.kubernetes.io/unreachable:NoExecute op=Exists for 300s Events: Type Reason Age From Message ---- ------ ---- ---- ------- Normal Scheduled 104s default-scheduler Successfully assigned default/kubernetes-bootcamp-57978f5f5d-ft6vs to crc-xxcfw-master-0 Normal AddedInterface 103s multus Add eth0 [10.217.0.57/23] from openshift-sdn Normal Pulling 103s kubelet Pulling image \"gcr.io/google-samples/kubernetes-bootcamp:v1\" Normal Pulled 93s kubelet Successfully pulled image \"gcr.io/google-samples/kubernetes-bootcamp:v1\" in 9.338791024s Normal Created 93s kubelet Created container kubernetes-bootcamp Normal Started 93s kubelet Started container kubernetes-bootcamp コンテナのログを確認する アプリケーションがSTDOUTに送信するものが、Pod内のコンテナのログになる。kubectlと同様にoc logsコマンドによってログを取得できる。\n[centos@ip-172-31-19-74 ~]$ oc logs kubernetes-bootcamp-57978f5f5d-ft6vs Kubernetes Bootcamp App Started At: 2022-02-04T23:04:47.402Z | Running On: kubernetes-bootcamp-57978f5f5d-ft6vs コンテナ上でコマンドを実行する kubectlと同様にoc execコマンドにより起動しているコンテナに対して直接コマンドを実行できる。\n[centos@ip-172-31-19-74 ~]$ oc exec [centos@ip-172-31-19-74 ~]$ oc logs kubernetes-bootcamp-57978f5f5d-ft6vs kubectl exec [POD] [COMMAND] is DEPRECATED and will be removed in a future version. Use kubectl exec [POD] -- [COMMAND] instead. Error from server (NotFound): pods \"[centos@ip-172-31-19-74\" not found [centos@ip-172-31-19-74 ~]$ oc exec kubernetes-bootcamp-57978f5f5d-ft6vs env kubectl exec [POD] [COMMAND] is DEPRECATED and will be removed in a future version. Use kubectl exec [POD] -- [COMMAND] instead. PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin TERM=xterm HOSTNAME=kubernetes-bootcamp-57978f5f5d-ft6vs NSS_SDB_USE_CACHE=no KUBERNETES_SERVICE_HOST=10.217.4.1 KUBERNETES_SERVICE_PORT=443 KUBERNETES_SERVICE_PORT_HTTPS=443 KUBERNETES_PORT=tcp://10.217.4.1:443 KUBERNETES_PORT_443_TCP=tcp://10.217.4.1:443 KUBERNETES_PORT_443_TCP_PROTO=tcp KUBERNETES_PORT_443_TCP_PORT=443 KUBERNETES_PORT_443_TCP_ADDR=10.217.4.1 NPM_CONFIG_LOGLEVEL=info NODE_VERSION=6.3.1 HOME=/root このPodにはコンテナが1つしかないためコンテナ自体の名前は省略できる。\n次に、PodのコンテナでBashセッションを開始する。\n[centos@ip-172-31-19-74 ~]$ oc exec -it kubernetes-bootcamp-57978f5f5d-ft6vs -- bash root@kubernetes-bootcamp-57978f5f5d-ft6vs:/# ls bin boot core dev etc home lib lib64 media mnt opt proc root run sbin server.js\tsrv sys tmp usr var root@kubernetes-bootcamp-57978f5f5d-ft6vs:/# cat server.js var http = require('http'); var requests=0; var podname= process.env.HOSTNAME; var startTime; var host; var handleRequest = function(request, response) { response.setHeader('Content-Type', 'text/plain'); response.writeHead(200); response.write(\"Hello Kubernetes bootcamp! | Running on: \"); response.write(host); response.end(\" | v=1\\n\"); console.log(\"Running On:\" ,host, \"| Total Requests:\", ++requests,\"| App Uptime:\", (new Date() - startTime)/1000 , \"seconds\", \"| Log Time:\",new Date()); } var www = http.createServer(handleRequest); www.listen(8080,function () { startTime = new Date();; host = process.env.HOSTNAME; console.log (\"Kubernetes Bootcamp App Started At:\",startTime, \"| Running On: \" ,host, \"\\n\" ); }); アプリケーションが起動していることが以下のコマンドからも確認できる。\nroot@kubernetes-bootcamp-57978f5f5d-ft6vs:/# curl localhost:8080 Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-ft6vs | v=1 exitでコネクションが終了する。\nModule4 - Expose your app publicly 新しいサービスを作成 クラスタの現在のServiceを確認する。\n[centos@ip-172-31-19-74 ~]$ oc get svc NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE kubernetes ClusterIP 10.217.4.1  443/TCP 30d openshift ExternalName  kubernetes.default.svc.cluster.local  30d kubectlと同様にoc exposeコマンドで、typeとポート番号を指定してNodePortを作成できる。\n[centos@ip-172-31-19-74 ~]$ oc expose deployment/kubernetes-bootcamp --type=\"NodePort\" --port 8080 service/kubernetes-bootcamp exposed [centos@ip-172-31-19-74 ~]$ oc get svc NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE kubernetes ClusterIP 10.217.4.1  443/TCP 30d kubernetes-bootcamp NodePort 10.217.4.219  8080:31263/TCP 6s openshift ExternalName  kubernetes.default.svc.cluster.local  30d これで、ノードのIPアドレスと外部公開したポート番号に対してcurlすることでアプリがクラスタの外部に公開されていることをテストできる。\n[centos@ip-172-31-19-74 ~]$ curl 192.168.130.11:31263 Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-ft6vs | v=1 これでアクセスできた。192.168.130.11はcrc ipで確認したCRC VMのIPアドレス。\nラベルを使う Deploymentを作成すると、自動的にPodのlabelが作成される。このlabelを使用してPodのリストをフィルタすることができる。\n[centos@ip-172-31-19-74 ~]$ oc get pods -l app=kubernetes-bootcamp NAME READY STATUS RESTARTS AGE kubernetes-bootcamp-57978f5f5d-ft6vs 1/1 Running 0 7m22s kubectlと同様にoc labelコマンドを使って新しいラベルを設定できる。\n[centos@ip-172-31-19-74 ~]$ oc label po kubernetes-bootcamp-57978f5f5d-ft6vs version=v1 pod/kubernetes-bootcamp-57978f5f5d-ft6vs labeled [centos@ip-172-31-19-74 ~]$ oc describe pod/kubernetes-bootcamp-57978f5f5d-ft6vs Name: kubernetes-bootcamp-57978f5f5d-ft6vs Namespace: default Priority: 0 Node: crc-xxcfw-master-0/192.168.126.11 Start Time: Fri, 04 Feb 2022 23:04:36 +0000 Labels: app=kubernetes-bootcamp pod-template-hash=57978f5f5d version=v1 Annotations: k8s.v1.cni.cncf.io/network-status: [{ \"name\": \"openshift-sdn\", \"interface\": \"eth0\", \"ips\": [ \"10.217.0.57\" ], \"default\": true, \"dns\": {} }] k8s.v1.cni.cncf.io/networks-status: [{ \"name\": \"openshift-sdn\", \"interface\": \"eth0\", \"ips\": [ \"10.217.0.57\" ], \"default\": true, \"dns\": {} }] Status: Running IP: 10.217.0.57 IPs: IP: 10.217.0.57 Controlled By: ReplicaSet/kubernetes-bootcamp-57978f5f5d Containers: kubernetes-bootcamp: Container ID: cri-o://606d252709fb35c3a9df5592fe36fc3169377d8f7be5b8fecc81448e8d77ac5b Image: gcr.io/google-samples/kubernetes-bootcamp:v1 Image ID: gcr.io/google-samples/kubernetes-bootcamp@sha256:0d6b8ee63bb57c5f5b6156f446b3bc3b3c143d233037f3a2f00e279c8fcc64af Port:  Host Port:  State: Running Started: Fri, 04 Feb 2022 23:04:47 +0000 Ready: True Restart Count: 0 Environment:  Mounts: /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-69mkv (ro) Conditions: Type Status Initialized True Ready True ContainersReady True PodScheduled True Volumes: kube-api-access-69mkv: Type: Projected (a volume that contains injected data from multiple sources) TokenExpirationSeconds: 3607 ConfigMapName: kube-root-ca.crt ConfigMapOptional:  DownwardAPI: true ConfigMapName: openshift-service-ca.crt ConfigMapOptional:  QoS Class: BestEffort Node-Selectors:  Tolerations: node.kubernetes.io/not-ready:NoExecute op=Exists for 300s node.kubernetes.io/unreachable:NoExecute op=Exists for 300s Events: Type Reason Age From Message ---- ------ ---- ---- ------- Normal Scheduled 8m35s default-scheduler Successfully assigned default/kubernetes-bootcamp-57978f5f5d-ft6vs to crc-xxcfw-master-0 Normal AddedInterface 8m34s multus Add eth0 [10.217.0.57/23] from openshift-sdn Normal Pulling 8m34s kubelet Pulling image \"gcr.io/google-samples/kubernetes-bootcamp:v1\" Normal Pulled 8m24s kubelet Successfully pulled image \"gcr.io/google-samples/kubernetes-bootcamp:v1\" in 9.338791024s Normal Created 8m24s kubelet Created container kubernetes-bootcamp Normal Started 8m24s kubelet Started container kubernetes-bootcamp 新しいlabelを指定してPodをフィルタしてみる。\n[centos@ip-172-31-19-74 ~]$ oc get pods -l version=v1 NAME READY STATUS RESTARTS AGE kubernetes-bootcamp-57978f5f5d-ft6vs 1/1 Running 0 9m4s Serviceの削除 kubectlと同様にoc delete serviceコマンドでserviceを削除できる。同様にラベルを使える。\n[centos@ip-172-31-19-74 ~]$ oc delete service -l app=kubernetes-bootcamp service \"kubernetes-bootcamp\" deleted serviceが削除されたのでクラスタ外部からのアクセスは出来なくなるが、クラスタ内部からのアクセスは可能である。\n[centos@ip-172-31-19-74 ~]$ oc exec -it kubernetes-bootcamp-57978f5f5d-ft6vs -- curl localhost:8080 Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-ft6vs | v=1 Module5 - Scale up your app oc scaleを使用してデプロイをスケーリングし、動作中の負荷分散を確認する。\ndeploymentをスケーリングする deploymentの状態を確認する。\n[centos@ip-172-31-19-74 ~]$ oc get deployment NAME READY UP-TO-DATE AVAILABLE AGE kubernetes-bootcamp 1/1 1 1 9m49s deploymentによってReplicaSetが作成されていることを確認する。\n[centos@ip-172-31-19-74 ~]$ oc get rs NAME DESIRED CURRENT READY AGE kubernetes-bootcamp-57978f5f5d 1 1 1 9m56s 次に、kubectlと同様にoc scaleコマンドによってdeploymentのレプリカ数を4にスケーリングする。\ndeploymentのレプリカ数が4つになり、podも異なるIPアドレスで4つのPodが起動している。\n[centos@ip-172-31-19-74 ~]$ oc scale deployments/kubernetes-bootcamp --replicas=4 deployment.apps/kubernetes-bootcamp scaled [centos@ip-172-31-19-74 ~]$ oc get deployment NAME READY UP-TO-DATE AVAILABLE AGE kubernetes-bootcamp 4/4 4 4 10m [centos@ip-172-31-19-74 ~]$ oc get po -o wide NAME READY STATUS RESTARTS AGE IP NODE NOMINATED NODE READINESS GATES kubernetes-bootcamp-57978f5f5d-frgwr 1/1 Running 0 19s 10.217.0.62 crc-xxcfw-master-0   kubernetes-bootcamp-57978f5f5d-ft6vs 1/1 Running 0 10m 10.217.0.57 crc-xxcfw-master-0   kubernetes-bootcamp-57978f5f5d-k6vjt 1/1 Running 0 19s 10.217.0.63 crc-xxcfw-master-0   kubernetes-bootcamp-57978f5f5d-qpmsh 1/1 Running 0 19s 10.217.0.64 crc-xxcfw-master-0   oc describeのEventsを見ると、レプリカ数が4つにスケーリングしたログが出力されている。\n[centos@ip-172-31-19-74 ~]$ oc describe deployments/kubernetes-bootcamp Name: kubernetes-bootcamp Namespace: default CreationTimestamp: Fri, 04 Feb 2022 23:04:36 +0000 Labels: app=kubernetes-bootcamp Annotations: deployment.kubernetes.io/revision: 1 Selector: app=kubernetes-bootcamp Replicas: 4 desired | 4 updated | 4 total | 4 available | 0 unavailable StrategyType: RollingUpdate MinReadySeconds: 0 RollingUpdateStrategy: 25% max unavailable, 25% max surge Pod Template: Labels: app=kubernetes-bootcamp Containers: kubernetes-bootcamp: Image: gcr.io/google-samples/kubernetes-bootcamp:v1 Port:  Host Port:  Environment:  Mounts:  Volumes:  Conditions: Type Status Reason ---- ------ ------ Progressing True NewReplicaSetAvailable Available True MinimumReplicasAvailable OldReplicaSets:  NewReplicaSet: kubernetes-bootcamp-57978f5f5d (4/4 replicas created) Events: Type Reason Age From Message ---- ------ ---- ---- ------- Normal ScalingReplicaSet 10m deployment-controller Scaled up replica set kubernetes-bootcamp-57978f5f5d to 1 Normal ScalingReplicaSet 30s deployment-controller Scaled up replica set kubernetes-bootcamp-57978f5f5d to 4 ロードバランシング Serviceがトラフィックを負荷分散していることを確認する。まずはServiceを作成する。\n[centos@ip-172-31-19-74 ~]$ oc expose deployment/kubernetes-bootcamp --type=\"NodePort\" --port 8080 service/kubernetes-bootcamp exposed [centos@ip-172-31-19-74 ~]$ oc describe service/kubernetes-bootcamp Name: kubernetes-bootcamp Namespace: default Labels: app=kubernetes-bootcamp Annotations:  Selector: app=kubernetes-bootcamp Type: NodePort IP Family Policy: SingleStack IP Families: IPv4 IP: 10.217.5.18 IPs: 10.217.5.18 Port:  8080/TCP TargetPort: 8080/TCP NodePort:  32411/TCP Endpoints: 10.217.0.57:8080,10.217.0.62:8080,10.217.0.63:8080 + 1 more... Session Affinity: None External Traffic Policy: Cluster Events:  クラスタ外部からアクセスすると、トラフィックは4つのPodにバランシングされて、アクセスするたびにpod名が変わっていることが見てわかる。\n[centos@ip-172-31-19-74 ~]$ curl 192.168.130.11:32411 Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-frgwr | v=1 [centos@ip-172-31-19-74 ~]$ curl 192.168.130.11:32411 Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-frgwr | v=1 [centos@ip-172-31-19-74 ~]$ curl 192.168.130.11:32411 Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-k6vjt | v=1 [centos@ip-172-31-19-74 ~]$ curl 192.168.130.11:32411 Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-qpmsh | v=1 [centos@ip-172-31-19-74 ~]$ curl 192.168.130.11:32411 Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-ft6vs | v=1 [centos@ip-172-31-19-74 ~]$ curl 192.168.130.11:32411 Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-qpmsh | v=1 スケールダウン レプリカ数を2つに変更してスケールダウンさせる。\n[centos@ip-172-31-19-74 ~]$ oc scale deployments/kubernetes-bootcamp --replicas=2 deployment.apps/kubernetes-bootcamp scaled 4つあったpodのうち2つがTerminateされて、最終的にpod数は2つになる。\n[centos@ip-172-31-19-74 ~]$ oc get po -o wide NAME READY STATUS RESTARTS AGE IP NODE NOMINATED NODE READINESS GATES kubernetes-bootcamp-57978f5f5d-ft6vs 1/1 Running 0 12m 10.217.0.57 crc-xxcfw-master-0   kubernetes-bootcamp-57978f5f5d-k6vjt 1/1 Running 0 2m33s 10.217.0.63 crc-xxcfw-master-0   Module6 - Update your app デプロイされたアプリケーションをoc set imageで更新し、rollout undoコマンドでロールバックする。\nアプリをアップデート deploymentの状態を確認する。\n[centos@ip-172-31-19-74 ~]$ oc get deploy NAME READY UP-TO-DATE AVAILABLE AGE kubernetes-bootcamp 2/2 2 2 12m [centos@ip-172-31-19-74 ~]$ oc describe deploy kubernetes-bootcamp Name: kubernetes-bootcamp Namespace: default CreationTimestamp: Fri, 04 Feb 2022 23:04:36 +0000 Labels: app=kubernetes-bootcamp Annotations: deployment.kubernetes.io/revision: 1 Selector: app=kubernetes-bootcamp Replicas: 2 desired | 2 updated | 2 total | 2 available | 0 unavailable StrategyType: RollingUpdate MinReadySeconds: 0 RollingUpdateStrategy: 25% max unavailable, 25% max surge Pod Template: Labels: app=kubernetes-bootcamp Containers: kubernetes-bootcamp: Image: gcr.io/google-samples/kubernetes-bootcamp:v1 Port:  Host Port:  Environment:  Mounts:  Volumes:  Conditions: Type Status Reason ---- ------ ------ Progressing True NewReplicaSetAvailable Available True MinimumReplicasAvailable OldReplicaSets:  NewReplicaSet: kubernetes-bootcamp-57978f5f5d (2/2 replicas created) Events: Type Reason Age From Message ---- ------ ---- ---- ------- Normal ScalingReplicaSet 13m deployment-controller Scaled up replica set kubernetes-bootcamp-57978f5f5d to 1 Normal ScalingReplicaSet 2m55s deployment-controller Scaled up replica set kubernetes-bootcamp-57978f5f5d to 4 Normal ScalingReplicaSet 54s deployment-controller Scaled down replica set kubernetes-bootcamp-57978f5f5d to 2 kubectlと同様に、oc set imageコマンドを使ってimageをバージョン2へ更新する。\n[centos@ip-172-31-19-74 ~]$ oc set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2 deployment.apps/kubernetes-bootcamp image updated [centos@ip-172-31-19-74 ~]$ oc describe deploy kubernetes-bootcamp Name: kubernetes-bootcamp Namespace: default CreationTimestamp: Fri, 04 Feb 2022 23:04:36 +0000 Labels: app=kubernetes-bootcamp Annotations: deployment.kubernetes.io/revision: 2 Selector: app=kubernetes-bootcamp Replicas: 2 desired | 1 updated | 3 total | 2 available | 1 unavailable StrategyType: RollingUpdate MinReadySeconds: 0 RollingUpdateStrategy: 25% max unavailable, 25% max surge Pod Template: Labels: app=kubernetes-bootcamp Containers: kubernetes-bootcamp: Image: jocatalin/kubernetes-bootcamp:v2 Port:  Host Port:  Environment:  Mounts:  Volumes:  Conditions: Type Status Reason ---- ------ ------ Available True MinimumReplicasAvailable Progressing True ReplicaSetUpdated OldReplicaSets: kubernetes-bootcamp-57978f5f5d (2/2 replicas created) NewReplicaSet: kubernetes-bootcamp-769746fd4 (1/1 replicas created) Events: Type Reason Age From Message ---- ------ ---- ---- ------- Normal ScalingReplicaSet 13m deployment-controller Scaled up replica set kubernetes-bootcamp-57978f5f5d to 1 Normal ScalingReplicaSet 3m38s deployment-controller Scaled up replica set kubernetes-bootcamp-57978f5f5d to 4 Normal ScalingReplicaSet 97s deployment-controller Scaled down replica set kubernetes-bootcamp-57978f5f5d to 2 Normal ScalingReplicaSet 9s deployment-controller Scaled up replica set kubernetes-bootcamp-769746fd4 to 1 そうするとローリングアップデートにより古いpodがTerminatingされつつ新しいpodが作成される。\n[centos@ip-172-31-19-74 ~]$ oc get po NAME READY STATUS RESTARTS AGE kubernetes-bootcamp-769746fd4-fh884 1/1 Running 0 50s kubernetes-bootcamp-769746fd4-v7xlb 1/1 Running 0 41s アップデートの検証 curlでアクセスしてみるとデプロイされたアプリのバージョンがv=2になっていることが確認できる。\n[centos@ip-172-31-19-74 ~]$ curl 192.168.130.11:32411 Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-769746fd4-fh884 | v=2 アプリのロールバック v=10のアプリケーションをデプロイする。\n[centos@ip-172-31-19-74 ~]$ oc set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v10 deployment.apps/kubernetes-bootcamp image updated リポジトリにはv10というimageは無いのでステータスが ImagePullBackOff のままになってしまう。\n[centos@ip-172-31-19-74 ~]$ oc get po NAME READY STATUS RESTARTS AGE kubernetes-bootcamp-769746fd4-fh884 1/1 Running 0 91s kubernetes-bootcamp-769746fd4-v7xlb 1/1 Running 0 82s kubernetes-bootcamp-7b6fc6c7d9-9jb6x 0/1 ErrImagePull 0 9s そこでrolloutコマンドを使ってロールバックする。\n[centos@ip-172-31-19-74 ~]$ oc rollout undo deployments/kubernetes-bootcamp deployment.apps/kubernetes-bootcamp rolled back ロールバック後はv2が実行されているのでロールバックが成功している。\n[centos@ip-172-31-19-74 ~]$ oc describe deployments/kubernetes-bootcamp Name: kubernetes-bootcamp Namespace: default CreationTimestamp: Fri, 04 Feb 2022 23:04:36 +0000 Labels: app=kubernetes-bootcamp Annotations: deployment.kubernetes.io/revision: 4 Selector: app=kubernetes-bootcamp Replicas: 2 desired | 2 updated | 2 total | 2 available | 0 unavailable StrategyType: RollingUpdate MinReadySeconds: 0 RollingUpdateStrategy: 25% max unavailable, 25% max surge Pod Template: Labels: app=kubernetes-bootcamp Containers: kubernetes-bootcamp: Image: jocatalin/kubernetes-bootcamp:v2 Port:  Host Port:  Environment:  Mounts:  Volumes:  Conditions: Type Status Reason ---- ------ ------ Available True MinimumReplicasAvailable Progressing True NewReplicaSetAvailable OldReplicaSets:  NewReplicaSet: kubernetes-bootcamp-769746fd4 (2/2 replicas created) Events: Type Reason Age From Message ---- ------ ---- ---- ------- Normal ScalingReplicaSet 15m deployment-controller Scaled up replica set kubernetes-bootcamp-57978f5f5d to 1 Normal ScalingReplicaSet 5m19s deployment-controller Scaled up replica set kubernetes-bootcamp-57978f5f5d to 4 Normal ScalingReplicaSet 3m18s deployment-controller Scaled down replica set kubernetes-bootcamp-57978f5f5d to 2 Normal ScalingReplicaSet 110s deployment-controller Scaled up replica set kubernetes-bootcamp-769746fd4 to 1 Normal ScalingReplicaSet 101s deployment-controller Scaled down replica set kubernetes-bootcamp-57978f5f5d to 1 Normal ScalingReplicaSet 101s deployment-controller Scaled up replica set kubernetes-bootcamp-769746fd4 to 2 Normal ScalingReplicaSet 98s deployment-controller Scaled down replica set kubernetes-bootcamp-57978f5f5d to 0 Normal ScalingReplicaSet 28s deployment-controller Scaled up replica set kubernetes-bootcamp-7b6fc6c7d9 to 1 Normal ScalingReplicaSet 8s deployment-controller Scaled down replica set kubernetes-bootcamp-7b6fc6c7d9 to 0 リビジョンを指定してロールバックすることも可能。\n[centos@ip-172-31-19-74 ~]$ oc rollout undo deployments/kubernetes-bootcamp --to-revision=1 deployment.apps/kubernetes-bootcamp rolled back –to-revision=1を指定したのでこのロールバック後はv1が実行されている。\n[centos@ip-172-31-19-74 ~]$ oc describe deployments/kubernetes-bootcamp Name: kubernetes-bootcamp Namespace: default CreationTimestamp: Fri, 04 Feb 2022 23:04:36 +0000 Labels: app=kubernetes-bootcamp Annotations: deployment.kubernetes.io/revision: 5 Selector: app=kubernetes-bootcamp Replicas: 2 desired | 2 updated | 2 total | 2 available | 0 unavailable StrategyType: RollingUpdate MinReadySeconds: 0 RollingUpdateStrategy: 25% max unavailable, 25% max surge Pod Template: Labels: app=kubernetes-bootcamp Containers: kubernetes-bootcamp: Image: gcr.io/google-samples/kubernetes-bootcamp:v1 Port:  Host Port:  Environment:  Mounts:  Volumes:  Conditions: Type Status Reason ---- ------ ------ Available True MinimumReplicasAvailable Progressing True NewReplicaSetAvailable OldReplicaSets:  NewReplicaSet: kubernetes-bootcamp-57978f5f5d (2/2 replicas created) Events: Type Reason Age From Message ---- ------ ---- ---- ------- Normal ScalingReplicaSet 6m17s deployment-controller Scaled up replica set kubernetes-bootcamp-57978f5f5d to 4 Normal ScalingReplicaSet 4m16s deployment-controller Scaled down replica set kubernetes-bootcamp-57978f5f5d to 2 Normal ScalingReplicaSet 2m48s deployment-controller Scaled up replica set kubernetes-bootcamp-769746fd4 to 1 Normal ScalingReplicaSet 2m39s deployment-controller Scaled down replica set kubernetes-bootcamp-57978f5f5d to 1 Normal ScalingReplicaSet 2m39s deployment-controller Scaled up replica set kubernetes-bootcamp-769746fd4 to 2 Normal ScalingReplicaSet 2m36s deployment-controller Scaled down replica set kubernetes-bootcamp-57978f5f5d to 0 Normal ScalingReplicaSet 86s deployment-controller Scaled up replica set kubernetes-bootcamp-7b6fc6c7d9 to 1 Normal ScalingReplicaSet 66s deployment-controller Scaled down replica set kubernetes-bootcamp-7b6fc6c7d9 to 0 Normal ScalingReplicaSet 12s (x2 over 16m) deployment-controller Scaled up replica set kubernetes-bootcamp-57978f5f5d to 1 Normal ScalingReplicaSet 5s (x3 over 8s) deployment-controller (combined from similar events): Scaled down replica set kubernetes-bootcamp-769746fd4 to 0 以上で公式チュートリアルは完了。 やってみる前から薄々気づいてはいたけど、このチュートリアルではOpenShiftならでは機能は一切使わないためkubectlコマンドがocコマンドに変わっているだけで、内容的には単なるkubernetesの復習になりました。\n","wordCount":"2360","inLanguage":"en","image":"https://kurikube.github.io/%3Cimage%20path/url%3E","datePublished":"2022-02-03T11:30:03Z","dateModified":"2022-02-03T11:30:03Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://kurikube.github.io/post/openshift_k8s_tutorial/"},"publisher":{"@type":"Organization","name":"通信キャリアで勤めるエンジニアのブログ","logo":{"@type":"ImageObject","url":"https://kurikube.github.io/images/favicon.ico"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://kurikube.github.io/ accesskey=h title="通信キャリアで勤めるエンジニアのブログ (Alt + H)">通信キャリアで勤めるエンジニアのブログ</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://kurikube.github.io/categories/ title=categories>
+<span>categories</span>
+</a>
+</li>
+<li>
+<a href=https://kurikube.github.io/tags/ title=tags>
+<span>tags</span>
+</a>
+</li>
+<li>
+<a href=https://kurikube.github.io title=インフラエンジニアのブログ>
+<span>インフラエンジニアのブログ</span>
+</a>
+</li>
+<li>
+<a href=https://kurikube.github.io/search title=Search>
+<span><i class='\"sidebar-button-icon' fas fa-lg fa-search\"></i>Search</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://kurikube.github.io/>Home</a>&nbsp;»&nbsp;<a href=https://kurikube.github.io/post/>Posts</a></div>
+<h1 class=post-title>
+OpenShift環境でKubernetes公式チュートリアルをやってみる
+</h1>
+<div class=post-description>
+某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。
+</div>
+<div class=post-meta><span title="2022-02-03 11:30:03 +0000 UTC">February 3, 2022</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;Me&nbsp;|&nbsp;<a href=https://github.com/kurikube/hugo-blog/tree/main/content/post/openshift_k8s_tutorial/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a>
+</div>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3014928890570116" crossorigin=anonymous></script>
+</header> <div class=toc>
+<details>
+<summary accesskey=c title="(Alt + C)">
+<span class=details>Table of Contents</span>
+</summary>
+<div class=inner><ul>
+<li>
+<a href=#%e3%81%af%e3%81%98%e3%82%81%e3%81%ab aria-label=はじめに>はじめに</a><ul>
+<ul>
+<ul>
+<li>
+<a href=#%e5%ad%a6%e7%bf%92%e5%86%85%e5%ae%b9 aria-label=学習内容>学習内容</a></li>
+<li>
+<a href=#%e7%92%b0%e5%a2%83 aria-label=環境>環境</a></li></ul>
+</ul>
+</ul>
+</li>
+<li>
+<a href=#module-1----create-a-kubernetes-cluster aria-label="Module 1 -  Create a Kubernetes cluster">Module 1 - Create a Kubernetes cluster</a><ul>
+<li>
+<a href=#cluster-details aria-label="Cluster details">Cluster details</a><ul>
+<ul>
+<li>
+<a href=#%e3%82%af%e3%83%a9%e3%82%b9%e3%82%bf%e3%83%bc%e3%81%ae%e8%b5%b7%e5%8b%95%e3%81%a8%e7%8a%b6%e6%85%8b%e7%a2%ba%e8%aa%8d aria-label=クラスターの起動と状態確認>クラスターの起動と状態確認</a></li>
+<li>
+<a href=#%e3%82%af%e3%83%a9%e3%82%b9%e3%82%bf%e3%83%bc%e3%81%ae%e8%a9%b3%e7%b4%b0%e7%a2%ba%e8%aa%8d aria-label=クラスターの詳細確認>クラスターの詳細確認</a></li></ul>
+</ul>
+</li></ul>
+</li>
+<li>
+<a href=#module2---deploy-an-app aria-label="Module2 - Deploy an app">Module2 - Deploy an app</a><ul>
+<ul>
+<ul>
+<li>
+<a href=#%e3%82%a2%e3%83%97%e3%83%aa%e3%81%ae%e3%83%87%e3%83%97%e3%83%ad%e3%82%a4 aria-label=アプリのデプロイ>アプリのデプロイ</a></li>
+<li>
+<a href=#%e3%82%a2%e3%83%97%e3%83%aa%e3%81%b8%e3%81%ae%e9%80%9a%e4%bf%a1 aria-label=アプリへの通信>アプリへの通信</a></li></ul>
+</ul>
+</ul>
+</li>
+<li>
+<a href=#module3---explore-your-app aria-label="Module3 - Explore your app">Module3 - Explore your app</a><ul>
+<ul>
+<ul>
+<li>
+<a href=#%e3%82%a2%e3%83%97%e3%83%aa%e3%81%ae%e8%a8%ad%e5%ae%9a%e3%82%92%e7%a2%ba%e8%aa%8d%e3%81%99%e3%82%8b aria-label=アプリの設定を確認する>アプリの設定を確認する</a></li>
+<li>
+<a href=#%e3%82%b3%e3%83%b3%e3%83%86%e3%83%8a%e3%81%ae%e3%83%ad%e3%82%b0%e3%82%92%e7%a2%ba%e8%aa%8d%e3%81%99%e3%82%8b aria-label=コンテナのログを確認する>コンテナのログを確認する</a></li>
+<li>
+<a href=#%e3%82%b3%e3%83%b3%e3%83%86%e3%83%8a%e4%b8%8a%e3%81%a7%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e3%82%92%e5%ae%9f%e8%a1%8c%e3%81%99%e3%82%8b aria-label=コンテナ上でコマンドを実行する>コンテナ上でコマンドを実行する</a></li></ul>
+</ul>
+</ul>
+</li>
+<li>
+<a href=#module4---expose-your-app-publicly aria-label="Module4 - Expose your app publicly">Module4 - Expose your app publicly</a><ul>
+<ul>
+<ul>
+<li>
+<a href=#%e6%96%b0%e3%81%97%e3%81%84%e3%82%b5%e3%83%bc%e3%83%93%e3%82%b9%e3%82%92%e4%bd%9c%e6%88%90 aria-label=新しいサービスを作成>新しいサービスを作成</a></li>
+<li>
+<a href=#%e3%83%a9%e3%83%99%e3%83%ab%e3%82%92%e4%bd%bf%e3%81%86 aria-label=ラベルを使う>ラベルを使う</a></li>
+<li>
+<a href=#service%e3%81%ae%e5%89%8a%e9%99%a4 aria-label=Serviceの削除>Serviceの削除</a></li></ul>
+</ul>
+</ul>
+</li>
+<li>
+<a href=#module5---scale-up-your-app aria-label="Module5 - Scale up your app">Module5 - Scale up your app</a><ul>
+<ul>
+<ul>
+<li>
+<a href=#deployment%e3%82%92%e3%82%b9%e3%82%b1%e3%83%bc%e3%83%aa%e3%83%b3%e3%82%b0%e3%81%99%e3%82%8b aria-label=deploymentをスケーリングする>deploymentをスケーリングする</a></li>
+<li>
+<a href=#%e3%83%ad%e3%83%bc%e3%83%89%e3%83%90%e3%83%a9%e3%83%b3%e3%82%b7%e3%83%b3%e3%82%b0 aria-label=ロードバランシング>ロードバランシング</a></li>
+<li>
+<a href=#%e3%82%b9%e3%82%b1%e3%83%bc%e3%83%ab%e3%83%80%e3%82%a6%e3%83%b3 aria-label=スケールダウン>スケールダウン</a></li></ul>
+</ul>
+</ul>
+</li>
+<li>
+<a href=#module6---update-your-app aria-label="Module6 - Update your app">Module6 - Update your app</a><ul>
+<ul>
+<ul>
+<li>
+<a href=#%e3%82%a2%e3%83%97%e3%83%aa%e3%82%92%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88 aria-label=アプリをアップデート>アプリをアップデート</a></li>
+<li>
+<a href=#%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88%e3%81%ae%e6%a4%9c%e8%a8%bc aria-label=アップデートの検証>アップデートの検証</a></li>
+<li>
+<a href=#%e3%82%a2%e3%83%97%e3%83%aa%e3%81%ae%e3%83%ad%e3%83%bc%e3%83%ab%e3%83%90%e3%83%83%e3%82%af aria-label=アプリのロールバック>アプリのロールバック</a>
+</li>
+</ul>
+</ul>
+</ul>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<div class=post-content><h2 id=はじめに>はじめに<a hidden class=anchor aria-hidden=true href=#はじめに>#</a></h2>
+<p>OpenShiftの勉強をするにあたり、CodeReady Container環境を使ってKubernetes公式チュートリアルを一通りやってみる。</p>
+<h5 id=学習内容>学習内容<a hidden class=anchor aria-hidden=true href=#学習内容>#</a></h5>
+<p>公式チュートリアルでは、Deploymentの作成、状態確認、外部公開、スケールアウト、アップデート、ロールバックを行う。
+<a href=https://kubernetes.io/ja/docs/tutorials/kubernetes-basics/>https://kubernetes.io/ja/docs/tutorials/kubernetes-basics/</a></p>
+<h5 id=環境>環境<a hidden class=anchor aria-hidden=true href=#環境>#</a></h5>
+<p>以下で作成したCodeReady Container環境を使用
+<a href=https://zenn.dev/eastvillage/articles/2843306d0d99b3>https://zenn.dev/eastvillage/articles/2843306d0d99b3</a></p>
+<h2 id=module-1----create-a-kubernetes-cluster>Module 1 - Create a Kubernetes cluster<a hidden class=anchor aria-hidden=true href=#module-1----create-a-kubernetes-cluster>#</a></h2>
+<h3 id=cluster-details>Cluster details<a hidden class=anchor aria-hidden=true href=#cluster-details>#</a></h3>
+<p>この章ではクラスターの起動と状態確認を行う。</p>
+<h5 id=クラスターの起動と状態確認>クラスターの起動と状態確認<a hidden class=anchor aria-hidden=true href=#クラスターの起動と状態確認>#</a></h5>
+<p>Code Ready Containerのバージョンを確認する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ crc version
+WARN A new version <span style=color:#f92672>(</span>1.39.0<span style=color:#f92672>)</span> has been published on https://developers.redhat.com/content-gateway/file/pub/openshift-v4/clients/crc/1.39.0/crc-linux-amd64.tar.xz
+CodeReady Containers version: 1.38.0+659b2cbd
+OpenShift version: 4.9.12 <span style=color:#f92672>(</span>embedded in executable<span style=color:#f92672>)</span>
+</code></pre></div><p>OpenShift APIを実行するコマンドラインツール<code>oc</code>のバージョンとマスターノードのバージョンを確認する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc version
+Client Version: 4.9.12
+Kubernetes Version: v1.22.3+e790d7f
+</code></pre></div><h5 id=クラスターの詳細確認>クラスターの詳細確認<a hidden class=anchor aria-hidden=true href=#クラスターの詳細確認>#</a></h5>
+<p>クラスターの詳細情報を取得する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc cluster-info
+Kubernetes control plane is running at https://api.crc.testing:6443
+
+To further debug and diagnose cluster problems, use <span style=color:#e6db74>&#39;kubectl cluster-info dump&#39;</span>.
+</code></pre></div><p>全てのノード情報を取得する。CRC環境では1つのノードのみが実行されており、ステータスはReadyとなっている。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc get nodes
+NAME                 STATUS   ROLES           AGE   VERSION
+crc-xxcfw-master-0   Ready    master,worker   30d   v1.22.3+e790d7f
+</code></pre></div><h2 id=module2---deploy-an-app>Module2 - Deploy an app<a hidden class=anchor aria-hidden=true href=#module2---deploy-an-app>#</a></h2>
+<p>この章では、<code>oc</code>を使ってアプリのデプロイを行う。</p>
+<h5 id=アプリのデプロイ>アプリのデプロイ<a hidden class=anchor aria-hidden=true href=#アプリのデプロイ>#</a></h5>
+<p><code>oc create deployment</code>を使用してアプリを起動する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc create deployment kubernetes-bootcamp --image<span style=color:#f92672>=</span>gcr.io/google-samples/kubernetes-bootcamp:v1
+deployment.apps/kubernetes-bootcamp created
+</code></pre></div><p>デプロイを作成したときに実行されたこと</p>
+<ul>
+<li>アプリケーションのインスタンスを実行できる適切なノードを検索した</li>
+<li>アプリケーションをそのノードで実行するようにスケジュールした</li>
+<li>必要に応じて新しいノードでインスタンスを再スケジュールするようにクラスタを構成した</li>
+</ul>
+<p>デプロイのリストを表示する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc get deploy
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+kubernetes-bootcamp   1/1     <span style=color:#ae81ff>1</span>            <span style=color:#ae81ff>1</span>           13s
+</code></pre></div><p>もちろん、<code>--dry-run -o yaml</code>を付けてyamlを表示することも可能。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$  oc create deployment kubernetes-bootcamp --image<span style=color:#f92672>=</span>gcr.io/google-samples/kubernetes-bootcamp:v1 --dry-run -o yaml
+W0204 23:04:59.900200    <span style=color:#ae81ff>4025</span> helpers.go:555<span style=color:#f92672>]</span> --dry-run is deprecated and can be replaced with --dry-run<span style=color:#f92672>=</span>client.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: kubernetes-bootcamp
+  name: kubernetes-bootcamp
+spec:
+  replicas: <span style=color:#ae81ff>1</span>
+  selector:
+    matchLabels:
+      app: kubernetes-bootcamp
+  strategy: <span style=color:#f92672>{}</span>
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: kubernetes-bootcamp
+    spec:
+      containers:
+      - image: gcr.io/google-samples/kubernetes-bootcamp:v1
+        name: kubernetes-bootcamp
+        resources: <span style=color:#f92672>{}</span>
+status: <span style=color:#f92672>{}</span>
+</code></pre></div><h5 id=アプリへの通信>アプリへの通信<a hidden class=anchor aria-hidden=true href=#アプリへの通信>#</a></h5>
+<p>OpenShift内で実行されるPodは、Kubernetesと同様に分離されたプライベートネットワークで実行されている。デフォルトでは同じクラスタ内の他のPodとServiceからは表示されるが、そのネットワーク外には表示されない。外部ネットワークとPodを通信させるためにはproxyまたはexposeを使用する。</p>
+<p><code>oc proxy</code>を実行するとクラスタのプライベートネットワークに通信を転送するプロキシを作成できる。プロキシはCtr-Cを押すことで終了できる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc proxy
+Starting to serve on 127.0.0.1:8001
+</code></pre></div><p>別のターミナルを起動して、プロキシ経由でAPIエンドポイントへアクセスし、バージョン情報を取得できる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ curl localhost:8001/version
+<span style=color:#f92672>{</span>
+  <span style=color:#e6db74>&#34;major&#34;</span>: <span style=color:#e6db74>&#34;1&#34;</span>,
+  <span style=color:#e6db74>&#34;minor&#34;</span>: <span style=color:#e6db74>&#34;22&#34;</span>,
+  <span style=color:#e6db74>&#34;gitVersion&#34;</span>: <span style=color:#e6db74>&#34;v1.22.3+e790d7f&#34;</span>,
+  <span style=color:#e6db74>&#34;gitCommit&#34;</span>: <span style=color:#e6db74>&#34;3a0f2c90b43e6cffd07f57b5b78dd9f083e47ee2&#34;</span>,
+  <span style=color:#e6db74>&#34;gitTreeState&#34;</span>: <span style=color:#e6db74>&#34;clean&#34;</span>,
+  <span style=color:#e6db74>&#34;buildDate&#34;</span>: <span style=color:#e6db74>&#34;2021-12-14T02:10:38Z&#34;</span>,
+  <span style=color:#e6db74>&#34;goVersion&#34;</span>: <span style=color:#e6db74>&#34;go1.16.6&#34;</span>,
+  <span style=color:#e6db74>&#34;compiler&#34;</span>: <span style=color:#e6db74>&#34;gc&#34;</span>,
+  <span style=color:#e6db74>&#34;platform&#34;</span>: <span style=color:#e6db74>&#34;linux/amd64&#34;</span>
+</code></pre></div><h2 id=module3---explore-your-app>Module3 - Explore your app<a hidden class=anchor aria-hidden=true href=#module3---explore-your-app>#</a></h2>
+<h5 id=アプリの設定を確認する>アプリの設定を確認する<a hidden class=anchor aria-hidden=true href=#アプリの設定を確認する>#</a></h5>
+<p>先ほどのシナリオでデプロイされたPodが1つ起動している。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc get po
+NAME                                   READY   STATUS    RESTARTS   AGE
+kubernetes-bootcamp-57978f5f5d-ft6vs   1/1     Running   <span style=color:#ae81ff>0</span>          93s
+</code></pre></div><p>コンテナの詳細情報を表示するには<code>oc describe pods</code>を使用する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc describe pods
+Name:         kubernetes-bootcamp-57978f5f5d-ft6vs
+Namespace:    default
+Priority:     <span style=color:#ae81ff>0</span>
+Node:         crc-xxcfw-master-0/192.168.126.11
+Start Time:   Fri, <span style=color:#ae81ff>04</span> Feb <span style=color:#ae81ff>2022</span> 23:04:36 +0000
+Labels:       app<span style=color:#f92672>=</span>kubernetes-bootcamp
+              pod-template-hash<span style=color:#f92672>=</span>57978f5f5d
+Annotations:  k8s.v1.cni.cncf.io/network-status:
+                <span style=color:#f92672>[{</span>
+                    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;openshift-sdn&#34;</span>,
+                    <span style=color:#e6db74>&#34;interface&#34;</span>: <span style=color:#e6db74>&#34;eth0&#34;</span>,
+                    <span style=color:#e6db74>&#34;ips&#34;</span>: <span style=color:#f92672>[</span>
+                        <span style=color:#e6db74>&#34;10.217.0.57&#34;</span>
+                    <span style=color:#f92672>]</span>,
+                    <span style=color:#e6db74>&#34;default&#34;</span>: true,
+                    <span style=color:#e6db74>&#34;dns&#34;</span>: <span style=color:#f92672>{}</span>
+                <span style=color:#f92672>}]</span>
+              k8s.v1.cni.cncf.io/networks-status:
+                <span style=color:#f92672>[{</span>
+                    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;openshift-sdn&#34;</span>,
+                    <span style=color:#e6db74>&#34;interface&#34;</span>: <span style=color:#e6db74>&#34;eth0&#34;</span>,
+                    <span style=color:#e6db74>&#34;ips&#34;</span>: <span style=color:#f92672>[</span>
+                        <span style=color:#e6db74>&#34;10.217.0.57&#34;</span>
+                    <span style=color:#f92672>]</span>,
+                    <span style=color:#e6db74>&#34;default&#34;</span>: true,
+                    <span style=color:#e6db74>&#34;dns&#34;</span>: <span style=color:#f92672>{}</span>
+                <span style=color:#f92672>}]</span>
+Status:       Running
+IP:           10.217.0.57
+IPs:
+  IP:           10.217.0.57
+Controlled By:  ReplicaSet/kubernetes-bootcamp-57978f5f5d
+Containers:
+  kubernetes-bootcamp:
+    Container ID:   cri-o://606d252709fb35c3a9df5592fe36fc3169377d8f7be5b8fecc81448e8d77ac5b
+    Image:          gcr.io/google-samples/kubernetes-bootcamp:v1
+    Image ID:       gcr.io/google-samples/kubernetes-bootcamp@sha256:0d6b8ee63bb57c5f5b6156f446b3bc3b3c143d233037f3a2f00e279c8fcc64af
+    Port:           &lt;none&gt;
+    Host Port:      &lt;none&gt;
+    State:          Running
+      Started:      Fri, <span style=color:#ae81ff>04</span> Feb <span style=color:#ae81ff>2022</span> 23:04:47 +0000
+    Ready:          True
+    Restart Count:  <span style=color:#ae81ff>0</span>
+    Environment:    &lt;none&gt;
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-69mkv <span style=color:#f92672>(</span>ro<span style=color:#f92672>)</span>
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
+Volumes:
+  kube-api-access-69mkv:
+    Type:                    Projected <span style=color:#f92672>(</span>a volume that contains injected data from multiple sources<span style=color:#f92672>)</span>
+    TokenExpirationSeconds:  <span style=color:#ae81ff>3607</span>
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       &lt;nil&gt;
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       &lt;nil&gt;
+QoS Class:                   BestEffort
+Node-Selectors:              &lt;none&gt;
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op<span style=color:#f92672>=</span>Exists <span style=color:#66d9ef>for</span> 300s
+                             node.kubernetes.io/unreachable:NoExecute op<span style=color:#f92672>=</span>Exists <span style=color:#66d9ef>for</span> 300s
+Events:
+  Type    Reason          Age   From               Message
+  ----    ------          ----  ----               -------
+  Normal  Scheduled       104s  default-scheduler  Successfully assigned default/kubernetes-bootcamp-57978f5f5d-ft6vs to crc-xxcfw-master-0
+  Normal  AddedInterface  103s  multus             Add eth0 <span style=color:#f92672>[</span>10.217.0.57/23<span style=color:#f92672>]</span> from openshift-sdn
+  Normal  Pulling         103s  kubelet            Pulling image <span style=color:#e6db74>&#34;gcr.io/google-samples/kubernetes-bootcamp:v1&#34;</span>
+  Normal  Pulled          93s   kubelet            Successfully pulled image <span style=color:#e6db74>&#34;gcr.io/google-samples/kubernetes-bootcamp:v1&#34;</span> in 9.338791024s
+  Normal  Created         93s   kubelet            Created container kubernetes-bootcamp
+  Normal  Started         93s   kubelet            Started container kubernetes-bootcamp
+</code></pre></div><h5 id=コンテナのログを確認する>コンテナのログを確認する<a hidden class=anchor aria-hidden=true href=#コンテナのログを確認する>#</a></h5>
+<p>アプリケーションがSTDOUTに送信するものが、Pod内のコンテナのログになる。kubectlと同様に<code>oc logs</code>コマンドによってログを取得できる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc logs kubernetes-bootcamp-57978f5f5d-ft6vs
+Kubernetes Bootcamp App Started At: 2022-02-04T23:04:47.402Z | Running On:  kubernetes-bootcamp-57978f5f5d-ft6vs
+</code></pre></div><h5 id=コンテナ上でコマンドを実行する>コンテナ上でコマンドを実行する<a hidden class=anchor aria-hidden=true href=#コンテナ上でコマンドを実行する>#</a></h5>
+<p>kubectlと同様に<code>oc exec</code>コマンドにより起動しているコンテナに対して直接コマンドを実行できる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc exec <span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc logs kubernetes-bootcamp-57978f5f5d-ft6vs
+kubectl exec <span style=color:#f92672>[</span>POD<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>COMMAND<span style=color:#f92672>]</span> is DEPRECATED and will be removed in a future version. Use kubectl exec <span style=color:#f92672>[</span>POD<span style=color:#f92672>]</span> -- <span style=color:#f92672>[</span>COMMAND<span style=color:#f92672>]</span> instead.
+Error from server <span style=color:#f92672>(</span>NotFound<span style=color:#f92672>)</span>: pods <span style=color:#e6db74>&#34;[centos@ip-172-31-19-74&#34;</span> not found
+<span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc exec kubernetes-bootcamp-57978f5f5d-ft6vs env
+kubectl exec <span style=color:#f92672>[</span>POD<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>COMMAND<span style=color:#f92672>]</span> is DEPRECATED and will be removed in a future version. Use kubectl exec <span style=color:#f92672>[</span>POD<span style=color:#f92672>]</span> -- <span style=color:#f92672>[</span>COMMAND<span style=color:#f92672>]</span> instead.
+PATH<span style=color:#f92672>=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+TERM<span style=color:#f92672>=</span>xterm
+HOSTNAME<span style=color:#f92672>=</span>kubernetes-bootcamp-57978f5f5d-ft6vs
+NSS_SDB_USE_CACHE<span style=color:#f92672>=</span>no
+KUBERNETES_SERVICE_HOST<span style=color:#f92672>=</span>10.217.4.1
+KUBERNETES_SERVICE_PORT<span style=color:#f92672>=</span><span style=color:#ae81ff>443</span>
+KUBERNETES_SERVICE_PORT_HTTPS<span style=color:#f92672>=</span><span style=color:#ae81ff>443</span>
+KUBERNETES_PORT<span style=color:#f92672>=</span>tcp://10.217.4.1:443
+KUBERNETES_PORT_443_TCP<span style=color:#f92672>=</span>tcp://10.217.4.1:443
+KUBERNETES_PORT_443_TCP_PROTO<span style=color:#f92672>=</span>tcp
+KUBERNETES_PORT_443_TCP_PORT<span style=color:#f92672>=</span><span style=color:#ae81ff>443</span>
+KUBERNETES_PORT_443_TCP_ADDR<span style=color:#f92672>=</span>10.217.4.1
+NPM_CONFIG_LOGLEVEL<span style=color:#f92672>=</span>info
+NODE_VERSION<span style=color:#f92672>=</span>6.3.1
+HOME<span style=color:#f92672>=</span>/root
+</code></pre></div><p>このPodにはコンテナが1つしかないためコンテナ自体の名前は省略できる。</p>
+<p>次に、PodのコンテナでBashセッションを開始する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc exec -it  kubernetes-bootcamp-57978f5f5d-ft6vs --  bash
+root@kubernetes-bootcamp-57978f5f5d-ft6vs:/# ls
+bin  boot  core  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  server.js	srv  sys  tmp  usr  var
+root@kubernetes-bootcamp-57978f5f5d-ft6vs:/# cat server.js
+var http <span style=color:#f92672>=</span> require<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;http&#39;</span><span style=color:#f92672>)</span>;
+var requests<span style=color:#f92672>=</span>0;
+var podname<span style=color:#f92672>=</span> process.env.HOSTNAME;
+var startTime;
+var host;
+var handleRequest <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span><span style=color:#f92672>(</span>request, response<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+  response.setHeader<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;Content-Type&#39;</span>, <span style=color:#e6db74>&#39;text/plain&#39;</span><span style=color:#f92672>)</span>;
+  response.writeHead<span style=color:#f92672>(</span>200<span style=color:#f92672>)</span>;
+  response.write<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Hello Kubernetes bootcamp! | Running on: &#34;</span><span style=color:#f92672>)</span>;
+  response.write<span style=color:#f92672>(</span>host<span style=color:#f92672>)</span>;
+  response.end<span style=color:#f92672>(</span><span style=color:#e6db74>&#34; | v=1\n&#34;</span><span style=color:#f92672>)</span>;
+  console.log<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Running On:&#34;</span> ,host, <span style=color:#e6db74>&#34;| Total Requests:&#34;</span>, ++requests,<span style=color:#e6db74>&#34;| App Uptime:&#34;</span>, <span style=color:#f92672>(</span>new Date<span style=color:#f92672>()</span> - startTime<span style=color:#f92672>)</span>/1000 , <span style=color:#e6db74>&#34;seconds&#34;</span>, <span style=color:#e6db74>&#34;| Log Time:&#34;</span>,new Date<span style=color:#f92672>())</span>;
+<span style=color:#f92672>}</span>
+var www <span style=color:#f92672>=</span> http.createServer<span style=color:#f92672>(</span>handleRequest<span style=color:#f92672>)</span>;
+www.listen<span style=color:#f92672>(</span>8080,function <span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    startTime <span style=color:#f92672>=</span> new Date<span style=color:#f92672>()</span>;;
+    host <span style=color:#f92672>=</span> process.env.HOSTNAME;
+    console.log <span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Kubernetes Bootcamp App Started At:&#34;</span>,startTime, <span style=color:#e6db74>&#34;| Running On: &#34;</span> ,host, <span style=color:#e6db74>&#34;\n&#34;</span> <span style=color:#f92672>)</span>;
+<span style=color:#f92672>})</span>;
+</code></pre></div><p>アプリケーションが起動していることが以下のコマンドからも確認できる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>root@kubernetes-bootcamp-57978f5f5d-ft6vs:/# curl localhost:8080
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-ft6vs | v<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+</code></pre></div><p>exitでコネクションが終了する。</p>
+<h2 id=module4---expose-your-app-publicly>Module4 - Expose your app publicly<a hidden class=anchor aria-hidden=true href=#module4---expose-your-app-publicly>#</a></h2>
+<h5 id=新しいサービスを作成>新しいサービスを作成<a hidden class=anchor aria-hidden=true href=#新しいサービスを作成>#</a></h5>
+<p>クラスタの現在のServiceを確認する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc get svc
+NAME         TYPE           CLUSTER-IP   EXTERNAL-IP                            PORT<span style=color:#f92672>(</span>S<span style=color:#f92672>)</span>   AGE
+kubernetes   ClusterIP      10.217.4.1   &lt;none&gt;                                 443/TCP   30d
+openshift    ExternalName   &lt;none&gt;       kubernetes.default.svc.cluster.local   &lt;none&gt;    30d
+</code></pre></div><p>kubectlと同様に<code>oc expose</code>コマンドで、typeとポート番号を指定してNodePortを作成できる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc expose deployment/kubernetes-bootcamp --type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;NodePort&#34;</span> --port <span style=color:#ae81ff>8080</span>
+service/kubernetes-bootcamp exposed
+<span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc get svc
+NAME                  TYPE           CLUSTER-IP     EXTERNAL-IP                            PORT<span style=color:#f92672>(</span>S<span style=color:#f92672>)</span>          AGE
+kubernetes            ClusterIP      10.217.4.1     &lt;none&gt;                                 443/TCP          30d
+kubernetes-bootcamp   NodePort       10.217.4.219   &lt;none&gt;                                 8080:31263/TCP   6s
+openshift             ExternalName   &lt;none&gt;         kubernetes.default.svc.cluster.local   &lt;none&gt;           30d
+</code></pre></div><p>これで、ノードのIPアドレスと外部公開したポート番号に対してcurlすることでアプリがクラスタの外部に公開されていることをテストできる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ curl 192.168.130.11:31263
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-ft6vs | v<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+</code></pre></div><p>これでアクセスできた。192.168.130.11は<code>crc ip</code>で確認したCRC VMのIPアドレス。</p>
+<h5 id=ラベルを使う>ラベルを使う<a hidden class=anchor aria-hidden=true href=#ラベルを使う>#</a></h5>
+<p>Deploymentを作成すると、自動的にPodのlabelが作成される。このlabelを使用してPodのリストをフィルタすることができる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc get pods -l app<span style=color:#f92672>=</span>kubernetes-bootcamp
+NAME                                   READY   STATUS    RESTARTS   AGE
+kubernetes-bootcamp-57978f5f5d-ft6vs   1/1     Running   <span style=color:#ae81ff>0</span>          7m22s
+</code></pre></div><p>kubectlと同様に<code>oc label</code>コマンドを使って新しいラベルを設定できる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc label po kubernetes-bootcamp-57978f5f5d-ft6vs version<span style=color:#f92672>=</span>v1
+pod/kubernetes-bootcamp-57978f5f5d-ft6vs labeled
+<span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc describe  pod/kubernetes-bootcamp-57978f5f5d-ft6vs
+Name:         kubernetes-bootcamp-57978f5f5d-ft6vs
+Namespace:    default
+Priority:     <span style=color:#ae81ff>0</span>
+Node:         crc-xxcfw-master-0/192.168.126.11
+Start Time:   Fri, <span style=color:#ae81ff>04</span> Feb <span style=color:#ae81ff>2022</span> 23:04:36 +0000
+Labels:       app<span style=color:#f92672>=</span>kubernetes-bootcamp
+              pod-template-hash<span style=color:#f92672>=</span>57978f5f5d
+              version<span style=color:#f92672>=</span>v1
+Annotations:  k8s.v1.cni.cncf.io/network-status:
+                <span style=color:#f92672>[{</span>
+                    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;openshift-sdn&#34;</span>,
+                    <span style=color:#e6db74>&#34;interface&#34;</span>: <span style=color:#e6db74>&#34;eth0&#34;</span>,
+                    <span style=color:#e6db74>&#34;ips&#34;</span>: <span style=color:#f92672>[</span>
+                        <span style=color:#e6db74>&#34;10.217.0.57&#34;</span>
+                    <span style=color:#f92672>]</span>,
+                    <span style=color:#e6db74>&#34;default&#34;</span>: true,
+                    <span style=color:#e6db74>&#34;dns&#34;</span>: <span style=color:#f92672>{}</span>
+                <span style=color:#f92672>}]</span>
+              k8s.v1.cni.cncf.io/networks-status:
+                <span style=color:#f92672>[{</span>
+                    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;openshift-sdn&#34;</span>,
+                    <span style=color:#e6db74>&#34;interface&#34;</span>: <span style=color:#e6db74>&#34;eth0&#34;</span>,
+                    <span style=color:#e6db74>&#34;ips&#34;</span>: <span style=color:#f92672>[</span>
+                        <span style=color:#e6db74>&#34;10.217.0.57&#34;</span>
+                    <span style=color:#f92672>]</span>,
+                    <span style=color:#e6db74>&#34;default&#34;</span>: true,
+                    <span style=color:#e6db74>&#34;dns&#34;</span>: <span style=color:#f92672>{}</span>
+                <span style=color:#f92672>}]</span>
+Status:       Running
+IP:           10.217.0.57
+IPs:
+  IP:           10.217.0.57
+Controlled By:  ReplicaSet/kubernetes-bootcamp-57978f5f5d
+Containers:
+  kubernetes-bootcamp:
+    Container ID:   cri-o://606d252709fb35c3a9df5592fe36fc3169377d8f7be5b8fecc81448e8d77ac5b
+    Image:          gcr.io/google-samples/kubernetes-bootcamp:v1
+    Image ID:       gcr.io/google-samples/kubernetes-bootcamp@sha256:0d6b8ee63bb57c5f5b6156f446b3bc3b3c143d233037f3a2f00e279c8fcc64af
+    Port:           &lt;none&gt;
+    Host Port:      &lt;none&gt;
+    State:          Running
+      Started:      Fri, <span style=color:#ae81ff>04</span> Feb <span style=color:#ae81ff>2022</span> 23:04:47 +0000
+    Ready:          True
+    Restart Count:  <span style=color:#ae81ff>0</span>
+    Environment:    &lt;none&gt;
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-69mkv <span style=color:#f92672>(</span>ro<span style=color:#f92672>)</span>
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
+Volumes:
+  kube-api-access-69mkv:
+    Type:                    Projected <span style=color:#f92672>(</span>a volume that contains injected data from multiple sources<span style=color:#f92672>)</span>
+    TokenExpirationSeconds:  <span style=color:#ae81ff>3607</span>
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       &lt;nil&gt;
+    DownwardAPI:             true
+    ConfigMapName:           openshift-service-ca.crt
+    ConfigMapOptional:       &lt;nil&gt;
+QoS Class:                   BestEffort
+Node-Selectors:              &lt;none&gt;
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op<span style=color:#f92672>=</span>Exists <span style=color:#66d9ef>for</span> 300s
+                             node.kubernetes.io/unreachable:NoExecute op<span style=color:#f92672>=</span>Exists <span style=color:#66d9ef>for</span> 300s
+Events:
+  Type    Reason          Age    From               Message
+  ----    ------          ----   ----               -------
+  Normal  Scheduled       8m35s  default-scheduler  Successfully assigned default/kubernetes-bootcamp-57978f5f5d-ft6vs to crc-xxcfw-master-0
+  Normal  AddedInterface  8m34s  multus             Add eth0 <span style=color:#f92672>[</span>10.217.0.57/23<span style=color:#f92672>]</span> from openshift-sdn
+  Normal  Pulling         8m34s  kubelet            Pulling image <span style=color:#e6db74>&#34;gcr.io/google-samples/kubernetes-bootcamp:v1&#34;</span>
+  Normal  Pulled          8m24s  kubelet            Successfully pulled image <span style=color:#e6db74>&#34;gcr.io/google-samples/kubernetes-bootcamp:v1&#34;</span> in 9.338791024s
+  Normal  Created         8m24s  kubelet            Created container kubernetes-bootcamp
+  Normal  Started         8m24s  kubelet            Started container kubernetes-bootcamp       
+</code></pre></div><p>新しいlabelを指定してPodをフィルタしてみる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$  oc get pods -l version<span style=color:#f92672>=</span>v1
+NAME                                   READY   STATUS    RESTARTS   AGE
+kubernetes-bootcamp-57978f5f5d-ft6vs   1/1     Running   <span style=color:#ae81ff>0</span>          9m4s
+</code></pre></div><h5 id=serviceの削除>Serviceの削除<a hidden class=anchor aria-hidden=true href=#serviceの削除>#</a></h5>
+<p>kubectlと同様に<code>oc delete service</code>コマンドでserviceを削除できる。同様にラベルを使える。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$  oc delete service -l app<span style=color:#f92672>=</span>kubernetes-bootcamp
+service <span style=color:#e6db74>&#34;kubernetes-bootcamp&#34;</span> deleted
+</code></pre></div><p>serviceが削除されたのでクラスタ外部からのアクセスは出来なくなるが、クラスタ内部からのアクセスは可能である。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc exec -it  kubernetes-bootcamp-57978f5f5d-ft6vs -- curl localhost:8080
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-ft6vs | v<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+</code></pre></div><h2 id=module5---scale-up-your-app>Module5 - Scale up your app<a hidden class=anchor aria-hidden=true href=#module5---scale-up-your-app>#</a></h2>
+<p><code>oc scale</code>を使用してデプロイをスケーリングし、動作中の負荷分散を確認する。</p>
+<h5 id=deploymentをスケーリングする>deploymentをスケーリングする<a hidden class=anchor aria-hidden=true href=#deploymentをスケーリングする>#</a></h5>
+<p>deploymentの状態を確認する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc get deployment
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+kubernetes-bootcamp   1/1     <span style=color:#ae81ff>1</span>            <span style=color:#ae81ff>1</span>           9m49s
+</code></pre></div><p>deploymentによってReplicaSetが作成されていることを確認する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc get rs
+NAME                             DESIRED   CURRENT   READY   AGE
+kubernetes-bootcamp-57978f5f5d   <span style=color:#ae81ff>1</span>         <span style=color:#ae81ff>1</span>         <span style=color:#ae81ff>1</span>       9m56s
+</code></pre></div><p>次に、kubectlと同様に<code>oc scale</code>コマンドによってdeploymentのレプリカ数を4にスケーリングする。</p>
+<p>deploymentのレプリカ数が4つになり、podも異なるIPアドレスで4つのPodが起動している。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc scale deployments/kubernetes-bootcamp --replicas<span style=color:#f92672>=</span><span style=color:#ae81ff>4</span>
+deployment.apps/kubernetes-bootcamp scaled
+<span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc get deployment
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+kubernetes-bootcamp   4/4     <span style=color:#ae81ff>4</span>            <span style=color:#ae81ff>4</span>           10m
+<span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc get po -o wide
+NAME                                   READY   STATUS    RESTARTS   AGE   IP            NODE                 NOMINATED NODE   READINESS GATES
+kubernetes-bootcamp-57978f5f5d-frgwr   1/1     Running   <span style=color:#ae81ff>0</span>          19s   10.217.0.62   crc-xxcfw-master-0   &lt;none&gt;           &lt;none&gt;
+kubernetes-bootcamp-57978f5f5d-ft6vs   1/1     Running   <span style=color:#ae81ff>0</span>          10m   10.217.0.57   crc-xxcfw-master-0   &lt;none&gt;           &lt;none&gt;
+kubernetes-bootcamp-57978f5f5d-k6vjt   1/1     Running   <span style=color:#ae81ff>0</span>          19s   10.217.0.63   crc-xxcfw-master-0   &lt;none&gt;           &lt;none&gt;
+kubernetes-bootcamp-57978f5f5d-qpmsh   1/1     Running   <span style=color:#ae81ff>0</span>          19s   10.217.0.64   crc-xxcfw-master-0   &lt;none&gt;           &lt;none&gt;
+</code></pre></div><p><code>oc describe</code>のEventsを見ると、レプリカ数が4つにスケーリングしたログが出力されている。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc describe deployments/kubernetes-bootcamp
+Name:                   kubernetes-bootcamp
+Namespace:              default
+CreationTimestamp:      Fri, <span style=color:#ae81ff>04</span> Feb <span style=color:#ae81ff>2022</span> 23:04:36 +0000
+Labels:                 app<span style=color:#f92672>=</span>kubernetes-bootcamp
+Annotations:            deployment.kubernetes.io/revision: <span style=color:#ae81ff>1</span>
+Selector:               app<span style=color:#f92672>=</span>kubernetes-bootcamp
+Replicas:               <span style=color:#ae81ff>4</span> desired | <span style=color:#ae81ff>4</span> updated | <span style=color:#ae81ff>4</span> total | <span style=color:#ae81ff>4</span> available | <span style=color:#ae81ff>0</span> unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        <span style=color:#ae81ff>0</span>
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app<span style=color:#f92672>=</span>kubernetes-bootcamp
+  Containers:
+   kubernetes-bootcamp:
+    Image:        gcr.io/google-samples/kubernetes-bootcamp:v1
+    Port:         &lt;none&gt;
+    Host Port:    &lt;none&gt;
+    Environment:  &lt;none&gt;
+    Mounts:       &lt;none&gt;
+  Volumes:        &lt;none&gt;
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Progressing    True    NewReplicaSetAvailable
+  Available      True    MinimumReplicasAvailable
+OldReplicaSets:  &lt;none&gt;
+NewReplicaSet:   kubernetes-bootcamp-57978f5f5d <span style=color:#f92672>(</span>4/4 replicas created<span style=color:#f92672>)</span>
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  10m   deployment-controller  Scaled up replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>1</span>
+  Normal  ScalingReplicaSet  30s   deployment-controller  Scaled up replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>4</span>
+</code></pre></div><h5 id=ロードバランシング>ロードバランシング<a hidden class=anchor aria-hidden=true href=#ロードバランシング>#</a></h5>
+<p>Serviceがトラフィックを負荷分散していることを確認する。まずはServiceを作成する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc expose deployment/kubernetes-bootcamp --type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;NodePort&#34;</span> --port <span style=color:#ae81ff>8080</span>
+service/kubernetes-bootcamp exposed
+<span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc describe service/kubernetes-bootcamp
+Name:                     kubernetes-bootcamp
+Namespace:                default
+Labels:                   app<span style=color:#f92672>=</span>kubernetes-bootcamp
+Annotations:              &lt;none&gt;
+Selector:                 app<span style=color:#f92672>=</span>kubernetes-bootcamp
+Type:                     NodePort
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.217.5.18
+IPs:                      10.217.5.18
+Port:                     &lt;unset&gt;  8080/TCP
+TargetPort:               8080/TCP
+NodePort:                 &lt;unset&gt;  32411/TCP
+Endpoints:                10.217.0.57:8080,10.217.0.62:8080,10.217.0.63:8080 + <span style=color:#ae81ff>1</span> more...
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   &lt;none&gt;
+</code></pre></div><p>クラスタ外部からアクセスすると、トラフィックは4つのPodにバランシングされて、アクセスするたびにpod名が変わっていることが見てわかる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ curl 192.168.130.11:32411
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-frgwr | v<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+<span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ curl 192.168.130.11:32411
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-frgwr | v<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+<span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ curl 192.168.130.11:32411
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-k6vjt | v<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+<span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ curl 192.168.130.11:32411
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-qpmsh | v<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+<span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ curl 192.168.130.11:32411
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-ft6vs | v<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+<span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ curl 192.168.130.11:32411
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-57978f5f5d-qpmsh | v<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+</code></pre></div><h5 id=スケールダウン>スケールダウン<a hidden class=anchor aria-hidden=true href=#スケールダウン>#</a></h5>
+<p>レプリカ数を2つに変更してスケールダウンさせる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc scale deployments/kubernetes-bootcamp --replicas<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>
+deployment.apps/kubernetes-bootcamp scaled
+</code></pre></div><p>4つあったpodのうち2つがTerminateされて、最終的にpod数は2つになる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$  oc get po -o wide
+NAME                                   READY   STATUS    RESTARTS   AGE     IP            NODE                 NOMINATED NODE   READINESS GATES
+kubernetes-bootcamp-57978f5f5d-ft6vs   1/1     Running   <span style=color:#ae81ff>0</span>          12m     10.217.0.57   crc-xxcfw-master-0   &lt;none&gt;           &lt;none&gt;
+kubernetes-bootcamp-57978f5f5d-k6vjt   1/1     Running   <span style=color:#ae81ff>0</span>          2m33s   10.217.0.63   crc-xxcfw-master-0   &lt;none&gt;           &lt;none&gt;
+</code></pre></div><h2 id=module6---update-your-app>Module6 - Update your app<a hidden class=anchor aria-hidden=true href=#module6---update-your-app>#</a></h2>
+<p>デプロイされたアプリケーションを<code>oc set image</code>で更新し、rollout undoコマンドでロールバックする。</p>
+<h5 id=アプリをアップデート>アプリをアップデート<a hidden class=anchor aria-hidden=true href=#アプリをアップデート>#</a></h5>
+<p>deploymentの状態を確認する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc get deploy
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+kubernetes-bootcamp   2/2     <span style=color:#ae81ff>2</span>            <span style=color:#ae81ff>2</span>           12m
+<span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc describe deploy kubernetes-bootcamp
+Name:                   kubernetes-bootcamp
+Namespace:              default
+CreationTimestamp:      Fri, <span style=color:#ae81ff>04</span> Feb <span style=color:#ae81ff>2022</span> 23:04:36 +0000
+Labels:                 app<span style=color:#f92672>=</span>kubernetes-bootcamp
+Annotations:            deployment.kubernetes.io/revision: <span style=color:#ae81ff>1</span>
+Selector:               app<span style=color:#f92672>=</span>kubernetes-bootcamp
+Replicas:               <span style=color:#ae81ff>2</span> desired | <span style=color:#ae81ff>2</span> updated | <span style=color:#ae81ff>2</span> total | <span style=color:#ae81ff>2</span> available | <span style=color:#ae81ff>0</span> unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        <span style=color:#ae81ff>0</span>
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app<span style=color:#f92672>=</span>kubernetes-bootcamp
+  Containers:
+   kubernetes-bootcamp:
+    Image:        gcr.io/google-samples/kubernetes-bootcamp:v1
+    Port:         &lt;none&gt;
+    Host Port:    &lt;none&gt;
+    Environment:  &lt;none&gt;
+    Mounts:       &lt;none&gt;
+  Volumes:        &lt;none&gt;
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Progressing    True    NewReplicaSetAvailable
+  Available      True    MinimumReplicasAvailable
+OldReplicaSets:  &lt;none&gt;
+NewReplicaSet:   kubernetes-bootcamp-57978f5f5d <span style=color:#f92672>(</span>2/2 replicas created<span style=color:#f92672>)</span>
+Events:
+  Type    Reason             Age    From                   Message
+  ----    ------             ----   ----                   -------
+  Normal  ScalingReplicaSet  13m    deployment-controller  Scaled up replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>1</span>
+  Normal  ScalingReplicaSet  2m55s  deployment-controller  Scaled up replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>4</span>
+  Normal  ScalingReplicaSet  54s    deployment-controller  Scaled down replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>2</span>
+</code></pre></div><p>kubectlと同様に、<code>oc set image</code>コマンドを使ってimageをバージョン2へ更新する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc set image deployments/kubernetes-bootcamp kubernetes-bootcamp<span style=color:#f92672>=</span>jocatalin/kubernetes-bootcamp:v2
+deployment.apps/kubernetes-bootcamp image updated
+<span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc describe deploy kubernetes-bootcamp
+Name:                   kubernetes-bootcamp
+Namespace:              default
+CreationTimestamp:      Fri, <span style=color:#ae81ff>04</span> Feb <span style=color:#ae81ff>2022</span> 23:04:36 +0000
+Labels:                 app<span style=color:#f92672>=</span>kubernetes-bootcamp
+Annotations:            deployment.kubernetes.io/revision: <span style=color:#ae81ff>2</span>
+Selector:               app<span style=color:#f92672>=</span>kubernetes-bootcamp
+Replicas:               <span style=color:#ae81ff>2</span> desired | <span style=color:#ae81ff>1</span> updated | <span style=color:#ae81ff>3</span> total | <span style=color:#ae81ff>2</span> available | <span style=color:#ae81ff>1</span> unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        <span style=color:#ae81ff>0</span>
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app<span style=color:#f92672>=</span>kubernetes-bootcamp
+  Containers:
+   kubernetes-bootcamp:
+    Image:        jocatalin/kubernetes-bootcamp:v2
+    Port:         &lt;none&gt;
+    Host Port:    &lt;none&gt;
+    Environment:  &lt;none&gt;
+    Mounts:       &lt;none&gt;
+  Volumes:        &lt;none&gt;
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    ReplicaSetUpdated
+OldReplicaSets:  kubernetes-bootcamp-57978f5f5d <span style=color:#f92672>(</span>2/2 replicas created<span style=color:#f92672>)</span>
+NewReplicaSet:   kubernetes-bootcamp-769746fd4 <span style=color:#f92672>(</span>1/1 replicas created<span style=color:#f92672>)</span>
+Events:
+  Type    Reason             Age    From                   Message
+  ----    ------             ----   ----                   -------
+  Normal  ScalingReplicaSet  13m    deployment-controller  Scaled up replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>1</span>
+  Normal  ScalingReplicaSet  3m38s  deployment-controller  Scaled up replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>4</span>
+  Normal  ScalingReplicaSet  97s    deployment-controller  Scaled down replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>2</span>
+  Normal  ScalingReplicaSet  9s     deployment-controller  Scaled up replica set kubernetes-bootcamp-769746fd4 to <span style=color:#ae81ff>1</span>
+</code></pre></div><p>そうするとローリングアップデートにより古いpodがTerminatingされつつ新しいpodが作成される。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc get po
+NAME                                  READY   STATUS    RESTARTS   AGE
+kubernetes-bootcamp-769746fd4-fh884   1/1     Running   <span style=color:#ae81ff>0</span>          50s
+kubernetes-bootcamp-769746fd4-v7xlb   1/1     Running   <span style=color:#ae81ff>0</span>          41s
+</code></pre></div><h5 id=アップデートの検証>アップデートの検証<a hidden class=anchor aria-hidden=true href=#アップデートの検証>#</a></h5>
+<p>curlでアクセスしてみるとデプロイされたアプリのバージョンがv=2になっていることが確認できる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ curl 192.168.130.11:32411
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-769746fd4-fh884 | v<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>
+</code></pre></div><h5 id=アプリのロールバック>アプリのロールバック<a hidden class=anchor aria-hidden=true href=#アプリのロールバック>#</a></h5>
+<p>v=10のアプリケーションをデプロイする。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc set image deployments/kubernetes-bootcamp kubernetes-bootcamp<span style=color:#f92672>=</span>jocatalin/kubernetes-bootcamp:v10
+deployment.apps/kubernetes-bootcamp image updated
+</code></pre></div><p>リポジトリにはv10というimageは無いのでステータスが ImagePullBackOff のままになってしまう。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc get po
+NAME                                   READY   STATUS         RESTARTS   AGE
+kubernetes-bootcamp-769746fd4-fh884    1/1     Running        <span style=color:#ae81ff>0</span>          91s
+kubernetes-bootcamp-769746fd4-v7xlb    1/1     Running        <span style=color:#ae81ff>0</span>          82s
+kubernetes-bootcamp-7b6fc6c7d9-9jb6x   0/1     ErrImagePull   <span style=color:#ae81ff>0</span>          9s
+</code></pre></div><p>そこでrolloutコマンドを使ってロールバックする。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$  oc rollout undo deployments/kubernetes-bootcamp
+deployment.apps/kubernetes-bootcamp rolled back
+</code></pre></div><p>ロールバック後はv2が実行されているのでロールバックが成功している。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$  oc describe deployments/kubernetes-bootcamp
+Name:                   kubernetes-bootcamp
+Namespace:              default
+CreationTimestamp:      Fri, <span style=color:#ae81ff>04</span> Feb <span style=color:#ae81ff>2022</span> 23:04:36 +0000
+Labels:                 app<span style=color:#f92672>=</span>kubernetes-bootcamp
+Annotations:            deployment.kubernetes.io/revision: <span style=color:#ae81ff>4</span>
+Selector:               app<span style=color:#f92672>=</span>kubernetes-bootcamp
+Replicas:               <span style=color:#ae81ff>2</span> desired | <span style=color:#ae81ff>2</span> updated | <span style=color:#ae81ff>2</span> total | <span style=color:#ae81ff>2</span> available | <span style=color:#ae81ff>0</span> unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        <span style=color:#ae81ff>0</span>
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app<span style=color:#f92672>=</span>kubernetes-bootcamp
+  Containers:
+   kubernetes-bootcamp:
+    Image:        jocatalin/kubernetes-bootcamp:v2
+    Port:         &lt;none&gt;
+    Host Port:    &lt;none&gt;
+    Environment:  &lt;none&gt;
+    Mounts:       &lt;none&gt;
+  Volumes:        &lt;none&gt;
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  &lt;none&gt;
+NewReplicaSet:   kubernetes-bootcamp-769746fd4 <span style=color:#f92672>(</span>2/2 replicas created<span style=color:#f92672>)</span>
+Events:
+  Type    Reason             Age    From                   Message
+  ----    ------             ----   ----                   -------
+  Normal  ScalingReplicaSet  15m    deployment-controller  Scaled up replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>1</span>
+  Normal  ScalingReplicaSet  5m19s  deployment-controller  Scaled up replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>4</span>
+  Normal  ScalingReplicaSet  3m18s  deployment-controller  Scaled down replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>2</span>
+  Normal  ScalingReplicaSet  110s   deployment-controller  Scaled up replica set kubernetes-bootcamp-769746fd4 to <span style=color:#ae81ff>1</span>
+  Normal  ScalingReplicaSet  101s   deployment-controller  Scaled down replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>1</span>
+  Normal  ScalingReplicaSet  101s   deployment-controller  Scaled up replica set kubernetes-bootcamp-769746fd4 to <span style=color:#ae81ff>2</span>
+  Normal  ScalingReplicaSet  98s    deployment-controller  Scaled down replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>0</span>
+  Normal  ScalingReplicaSet  28s    deployment-controller  Scaled up replica set kubernetes-bootcamp-7b6fc6c7d9 to <span style=color:#ae81ff>1</span>
+  Normal  ScalingReplicaSet  8s     deployment-controller  Scaled down replica set kubernetes-bootcamp-7b6fc6c7d9 to <span style=color:#ae81ff>0</span>
+</code></pre></div><p>リビジョンを指定してロールバックすることも可能。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc rollout undo deployments/kubernetes-bootcamp --to-revision<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+deployment.apps/kubernetes-bootcamp rolled back
+</code></pre></div><p>&ndash;to-revision=1を指定したのでこのロールバック後はv1が実行されている。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>centos@ip-172-31-19-74 ~<span style=color:#f92672>]</span>$ oc describe deployments/kubernetes-bootcamp
+Name:                   kubernetes-bootcamp
+Namespace:              default
+CreationTimestamp:      Fri, <span style=color:#ae81ff>04</span> Feb <span style=color:#ae81ff>2022</span> 23:04:36 +0000
+Labels:                 app<span style=color:#f92672>=</span>kubernetes-bootcamp
+Annotations:            deployment.kubernetes.io/revision: <span style=color:#ae81ff>5</span>
+Selector:               app<span style=color:#f92672>=</span>kubernetes-bootcamp
+Replicas:               <span style=color:#ae81ff>2</span> desired | <span style=color:#ae81ff>2</span> updated | <span style=color:#ae81ff>2</span> total | <span style=color:#ae81ff>2</span> available | <span style=color:#ae81ff>0</span> unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        <span style=color:#ae81ff>0</span>
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app<span style=color:#f92672>=</span>kubernetes-bootcamp
+  Containers:
+   kubernetes-bootcamp:
+    Image:        gcr.io/google-samples/kubernetes-bootcamp:v1
+    Port:         &lt;none&gt;
+    Host Port:    &lt;none&gt;
+    Environment:  &lt;none&gt;
+    Mounts:       &lt;none&gt;
+  Volumes:        &lt;none&gt;
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  &lt;none&gt;
+NewReplicaSet:   kubernetes-bootcamp-57978f5f5d <span style=color:#f92672>(</span>2/2 replicas created<span style=color:#f92672>)</span>
+Events:
+  Type    Reason             Age                From                   Message
+  ----    ------             ----               ----                   -------
+  Normal  ScalingReplicaSet  6m17s              deployment-controller  Scaled up replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>4</span>
+  Normal  ScalingReplicaSet  4m16s              deployment-controller  Scaled down replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>2</span>
+  Normal  ScalingReplicaSet  2m48s              deployment-controller  Scaled up replica set kubernetes-bootcamp-769746fd4 to <span style=color:#ae81ff>1</span>
+  Normal  ScalingReplicaSet  2m39s              deployment-controller  Scaled down replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>1</span>
+  Normal  ScalingReplicaSet  2m39s              deployment-controller  Scaled up replica set kubernetes-bootcamp-769746fd4 to <span style=color:#ae81ff>2</span>
+  Normal  ScalingReplicaSet  2m36s              deployment-controller  Scaled down replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>0</span>
+  Normal  ScalingReplicaSet  86s                deployment-controller  Scaled up replica set kubernetes-bootcamp-7b6fc6c7d9 to <span style=color:#ae81ff>1</span>
+  Normal  ScalingReplicaSet  66s                deployment-controller  Scaled down replica set kubernetes-bootcamp-7b6fc6c7d9 to <span style=color:#ae81ff>0</span>
+  Normal  ScalingReplicaSet  12s <span style=color:#f92672>(</span>x2 over 16m<span style=color:#f92672>)</span>  deployment-controller  Scaled up replica set kubernetes-bootcamp-57978f5f5d to <span style=color:#ae81ff>1</span>
+  Normal  ScalingReplicaSet  5s <span style=color:#f92672>(</span>x3 over 8s<span style=color:#f92672>)</span>    deployment-controller  <span style=color:#f92672>(</span>combined from similar events<span style=color:#f92672>)</span>: Scaled down replica set kubernetes-bootcamp-769746fd4 to <span style=color:#ae81ff>0</span>
+</code></pre></div><p>以上で公式チュートリアルは完了。
+やってみる前から薄々気づいてはいたけど、このチュートリアルではOpenShiftならでは機能は一切使わないためkubectlコマンドがocコマンドに変わっているだけで、内容的には単なるkubernetesの復習になりました。</p>
+</div>
+<footer class=post-footer>
+<ul class=post-tags>
+<li><a href=https://kurikube.github.io/tags/openshift/>OpenShift</a></li>
+</ul>
+<nav class=paginav>
+<a class=next href=https://kurikube.github.io/post/codepen/>
+<span class=title>Next Page »</span>
+<br>
+<span>Codepen埋め込み</span>
+</a>
+</nav>
+<div class=share-buttons>
+<a target=_blank rel="noopener noreferrer" aria-label="share OpenShift環境でKubernetes公式チュートリアルをやってみる on twitter" href="https://twitter.com/intent/tweet/?text=OpenShift%e7%92%b0%e5%a2%83%e3%81%a7Kubernetes%e5%85%ac%e5%bc%8f%e3%83%81%e3%83%a5%e3%83%bc%e3%83%88%e3%83%aa%e3%82%a2%e3%83%ab%e3%82%92%e3%82%84%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%8b&url=https%3a%2f%2fkurikube.github.io%2fpost%2fopenshift_k8s_tutorial%2f&hashtags=OpenShift"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM195.519 424.544c135.939.0 210.268-112.643 210.268-210.268.0-3.218.0-6.437-.153-9.502 14.406-10.421 26.973-23.448 36.935-38.314-13.18 5.824-27.433 9.809-42.452 11.648 15.326-9.196 26.973-23.602 32.49-40.92-14.252 8.429-30.038 14.56-46.896 17.931-13.487-14.406-32.644-23.295-53.946-23.295-40.767.0-73.87 33.104-73.87 73.87.0 5.824.613 11.494 1.992 16.858-61.456-3.065-115.862-32.49-152.337-77.241-6.284 10.881-9.962 23.601-9.962 37.088.0 25.594 13.027 48.276 32.95 61.456-12.107-.307-23.448-3.678-33.41-9.196v.92c0 35.862 25.441 65.594 59.311 72.49-6.13 1.686-12.72 2.606-19.464 2.606-4.751.0-9.348-.46-13.946-1.38 9.349 29.426 36.628 50.728 68.965 51.341-25.287 19.771-57.164 31.571-91.8 31.571-5.977.0-11.801-.306-17.625-1.073 32.337 21.15 71.264 33.41 112.95 33.41z"/></svg>
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share OpenShift環境でKubernetes公式チュートリアルをやってみる on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fkurikube.github.io%2fpost%2fopenshift_k8s_tutorial%2f&title=OpenShift%e7%92%b0%e5%a2%83%e3%81%a7Kubernetes%e5%85%ac%e5%bc%8f%e3%83%81%e3%83%a5%e3%83%bc%e3%83%88%e3%83%aa%e3%82%a2%e3%83%ab%e3%82%92%e3%82%84%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%8b&summary=OpenShift%e7%92%b0%e5%a2%83%e3%81%a7Kubernetes%e5%85%ac%e5%bc%8f%e3%83%81%e3%83%a5%e3%83%bc%e3%83%88%e3%83%aa%e3%82%a2%e3%83%ab%e3%82%92%e3%82%84%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%8b&source=https%3a%2f%2fkurikube.github.io%2fpost%2fopenshift_k8s_tutorial%2f"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg>
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share OpenShift環境でKubernetes公式チュートリアルをやってみる on reddit" href="https://reddit.com/submit?url=https%3a%2f%2fkurikube.github.io%2fpost%2fopenshift_k8s_tutorial%2f&title=OpenShift%e7%92%b0%e5%a2%83%e3%81%a7Kubernetes%e5%85%ac%e5%bc%8f%e3%83%81%e3%83%a5%e3%83%bc%e3%83%88%e3%83%aa%e3%82%a2%e3%83%ab%e3%82%92%e3%82%84%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%8b"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg>
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share OpenShift環境でKubernetes公式チュートリアルをやってみる on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fkurikube.github.io%2fpost%2fopenshift_k8s_tutorial%2f"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg>
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share OpenShift環境でKubernetes公式チュートリアルをやってみる on whatsapp" href="https://api.whatsapp.com/send?text=OpenShift%e7%92%b0%e5%a2%83%e3%81%a7Kubernetes%e5%85%ac%e5%bc%8f%e3%83%81%e3%83%a5%e3%83%bc%e3%83%88%e3%83%aa%e3%82%a2%e3%83%ab%e3%82%92%e3%82%84%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%8b%20-%20https%3a%2f%2fkurikube.github.io%2fpost%2fopenshift_k8s_tutorial%2f"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg>
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share OpenShift環境でKubernetes公式チュートリアルをやってみる on telegram" href="https://telegram.me/share/url?text=OpenShift%e7%92%b0%e5%a2%83%e3%81%a7Kubernetes%e5%85%ac%e5%bc%8f%e3%83%81%e3%83%a5%e3%83%bc%e3%83%88%e3%83%aa%e3%82%a2%e3%83%ab%e3%82%92%e3%82%84%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%8b&url=https%3a%2f%2fkurikube.github.io%2fpost%2fopenshift_k8s_tutorial%2f"><svg viewBox="2 2 28 28"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg>
+</a>
+</div>
+</footer>
+<div id=disqus_thread></div>
+<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//kurikube-github-io.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2022 <a href=https://kurikube.github.io/>通信キャリアで勤めるエンジニアのブログ</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+</body>
+</html>
