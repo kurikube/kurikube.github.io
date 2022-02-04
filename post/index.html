@@ -75,6 +75,17 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Codepen埋め込み
+</h2>
+</header>
+<section class=entry-content>
+<p>0. 前提 1. 動作環境 . 最後に . 参考にしたサイト https://foresuke.com/post/hugo_embed/ </p>
+</section>
+<footer class=entry-footer><span title="2022-02-02 11:30:03 +0000 UTC">February 2, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to Codepen埋め込み" href=https://kurikube.github.io/post/codepen/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>CentOSのCPU・Memory・Disk・GPU使用率を測定する
 </h2>
 </header>
@@ -192,23 +203,6 @@ sudo systemctl set-default multi-user.target </p>
 </section>
 <footer class=entry-footer><span title="2022-01-28 12:30:03 +0000 UTC">January 28, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to 最小インストールしたCentOS7にGUIを導入する" href=https://kurikube.github.io/post/20220128/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>CodeReady Containers（CRC）をリモート接続可能にする
-</h2>
-</header>
-<section class=entry-content>
-<p>CRC VMの内部動作を確認する CRC VMのIPアドレスを確認する
-[centos@ip-172-31-19-74 ~]$ crc ip 192.168.130.11 CRC VMへSSH接続する
-[centos@ip-172-31-19-74 ~]$ ssh -i ~/.crc/machines/crc/id_ecdsa core@$CRC_IP CRC VMの中でpodmanでdnsmasq(DNSサーバ)が起動していることが分かる
-[core@crc-xxcfw-master-0 ~]$ sudo podman ps -a CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 128a6fe17e5e quay.io/crcont/gvisor-tap-vsock:3231aba53905468c22e394493a0debc1a6cc6392 3 weeks ago Exited (0) 7 hours ago gvisor-tap-vsock e3593ab79e1d quay.io/crcont/dnsmasq:latest 3 weeks ago Up 7 hours ago 0.0.0.0:53->53/udp crc-dnsmasq CRC実行ホストのNetwork Manager設定 CRCセットアップ後のホスト上のdnsmasqのCRC用インスタンスは下記のようになっています。
-[centos@ip-172-31-19-74 ~]$ cat /etc/NetworkManager/dnsmasq.d/crc.conf server=/apps-crc.testing/192.168.130.11 server=/crc.testing/192.168.130.11 なお、このcrc.confはcrc setupおよびcrc start時にチェックされ、設定を変更することができません
-CRCホストの/etc/hosts CRCセットアップ後、CRCを実行するホストの/etc/hostsには設定が追加されます
-[centos@ip-172-31-19-74 ~]$ sudo cat /etc/hosts 127....</p>
-</section>
-<footer class=entry-footer><span title="2022-01-28 11:30:03 +0000 UTC">January 28, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to CodeReady Containers（CRC）をリモート接続可能にする" href=https://kurikube.github.io/post/20220124/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

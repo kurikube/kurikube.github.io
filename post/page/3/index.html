@@ -75,6 +75,19 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>OpenShift CodeReady ContainerをCentOSにインストールする（2021年時点）
+</h2>
+</header>
+<section class=entry-content>
+<p>概要 OpenShift4.x以降はMinishiftがなくなり、OpenShift CodeReady Container（CRC）となっている。 以下では公式ドキュメントに沿って手元のベアメタルサーバへインストールを行う。このサーバで色々なことを試してみる。 https://code-ready.github.io/crc/
+環境 ホストOS：CentOS7.7 構成図 マシン上でCRCをインストールすると自動的にNWが作成されてCRCが作成される 。 OpenShiftのWebコンソールへアクセスする際には、ベアメタルマシンへリモデスした上でマシン上のブラウザからアクセスする必要がある。 環境確認 [root@localhost ~]# cat /etc/redhat-release CentOS Linux release 7.7.1908 (Core) 手順 公式ドキュメントの手順に沿ってインストールする。
+1.NetworkManagerをインストールする [root@localhost ~]# yum -y install NetworkManager 2.資材をダウンロードして、解凍して、パスの通ったフォルダへ移動 [root@localhost ~]# yum -y install wget [root@localhost ~]# curl -k -sS https://mirror.openshift.com/pub/openshift-v4/clients/crc/latest/crc-linux-amd64.tar.xz -o /tmp/crc-linux-amd64.tar.xz [root@localhost tmp]# cd /tmp [root@localhost tmp]# xz -dc /tmp/crc-linux-amd64.tar.xz | tar xfv - [root@localhost tmp]# cp -pi crc-linux-1.24.0-amd64/crc /usr/local/bin 3.初期セットアップ＆起動 crc startすると途中でsecretを聞かれるので、Red Hat Developer アカウントを作成して取得したsecretを入力する。完了するまで数分かかる。非rootユーザで実行する必要がある。 https://cloud....</p>
+</section>
+<footer class=entry-footer><span title="2021-04-01 11:30:03 +0000 UTC">April 1, 2021</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to OpenShift CodeReady ContainerをCentOSにインストールする（2021年時点）" href=https://kurikube.github.io/post/20210401/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>GitLab CI/CDを学ぶのにおすすめの書籍
 </h2>
 </header>

@@ -9,7 +9,16 @@
       <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 31 Jan 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Codepen埋め込み</title>
+      <link>https://kurikube.github.io/post/codepen/</link>
+      <pubDate>Wed, 02 Feb 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/codepen/</guid>
+      <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
+    </item>
+    
     <item>
       <title>CentOSのCPU・Memory・Disk・GPU使用率を測定する</title>
       <link>https://kurikube.github.io/post/resource_sokutei/</link>
