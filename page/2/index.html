@@ -73,6 +73,17 @@
 <main class=main>
 <article class=post-entry>
 <header class=entry-header>
+<h2>リモート環境に立てたMinikubeで公開しているロードバランサーを外部から利用可能にする
+</h2>
+</header>
+<section class=entry-content>
+<p>0. 前提 minikube, Docker, Nginxに関する基礎的な知識があるとなお良いです 1. 動作環境 EC2(t3.2xlarge) Ubuntu 20.04.2 Docker 20.10.9 minikube v1.23.2 Nginx 1.18.0 2. minikube start --driver=docker --apiserver-ips=172.31.24.235 sudo apt update sudo apt install nginx sudo ufw allow from 0.0.0.0/0 to any port 51999 sudo ufw status . 最後に . 参考にしたサイト https://zepworks.com/posts/access-minikube-remotely-kvm/ </p>
+</section>
+<footer class=entry-footer><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to リモート環境に立てたMinikubeで公開しているロードバランサーを外部から利用可能にする" href=https://kurikube.github.io/post/minikube_remote/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>最小インストールしたCentOS7にGUIを導入する
 </h2>
 </header>
@@ -211,18 +222,6 @@ make html このコマンドで、手元のローカル環境用のファイル�
 </section>
 <footer class=entry-footer><span title="2022-01-10 11:30:03 +0000 UTC">January 10, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to OpenShift Code ReadyをCentosにインストールする（2022/1/29時点）" href=https://kurikube.github.io/post/20210131/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>hugo + Papermod で作ったwebサイトに検索機能を追加する
-</h2>
-</header>
-<section class=entry-content>
-<p>0. 背景 hugo-papermodには検索機能を使えるオプションが備わっているらしいのだが、ネットで探してもオプションの実装方法が出てこなかった。（2022/1月時点） そのため、hugoで検索機能を自分で実装することにした。
-参考にしたサイト https://blog.mamansoft.net/2019/11/11/add-search-page-in-blog-made-by-hugo/ </p>
-</section>
-<footer class=entry-footer><span title="2022-01-03 12:30:03 +0000 UTC">January 3, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to hugo + Papermod で作ったwebサイトに検索機能を追加する" href=https://kurikube.github.io/post/20220103/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
