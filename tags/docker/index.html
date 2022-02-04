@@ -83,6 +83,18 @@
 <footer class=entry-footer><span title="2022-01-31 11:30:03 +0000 UTC">January 31, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to DockerをCentOSにインストールするためのシェルスクリプト" href=https://kurikube.github.io/post/20220130/></a>
 </article>
+<article class="post-entry tag-entry">
+<header class=entry-header>
+<h2>Docker install用のshell-script
+</h2>
+</header>
+<section class=entry-content>
+<p>CentOSにDockerをインストールするためのシェルスクリプトです。 root権限での実行が楽ですが、セキュリティ的によく無いので、sudoを付けての実行をおすすめします。
+yum -y update yum -y upgrade yum install -y yum-utils device-mapper-persistent-data lvm2 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo yum install -y docker-ce docker-ce-cli containerd.io systemctl start docker systemctl enable docker </p>
+</section>
+<footer class=entry-footer><span title="2021-01-24 11:30:03 +0000 UTC">January 24, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to Docker install用のshell-script" href=https://kurikube.github.io/post/20200124/></a>
+</article>
 </main>
 <footer class=footer>
 <span>&copy; 2022 <a href=https://kurikube.github.io/>通信キャリアで勤めるエンジニアのブログ</a></span>
