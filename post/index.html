@@ -81,7 +81,7 @@
 <section class=entry-content>
 <p>0. 前提 Kubernetes, GitLabに関する基礎的な知識があるとなお良いです 1. 動作環境 EKS v1.19.15-eks-9c63c4 kubectl v1.23.3 helm v3.8.0 SaaS のGitLabを利用 2. Runner用のnamespaceを作成する（省略可） kubectl create namespace gitlab 3. Runner用のhelmリポジトリを追加する helm repo add gitlab https://charts.gitlab.io helm repo list 4. values.yamlに設定を投入する 現在のvalues.yamlを取得する helm inspect values gitlab/gitlab-runner > values.yaml GitLabのURLを設定する gitlabUrlの値を設定する
 Runner登録用のトークンを設定する runnerRegistrationTokenの値を編集する
-RBACの作成を有効化する rbac: created: true 5. Helmをインストールする helm install -n gitlab gitlab-runner -f values.yaml gitlab/gitlab-runner helm list -n gitlab kubectl get all -n gitlab 6....</p>
+RBACの作成を有効化する rbac.createdの値を設定する rbac: created: true 5. Helmをインストールする helm install -n gitlab gitlab-runner -f values.yaml gitlab/gitlab-runner helm list -n gitlab kubectl get all -n gitlab 6....</p>
 </section>
 <footer class=entry-footer><span title="2022-02-04 11:30:03 +0000 UTC">February 4, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to GitLab RunnerをKubernetes(EKS)上で動かす(Kubernetes executor)" href=https://kurikube.github.io/post/gitlab_runner_k8s/></a>
