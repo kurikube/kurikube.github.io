@@ -44,6 +44,15 @@
     <loc>https://kurikube.github.io/categories/first/</loc>
     <lastmod>2022-02-02T11:30:03+00:00</lastmod>
   </url><url>
+    <loc>https://kurikube.github.io/post/openfaas/</loc>
+    <lastmod>2022-02-01T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/tags/minikube/</loc>
+    <lastmod>2022-02-01T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/tags/openfaas/</loc>
+    <lastmod>2022-02-01T11:30:03+00:00</lastmod>
+  </url><url>
     <loc>https://kurikube.github.io/tags/centos/</loc>
     <lastmod>2022-01-31T11:30:03+00:00</lastmod>
   </url><url>
@@ -81,9 +90,6 @@
     <lastmod>2022-01-29T11:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/post/knative/</loc>
-    <lastmod>2022-01-29T11:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://kurikube.github.io/tags/minikube/</loc>
     <lastmod>2022-01-29T11:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/post/crc_openshift_interactive_learning_portal/</loc>
