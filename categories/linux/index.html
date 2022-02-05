@@ -170,14 +170,14 @@ Deploying Using the Command Line developerユーザでログインする。
 </article>
 <article class="post-entry tag-entry">
 <header class=entry-header>
-<h2>リモート環境に立てたMinikubeで公開しているロードバランサーを外部から利用可能にする
+<h2>リモートサーバ上に立てたMinikubeで公開しているService(Type NodePort) を外部から利用可能にする
 </h2>
 </header>
 <section class=entry-content>
-<p>0. 前提 minikube, Docker, Nginxに関する基礎的な知識があるとなお良いです 1. 動作環境 EC2(t3.2xlarge) Ubuntu 20.04.2 Docker 20.10.9 minikube v1.23.2 Nginx 1.18.0 2. Minikubeを起動する minikube start --driver=docker sudo ufw allow from 0.0.0.0/0 to any port 51999 sudo ufw status . 最後に . 参考にしたサイト https://zepworks.com/posts/access-minikube-remotely-kvm/ </p>
+<p>0. 前提 minikube, Docker, Nginxに関する基礎的な知識があるとなお良いです 1. 動作環境 EC2(t3.2xlarge) Ubuntu 20.04.2 Docker 20.10.9 minikube v1.23.2 Nginx 1.18.0 2. リモートサーバでMinikubeを起動する minikube start --driver=docker 3. 外部に公開したいServiceをリモートサーバにType NodePortでデプロイする 正常にデプロイできているか確認する ubuntu@ip-172-31-24-235:~/tmp/faas-netes$ kubectl get svc -A NAMESPACE NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE default kubernetes ClusterIP 10.96.0.1 &lt;none> 443/TCP 3m30s kube-system kube-dns ClusterIP 10.96.0.10 &lt;none> 53/UDP,53/TCP,9153/TCP 3m29s openfaas gateway-external NodePort 10.98.7.182 &lt;none> 8080:31112/TCP 53s リモートサーバ上でcurlでアクセスできるか確認します。 ubuntu@ip-172-31-24-235:~/tmp/faas-netes$ minikube ip 192....</p>
 </section>
 <footer class=entry-footer><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to リモート環境に立てたMinikubeで公開しているロードバランサーを外部から利用可能にする" href=https://kurikube.github.io/post/minikube_remote/></a>
+<a class=entry-link aria-label="post link to リモートサーバ上に立てたMinikubeで公開しているService(Type NodePort) を外部から利用可能にする" href=https://kurikube.github.io/post/minikube_remote/></a>
 </article>
 <article class="post-entry tag-entry">
 <header class=entry-header>
