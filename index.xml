@@ -9,7 +9,16 @@
       <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 04 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chromeの拡張機能で名前解決の設定を変更する</title>
+      <link>https://kurikube.github.io/post/chrome_name_resolve/</link>
+      <pubDate>Sat, 05 Feb 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/chrome_name_resolve/</guid>
+      <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
+    </item>
+    
     <item>
       <title>GitLab RunnerをKubernetes(EKS)上で動かす(Kubernetes executor)</title>
       <link>https://kurikube.github.io/post/gitlab_runner_k8s/</link>
@@ -214,15 +223,6 @@
       <pubDate>Sun, 02 Jan 2022 11:30:03 +0000</pubDate>
       
       <guid>https://kurikube.github.io/post/20220102/</guid>
-      <description>Desc Text.</description>
-    </item>
-    
-    <item>
-      <title>OpenShift CodeReady ContainerをCentOSにインストールする（2021年時点）</title>
-      <link>https://kurikube.github.io/post/20210401/</link>
-      <pubDate>Thu, 01 Apr 2021 11:30:03 +0000</pubDate>
-      
-      <guid>https://kurikube.github.io/post/20210401/</guid>
       <description>Desc Text.</description>
     </item>
     

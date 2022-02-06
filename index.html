@@ -91,6 +91,26 @@
 </article>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Chromeの拡張機能で名前解決の設定を変更する
+</h2>
+</header>
+<section class=entry-content>
+<p>Google Chromeの拡張機能で/etc/hostsのファイルを変更せずに名前解決を設定できるものがあります。 今回の記事ではChromeの拡張機能で/etc/hostsのような設定を行える「Virtual Hosts」をご紹介します。
+インストール方法 https://chrome.google.com/webstore/detail/virtual-hosts/aiehidpclglccialeifedhajckcpedom
+こちらのURLをクリックしていただくと、インストール画面が表示されます。
+拡張機能Virtual Hostsのメリット /etc/hostsを編集するとGoogle Chrome以外のブラウザにも変更が反映されてしまいます。 しかし、拡張機能Virtual Hostsを使えばPCの/etc/hostsを変更することなく、名前解決をすることができ、Chrome以外に設定が反映されることはありません。
+触ってみて思った拡張機能Virtual Hostsのデメリット 単一のホスト名しか登録できず、対応するIPアドレスも一つに限定されています。
+では複数のホスト名を設定するにはどうすれば良いか？ /etc/hostsを編集する
+HostAdmin APPをChromeにインストールする
+(注意)こちらの方法だと、/etc/hostsを編集するのでChrome以外のブラウザにも影響が出ます。また、/etc/hostsを編集できる権限をchromeに与える必要があります。
+https://chrome.google.com/webstore/detail/hostadmin-app/mfoaclfeiefiehgaojbmncmefhdnikeg からインストール可能です。
+最後に 今回はChromeの拡張機能で/etc/hostsを編集する方法を紹介しました。 Virtual Hostsには制限も多いですが、一時的に利用する分には十分事足りるのでは無いでしょうか？ 何か他に良いツールがあれば、コメント下さると助かります。</p>
+</section>
+<footer class=entry-footer><span title="2022-02-05 11:30:03 +0000 UTC">February 5, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to Chromeの拡張機能で名前解決の設定を変更する" href=https://kurikube.github.io/post/chrome_name_resolve/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>GitLab RunnerをKubernetes(EKS)上で動かす(Kubernetes executor)
 </h2>
 </header>
@@ -202,18 +222,6 @@ CPU・Memory sarコマンドのインストール sudo yum -y install sysstat CP
 </section>
 <footer class=entry-footer><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to KEDA v2をkindで動かしてみる" href=https://kurikube.github.io/post/keda/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Knativeでサーバレスを実現する
-</h2>
-</header>
-<section class=entry-content>
-<p>0. 前提 kubernetes, Dockerに関する基礎知識 1. 動作環境 EC2(t3.xlarge) (※補足 t3.largeだとcpu不足で動作しませんでした。) Ubuntu NAME="Ubuntu" VERSION="20.04.3 LTS (Focal Fossa)" ID=ubuntu ID_LIKE=debian PRETTY_NAME="Ubuntu 20.04.3 LTS" VERSION_ID="20.04" HOME_URL="https://www.ubuntu.com/" SUPPORT_URL="https://help.ubuntu.com/" BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/" PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy" VERSION_CODENAME=focal UBUNTU_CODENAME=focal kind version 0.11.1 knative-serving v0.29.0 kn-quickstart Version: v1.2.0 Docker 20.10.7 npm v6.14.4 2. 試してみる 2.1 kind, kubectlのインストール kindのインストール https://kind.sigs.k8s.io/docs/user/quick-start/ を参考にインストールする
-curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64 chmod +x ./kind mv ./kind /usr/local/bin/kind kubectlのインストール https://kubernetes.io/ja/docs/tasks/tools/install-kubectl/ を参考にインストール sudo apt-get update && sudo apt-get install -y apt-transport-https gnupg2 curl -s https://packages....</p>
-</section>
-<footer class=entry-footer><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to Knativeでサーバレスを実現する" href=https://kurikube.github.io/post/knative/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
