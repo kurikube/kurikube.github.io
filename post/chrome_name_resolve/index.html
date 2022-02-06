@@ -36,7 +36,7 @@
 <meta name=twitter:title content="Chromeの拡張機能で名前解決の設定を変更する">
 <meta name=twitter:description content="某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://kurikube.github.io/post/"},{"@type":"ListItem","position":2,"name":"Chromeの拡張機能で名前解決の設定を変更する","item":"https://kurikube.github.io/post/chrome_name_resolve/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Chromeの拡張機能で名前解決の設定を変更する","name":"Chromeの拡張機能で名前解決の設定を変更する","description":"某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。","keywords":["Chrome"],"articleBody":"Google Chromeの拡張機能で/etc/hostsのファイルを変更せずに名前解決を設定できるものがあります。 今回の記事ではChromeの拡張機能のみで/etc/hostsを書き換えるような設定を行える「Virtual Hosts」をご紹介します。\nインストール方法 https://chrome.google.com/webstore/detail/virtual-hosts/aiehidpclglccialeifedhajckcpedom\nこちらのURLをクリックしていただくと、インストール画面が表示されます。\n拡張機能Virtual Hostsのメリット /etc/hostsを編集するとGoogle Chrome以外のブラウザにも変更が反映されてしまいます。 しかし、拡張機能Virtual Hostsを使えばPCの/etc/hostsを変更することなく、名前解決をすることができ、Chrome以外に設定が反映されることはありません。\n触ってみて思った拡張機能Virtual Hostsのデメリット 単一のホスト名しか登録できず、対応するIPアドレスも一つに限定されています。\nでは複数のホスト名を設定するにはどうすれば良いか？   /etc/hostsを編集する\n  HostAdmin APPをChromeにインストールする\n  (注意)こちらの方法だと、/etc/hostsを編集するのでChrome以外のブラウザにも影響が出ます。また、/etc/hostsを編集できる権限をchromeに与える必要があります。\nhttps://chrome.google.com/webstore/detail/hostadmin-app/mfoaclfeiefiehgaojbmncmefhdnikeg からインストール可能です。\n最後に 今回はChromeの拡張機能で/etc/hostsを編集する方法を紹介しました。 Virtual Hostsには制限も多いですが、一時的に利用する分には十分事足りるのでは無いでしょうか？ 何か他に良いツールがあれば、コメント下さると助かります。\n","wordCount":"28","inLanguage":"en","image":"https://kurikube.github.io/%3Cimage%20path/url%3E","datePublished":"2022-02-05T11:30:03Z","dateModified":"2022-02-05T11:30:03Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://kurikube.github.io/post/chrome_name_resolve/"},"publisher":{"@type":"Organization","name":"通信キャリアで勤めるエンジニアのブログ","logo":{"@type":"ImageObject","url":"https://kurikube.github.io/images/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Chromeの拡張機能で名前解決の設定を変更する","name":"Chromeの拡張機能で名前解決の設定を変更する","description":"某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。","keywords":["Chrome"],"articleBody":"Google Chromeの拡張機能で/etc/hostsのファイルを変更せずに名前解決を設定できるものがあります。 今回の記事ではChromeの拡張機能のみで/etc/hostsを書き換えるような設定を行える「Virtual Hosts」をご紹介します。\n  インストール方法 https://chrome.google.com/webstore/detail/virtual-hosts/aiehidpclglccialeifedhajckcpedom\nこちらのURLをクリックしていただくと、インストール画面が表示されます。\n拡張機能Virtual Hostsのメリット /etc/hostsを編集するとGoogle Chrome以外のブラウザにも変更が反映されてしまいます。 しかし、拡張機能Virtual Hostsを使えばPCの/etc/hostsを変更することなく、名前解決をすることができ、Chrome以外に設定が反映されることはありません。\n触ってみて思った拡張機能Virtual Hostsのデメリット 単一のホスト名しか登録できず、対応するIPアドレスも一つに限定されています。\nでは複数のホスト名を設定するにはどうすれば良いか？   /etc/hostsを編集する\n  HostAdmin APPをChromeにインストールする\n  (注意)こちらの方法だと、/etc/hostsを編集するのでChrome以外のブラウザにも影響が出ます。また、/etc/hostsを編集できる権限をchromeに与える必要があります。\nhttps://chrome.google.com/webstore/detail/hostadmin-app/mfoaclfeiefiehgaojbmncmefhdnikeg からインストール可能です。\n最後に 今回はChromeの拡張機能で/etc/hostsを編集する方法を紹介しました。 Virtual Hostsには制限も多いですが、一時的に利用する分には十分事足りるのでは無いでしょうか？\n何か他に良いツールがあれば、コメント下さると助かります。\n","wordCount":"28","inLanguage":"en","image":"https://kurikube.github.io/%3Cimage%20path/url%3E","datePublished":"2022-02-05T11:30:03Z","dateModified":"2022-02-05T11:30:03Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://kurikube.github.io/post/chrome_name_resolve/"},"publisher":{"@type":"Organization","name":"通信キャリアで勤めるエンジニアのブログ","logo":{"@type":"ImageObject","url":"https://kurikube.github.io/images/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add('dark')</script>
@@ -109,8 +109,10 @@ Chromeの拡張機能で名前解決の設定を変更する
 </div>
 <div class=post-content><p>Google Chromeの拡張機能で<code>/etc/hosts</code>のファイルを変更せずに名前解決を設定できるものがあります。
 今回の記事ではChromeの拡張機能のみで<code>/etc/hosts</code>を書き換えるような設定を行える「Virtual Hosts」をご紹介します。</p>
+<hr>
 <p><img loading=lazy src=/images/virtualhosts.png alt="Virtual Hosts">
 </p>
+<hr>
 <h3 id=インストール方法>インストール方法<a hidden class=anchor aria-hidden=true href=#インストール方法>#</a></h3>
 <p><a href=https://chrome.google.com/webstore/detail/virtual-hosts/aiehidpclglccialeifedhajckcpedom>https://chrome.google.com/webstore/detail/virtual-hosts/aiehidpclglccialeifedhajckcpedom</a></p>
 <p>こちらのURLをクリックしていただくと、インストール画面が表示されます。</p>
@@ -133,8 +135,8 @@ Chromeの拡張機能で名前解決の設定を変更する
 からインストール可能です。</p>
 <h3 id=最後に>最後に<a hidden class=anchor aria-hidden=true href=#最後に>#</a></h3>
 <p>今回はChromeの拡張機能で<code>/etc/hosts</code>を編集する方法を紹介しました。
-Virtual Hostsには制限も多いですが、一時的に利用する分には十分事足りるのでは無いでしょうか？
-何か他に良いツールがあれば、コメント下さると助かります。</p>
+Virtual Hostsには制限も多いですが、一時的に利用する分には十分事足りるのでは無いでしょうか？</p>
+<p>何か他に良いツールがあれば、コメント下さると助かります。</p>
 </div>
 <footer class=post-footer>
 <ul class=post-tags>
