@@ -85,6 +85,17 @@ curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64 chmod +x ./
 </article>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Oh My Bash!で Bashのプロンプトをカッコ良くする
+</h2>
+</header>
+<section class=entry-content>
+<p>Oh My Bashとは 1. 動作環境 . 最後に . 参考にしたサイト https://terminalroot.com/discover-and-install-oh-my-bash/ </p>
+</section>
+<footer class=entry-footer><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to Oh My Bash!で Bashのプロンプトをカッコ良くする" href=https://kurikube.github.io/post/oh_my_bash/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>OpenShift Interactive Learning Portal ①Deploying Applications From Images
 </h2>
 </header>
@@ -210,26 +221,6 @@ sudo firewall-cmd --zone=public --permanent --add-port=3128/tcp #許可ポート
 </section>
 <footer class=entry-footer><span title="2022-01-26 11:30:03 +0000 UTC">January 26, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to SquidでProxyサーバを構築する" href=https://kurikube.github.io/post/20210128/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Pelicanを使って静的サイトを構築する
-</h2>
-</header>
-<section class=entry-content>
-<p>0.Pelicanとは Python製の静的サイトジェネレータ。静的サイトジェネレータにも様々なものがあるが、下記の理由で今回はPelicanを利用することにした。
-開発が活発。(GitHubのスターの数も良好。) themeも様々なものが選べる。 1.実行環境 MacBook Air (M1, 2020) m1チップ venvの仮想環境で実行 GitHub, GitHub Actions Python 3.9.9 Pelican versino 4.7.1 2.試しに利用してみる 2.0 pelican用の仮想環境を作成する venvで作成する
-下のコマンドは/Users/ユーザ名で実行しました。適宜読者の環境に合わせて変更してください。
-python3 -m venv venv 2.1 インストール Python製のパッケージであるため、pip経由でインストールする。 markdownには標準で未対応のため、Markdownを利用できるようにmarkdownのパッケージをインストールする。 (省略可能)GitHub Pagesへの操作を可能にするためghp-importをインストールする
-pip install pelican markdown ghp-import 2.2 Pelican環境構築 pelican-quickstart を実行すると対話形式でセッティングが始まる。
-2.3記事を記載する content ディレクトリ以下にmarkdownで記事をかく。
-記事の先頭にはpelicanの決まりでいくつか内容を記載し、その下に投稿したい内容を記載する
-2.4 記事を生成する markdownを作成したら、下記のコマンドでHTMLファイルを生成する
-make html このコマンドで、手元のローカル環境用のファイルが生成される
-2.5 記事をローカルで確認する make serve http://localhost:8000 開いて確認可能</p>
-</section>
-<footer class=entry-footer><span title="2022-01-26 01:30:03 +0000 UTC">January 26, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to Pelicanを使って静的サイトを構築する" href=https://kurikube.github.io/post/20210127/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

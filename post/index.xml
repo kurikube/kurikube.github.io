@@ -110,6 +110,15 @@
     </item>
     
     <item>
+      <title>Oh My Bash!で Bashのプロンプトをカッコ良くする</title>
+      <link>https://kurikube.github.io/post/oh_my_bash/</link>
+      <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/oh_my_bash/</guid>
+      <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
+    </item>
+    
+    <item>
       <title>OpenShift Interactive Learning Portal ①Deploying Applications From Images</title>
       <link>https://kurikube.github.io/post/crc_openshift_interactive_learning_portal/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
