@@ -75,6 +75,17 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>上村さんは遅刻しました
+</h2>
+</header>
+<section class=entry-content>
+<p>0. 前提 1. 動作環境 . 最後に . 参考にしたサイト </p>
+</section>
+<footer class=entry-footer><span title="2022-02-10 11:30:03 +0000 UTC">February 10, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to 上村さんは遅刻しました" href=https://kurikube.github.io/post/runner_docker_ansible/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>Oh My Bash!で Bashのプロンプトをカッコ良くする
 </h2>
 </header>
@@ -194,19 +205,6 @@ CPU・Memory sarコマンドのインストール sudo yum -y install sysstat CP
 </section>
 <footer class=entry-footer><span title="2022-01-31 11:30:03 +0000 UTC">January 31, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to DockerをCentOSにインストールするためのシェルスクリプト" href=https://kurikube.github.io/post/20220130/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>DockerでJaegerを動かす(2022/1/30)
-</h2>
-</header>
-<section class=entry-content>
-<p>0. 前提 kubernetes, Operatorに関する初歩的な知識があるとなお良い 1. 動作環境 EC2 (t3.2xlarge) Ubuntu 20.04.2 LTS Docker 20.10.7 go 1.17.6 2. Dockerでjaegerをインストールする Jaegerインストール済みのDockerコンテナを起動する docker run -d --name=jaeger -p 5775:5775/udp -p 16686:16686 jaegertracing/all-in-one:latest http://localhost:16686 でUIにアクセス可能です。
-3. GoでJaegerにTrace情報を連携する Trace情報を渡すプログラムをGoで実装してみます。
-ライブラリをインストールする go get github.com/uber/jaeger-client-go go get github.com/opentracing/opentracing-go go get github.com/pkg/errors Goのブログラムを実装する trace_sampleという名前のTracerを作成し、そのTracerの中にhelloとworldの２種類のspanが流れるサンプルコードになっています。 package main import ( "fmt" "github.com/opentracing/opentracing-go" "github.com/uber/jaeger-client-go" "github.com/uber/jaeger-client-go/config" "time" ) func main() { cfg := config.Configuration{ Sampler: &config....</p>
-</section>
-<footer class=entry-footer><span title="2022-01-30 01:30:03 +0000 UTC">January 30, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to DockerでJaegerを動かす(2022/1/30)" href=https://kurikube.github.io/post/jaeger/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
