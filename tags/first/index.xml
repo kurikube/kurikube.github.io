@@ -47,6 +47,15 @@
     </item>
     
     <item>
+      <title>上村さんは遅刻しました</title>
+      <link>https://kurikube.github.io/post/runner_docker_ansible/</link>
+      <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/runner_docker_ansible/</guid>
+      <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
+    </item>
+    
+    <item>
       <title>Google Adsense掲載に至るまで（執筆中）</title>
       <link>https://kurikube.github.io/post/20200101/</link>
       <pubDate>Wed, 01 Jan 2020 11:30:03 +0000</pubDate>
