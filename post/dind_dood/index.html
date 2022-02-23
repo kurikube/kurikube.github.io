@@ -36,7 +36,7 @@
 <meta name=twitter:title content="コンテナ内部からコンテナを作成する(DinD, DooD)">
 <meta name=twitter:description content="某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://kurikube.github.io/post/"},{"@type":"ListItem","position":2,"name":"コンテナ内部からコンテナを作成する(DinD, DooD)","item":"https://kurikube.github.io/post/dind_dood/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"コンテナ内部からコンテナを作成する(DinD, DooD)","name":"コンテナ内部からコンテナを作成する(DinD, DooD)","description":"某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。","keywords":["first"],"articleBody":"0. 概要 Dockerコンテナ内部でコンテナを操作することは例えばGitLab Runnerなどでよく利用されるユースケースです。 コンテナからコンテナを操作する主要な方法である\n DinD (Docker in Docker) DooD (Docker outside of Docker) の2種類の方法を今記事では扱います。  1. DinD 2. DooD . 参考にしたサイト ","wordCount":"21","inLanguage":"en","image":"https://kurikube.github.io/%3Cimage%20path/url%3E","datePublished":"2022-02-22T11:30:03Z","dateModified":"2022-02-22T11:30:03Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://kurikube.github.io/post/dind_dood/"},"publisher":{"@type":"Organization","name":"通信キャリアで勤めるエンジニアのブログ","logo":{"@type":"ImageObject","url":"https://kurikube.github.io/images/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"コンテナ内部からコンテナを作成する(DinD, DooD)","name":"コンテナ内部からコンテナを作成する(DinD, DooD)","description":"某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。","keywords":["first"],"articleBody":"0.動作環境  AWS EC2 Ubuntu 18.04.6 Docker 20.10.12  1. 概要 Dockerコンテナ内部でコンテナを操作することは例えばGitLab Runnerなどでよく利用されるユースケースである。 コンテナからコンテナを操作する主要な方法である\n DinD (Docker in Docker): Dockerインストール済みのコンテナを利用し、コンテナ内でホストとは別のDockerデーモンを動かす方法。 DooD (Docker outside of Docker): Dockerインストール済みのコンテナを使用するのはDinDと同じだがdockerd、containerdは使用しない。代わりコンテナ側からホストのdocker.sock (/var/run/docker.sock)をマウントする。そのため、コンテナ上のDockerコマンドはホスト側のDocker環境で実行されることになる。  上記2種類の方法を今記事では扱う。\n2. DinD Docker 公式のDinDに対応しているイメージであるdocker:stable-dindを利用する。\nubuntu@ip-172-31-17-145:~$ docker run --privileged --name dind -d docker:stable-dind デフォルトのままでは、Dockerコンテナはデバイスファイルにアクセスできないためコンテナ内でDockerデーモンを起動することはできない。 DinDコンテナの起動のためprivilegedフラグを付与し特権モードで動かす。\n起動した確認する。\nubuntu@ip-172-31-17-145:~$ docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 21824f35109e docker:stable-dind \"dockerd-entrypoint.…\" 56 seconds ago Up 55 seconds 2375-2376/tcp dind DinDコンテナのシェルに入り、dockerコマンドを利用可能なことを確かめる。\nubuntu@ip-172-31-17-145:~$ docker exec -it dind ash / # docker -v Docker version 19.03.14, build 5eb3275 / #  DinDコンテナ内部で動いているプロセスを確認する。dockerdとcontainerdが動作していることが確認できる\n/ # ps aux PID USER TIME COMMAND 1 root 0:00 dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2376 --tlsverify --tlscacert /certs/server/ca.pem --tlscert /certs/server/cert.pem 54 root 0:00 containerd --config /var/run/docker/containerd/containerd.toml --log-level info 172 root 0:00 ash 188 root 0:00 ps aux / #  DinDコンテナの内部で動いているコンテナを確認する。現時点では当然のごとく一つもコンテナが起動していない\n/ # docker ps -a CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES / #  以上からDinDの場合はホストのDockerとは隔離されたDocker環境を利用可能なことが分かる。\n3. DooD Docker公式のコンテナを起動し、シェルを実行する\nubuntu@ip-172-31-17-145:~$ docker run -ti --rm -v /var/run/docker.sock:/var/run/docker.sock docker /bin/ash まずはコンテナ内部からdocker imageでimage一覧を確認する\n/ # docker images REPOSITORY TAG IMAGE ID CREATED SIZE registry.gitlab.com/gitlab-org/gitlab-runner/gitlab-runner-helper x86_64-98daeee0 c98df3b3bc76 5 days ago 66.9MB docker dind 1a42336ff683 4 weeks ago 233MB gitlab/gitlab-runner latest 9225e3135217 4 weeks ago 691MB docker latest 15a9bc7c6340 2 months ago 216MB alpine latest c059bfaa849c 3 months ago 5.59MB docker stable-dind 6f19136cf89d 14 months ago 235MB docker 19.03.13-dind 71edd6fcc7ef 16 months ago 232MB docker 19.03.13 6972c414f322 16 months ago 217MB 次にホストに戻りdocker imageを実行する\nubuntu@ip-172-31-17-145:~$ docker images REPOSITORY TAG IMAGE ID CREATED SIZE registry.gitlab.com/gitlab-org/gitlab-runner/gitlab-runner-helper x86_64-98daeee0 c98df3b3bc76 5 days ago 66.9MB docker dind 1a42336ff683 4 weeks ago 233MB gitlab/gitlab-runner latest 9225e3135217 4 weeks ago 691MB docker latest 15a9bc7c6340 2 months ago 216MB alpine latest c059bfaa849c 3 months ago 5.59MB docker stable-dind 6f19136cf89d 14 months ago 235MB docker 19.03.13-dind 71edd6fcc7ef 16 months ago 232MB docker 19.03.13 6972c414f322 16 months ago 217MB 次にdocker psも確認する まずはコンテナ内部で確認する\n/ # docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 4092ff8cbc92 docker \"docker-entrypoint.s…\" 2 minutes ago Up 2 minutes adoring_agnesi 7181ac8250a9 gitlab/gitlab-runner:latest \"/usr/bin/dumb-init …\" 5 days ago Up 5 days runner-container-ansible 次にホストから確認する。\nubuntu@ip-172-31-17-145:~$ docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 4092ff8cbc92 docker \"docker-entrypoint.s…\" 3 minutes ago Up 2 minutes adoring_agnesi 7181ac8250a9 gitlab/gitlab-runner:latest \"/usr/bin/dumb-init …\" 5 days ago Up 5 days runner-container-ansible このようにDooDではホスト側のDocker環境を利用することになる。つまり、Dockerのクライアントサーバシステムのクライアント部分だけをコンテナ側にもってきた形態。コンテナ側はホスト側のDockerバージョンとの整合を気をつける必要がある。\n","wordCount":"353","inLanguage":"en","image":"https://kurikube.github.io/%3Cimage%20path/url%3E","datePublished":"2022-02-22T11:30:03Z","dateModified":"2022-02-22T11:30:03Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://kurikube.github.io/post/dind_dood/"},"publisher":{"@type":"Organization","name":"通信キャリアで勤めるエンジニアのブログ","logo":{"@type":"ImageObject","url":"https://kurikube.github.io/images/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add('dark')</script>
@@ -83,7 +83,7 @@
 <div class=post-description>
 某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。
 </div>
-<div class=post-meta><span title="2022-02-22 11:30:03 +0000 UTC">February 22, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me&nbsp;|&nbsp;<a href=https://github.com/kurikube/hugo-blog/tree/main/content/post/dind_dood/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a>
+<div class=post-meta><span title="2022-02-22 11:30:03 +0000 UTC">February 22, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me&nbsp;|&nbsp;<a href=https://github.com/kurikube/hugo-blog/tree/main/content/post/dind_dood/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a>
 </div>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3014928890570116" crossorigin=anonymous></script>
 </header> <div class=toc>
@@ -93,29 +93,96 @@
 </summary>
 <div class=inner><ul>
 <li>
-<a href=#0-%e6%a6%82%e8%a6%81 aria-label="0. 概要">0. 概要</a></li>
+<a href=#0%e5%8b%95%e4%bd%9c%e7%92%b0%e5%a2%83 aria-label=0.動作環境>0.動作環境</a></li>
 <li>
-<a href=#1-dind aria-label="1. DinD">1. DinD</a></li>
+<a href=#1-%e6%a6%82%e8%a6%81 aria-label="1. 概要">1. 概要</a></li>
 <li>
-<a href=#2-dood aria-label="2. DooD">2. DooD</a></li>
+<a href=#2-dind aria-label="2. DinD">2. DinD</a></li>
 <li>
-<a href=#-%e5%8f%82%e8%80%83%e3%81%ab%e3%81%97%e3%81%9f%e3%82%b5%e3%82%a4%e3%83%88 aria-label=". 参考にしたサイト">. 参考にしたサイト</a>
+<a href=#3-dood aria-label="3. DooD">3. DooD</a>
 </li>
 </ul>
 </div>
 </details>
 </div>
-<div class=post-content><h3 id=0-概要>0. 概要<a hidden class=anchor aria-hidden=true href=#0-概要>#</a></h3>
-<p>Dockerコンテナ内部でコンテナを操作することは例えばGitLab Runnerなどでよく利用されるユースケースです。
+<div class=post-content><h3 id=0動作環境>0.動作環境<a hidden class=anchor aria-hidden=true href=#0動作環境>#</a></h3>
+<ul>
+<li>AWS EC2</li>
+<li>Ubuntu 18.04.6</li>
+<li>Docker 20.10.12</li>
+</ul>
+<h3 id=1-概要>1. 概要<a hidden class=anchor aria-hidden=true href=#1-概要>#</a></h3>
+<p>Dockerコンテナ内部でコンテナを操作することは例えばGitLab Runnerなどでよく利用されるユースケースである。
 コンテナからコンテナを操作する主要な方法である</p>
 <ul>
-<li>DinD (Docker in Docker)</li>
-<li>DooD (Docker outside of Docker)
-の2種類の方法を今記事では扱います。</li>
+<li>DinD (Docker in Docker): Dockerインストール済みのコンテナを利用し、コンテナ内でホストとは別のDockerデーモンを動かす方法。</li>
+<li>DooD (Docker outside of Docker): Dockerインストール済みのコンテナを使用するのはDinDと同じだがdockerd、containerdは使用しない。代わりコンテナ側からホストのdocker.sock (/var/run/docker.sock)をマウントする。そのため、コンテナ上のDockerコマンドはホスト側のDocker環境で実行されることになる。</li>
 </ul>
-<h3 id=1-dind>1. DinD<a hidden class=anchor aria-hidden=true href=#1-dind>#</a></h3>
-<h3 id=2-dood>2. DooD<a hidden class=anchor aria-hidden=true href=#2-dood>#</a></h3>
-<h3 id=-参考にしたサイト>. 参考にしたサイト<a hidden class=anchor aria-hidden=true href=#-参考にしたサイト>#</a></h3>
+<p>上記2種類の方法を今記事では扱う。</p>
+<h3 id=2-dind>2. DinD<a hidden class=anchor aria-hidden=true href=#2-dind>#</a></h3>
+<p>Docker 公式のDinDに対応しているイメージである<code>docker:stable-dind</code>を利用する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>ubuntu@ip-172-31-17-145:~$ docker run --privileged --name dind -d docker:stable-dind
+</code></pre></div><p>デフォルトのままでは、Dockerコンテナはデバイスファイルにアクセスできないためコンテナ内でDockerデーモンを起動することはできない。
+DinDコンテナの起動のため<code>privileged</code>フラグを付与し特権モードで動かす。</p>
+<p>起動した確認する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>ubuntu@ip-172-31-17-145:~$ docker ps
+CONTAINER ID   IMAGE                         COMMAND                  CREATED          STATUS          PORTS           NAMES
+21824f35109e   docker:stable-dind            <span style=color:#e6db74>&#34;dockerd-entrypoint.…&#34;</span>   <span style=color:#ae81ff>56</span> seconds ago   Up <span style=color:#ae81ff>55</span> seconds   2375-2376/tcp   dind
+</code></pre></div><p>DinDコンテナのシェルに入り、<code>docker</code>コマンドを利用可能なことを確かめる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>ubuntu@ip-172-31-17-145:~$ docker exec -it dind ash
+/ <span style=color:#75715e># docker -v</span>
+Docker version 19.03.14, build 5eb3275
+/ <span style=color:#75715e># </span>
+</code></pre></div><p>DinDコンテナ内部で動いているプロセスを確認する。<code>dockerd</code>と<code>containerd</code>が動作していることが確認できる</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>/ <span style=color:#75715e># ps aux</span>
+PID   USER     TIME  COMMAND
+    <span style=color:#ae81ff>1</span> root      0:00 dockerd --host<span style=color:#f92672>=</span>unix:///var/run/docker.sock --host<span style=color:#f92672>=</span>tcp://0.0.0.0:2376 --tlsverify --tlscacert /certs/server/ca.pem --tlscert /certs/server/cert.pem
+   <span style=color:#ae81ff>54</span> root      0:00 containerd --config /var/run/docker/containerd/containerd.toml --log-level info
+  <span style=color:#ae81ff>172</span> root      0:00 ash
+  <span style=color:#ae81ff>188</span> root      0:00 ps aux
+/ <span style=color:#75715e># </span>
+</code></pre></div><p>DinDコンテナの内部で動いているコンテナを確認する。現時点では当然のごとく一つもコンテナが起動していない</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>/ <span style=color:#75715e># docker ps -a</span>
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+/ <span style=color:#75715e># </span>
+</code></pre></div><p>以上からDinDの場合はホストのDockerとは隔離されたDocker環境を利用可能なことが分かる。</p>
+<h3 id=3-dood>3. DooD<a hidden class=anchor aria-hidden=true href=#3-dood>#</a></h3>
+<p>Docker公式のコンテナを起動し、シェルを実行する</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>ubuntu@ip-172-31-17-145:~$ docker run -ti --rm -v /var/run/docker.sock:/var/run/docker.sock docker /bin/ash
+</code></pre></div><p>まずはコンテナ内部から<code>docker image</code>でimage一覧を確認する</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>/ <span style=color:#75715e># docker images</span>
+REPOSITORY                                                          TAG               IMAGE ID       CREATED         SIZE
+registry.gitlab.com/gitlab-org/gitlab-runner/gitlab-runner-helper   x86_64-98daeee0   c98df3b3bc76   <span style=color:#ae81ff>5</span> days ago      66.9MB
+docker                                                              dind              1a42336ff683   <span style=color:#ae81ff>4</span> weeks ago     233MB
+gitlab/gitlab-runner                                                latest            9225e3135217   <span style=color:#ae81ff>4</span> weeks ago     691MB
+docker                                                              latest            15a9bc7c6340   <span style=color:#ae81ff>2</span> months ago    216MB
+alpine                                                              latest            c059bfaa849c   <span style=color:#ae81ff>3</span> months ago    5.59MB
+docker                                                              stable-dind       6f19136cf89d   <span style=color:#ae81ff>14</span> months ago   235MB
+docker                                                              19.03.13-dind     71edd6fcc7ef   <span style=color:#ae81ff>16</span> months ago   232MB
+docker                                                              19.03.13          6972c414f322   <span style=color:#ae81ff>16</span> months ago   217MB
+</code></pre></div><p>次にホストに戻り<code>docker image</code>を実行する</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>ubuntu@ip-172-31-17-145:~$ docker images
+REPOSITORY                                                          TAG               IMAGE ID       CREATED         SIZE
+registry.gitlab.com/gitlab-org/gitlab-runner/gitlab-runner-helper   x86_64-98daeee0   c98df3b3bc76   <span style=color:#ae81ff>5</span> days ago      66.9MB
+docker                                                              dind              1a42336ff683   <span style=color:#ae81ff>4</span> weeks ago     233MB
+gitlab/gitlab-runner                                                latest            9225e3135217   <span style=color:#ae81ff>4</span> weeks ago     691MB
+docker                                                              latest            15a9bc7c6340   <span style=color:#ae81ff>2</span> months ago    216MB
+alpine                                                              latest            c059bfaa849c   <span style=color:#ae81ff>3</span> months ago    5.59MB
+docker                                                              stable-dind       6f19136cf89d   <span style=color:#ae81ff>14</span> months ago   235MB
+docker                                                              19.03.13-dind     71edd6fcc7ef   <span style=color:#ae81ff>16</span> months ago   232MB
+docker                                                              19.03.13          6972c414f322   <span style=color:#ae81ff>16</span> months ago   217MB
+</code></pre></div><p>次に<code>docker ps</code>も確認する
+まずはコンテナ内部で確認する</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>/ <span style=color:#75715e># docker ps</span>
+CONTAINER ID   IMAGE                         COMMAND                  CREATED         STATUS         PORTS     NAMES
+4092ff8cbc92   docker                        <span style=color:#e6db74>&#34;docker-entrypoint.s…&#34;</span>   <span style=color:#ae81ff>2</span> minutes ago   Up <span style=color:#ae81ff>2</span> minutes             adoring_agnesi
+7181ac8250a9   gitlab/gitlab-runner:latest   <span style=color:#e6db74>&#34;/usr/bin/dumb-init …&#34;</span>   <span style=color:#ae81ff>5</span> days ago      Up <span style=color:#ae81ff>5</span> days                runner-container-ansible
+</code></pre></div><p>次にホストから確認する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>ubuntu@ip-172-31-17-145:~$ docker ps
+CONTAINER ID   IMAGE                         COMMAND                  CREATED         STATUS         PORTS     NAMES
+4092ff8cbc92   docker                        <span style=color:#e6db74>&#34;docker-entrypoint.s…&#34;</span>   <span style=color:#ae81ff>3</span> minutes ago   Up <span style=color:#ae81ff>2</span> minutes             adoring_agnesi
+7181ac8250a9   gitlab/gitlab-runner:latest   <span style=color:#e6db74>&#34;/usr/bin/dumb-init …&#34;</span>   <span style=color:#ae81ff>5</span> days ago      Up <span style=color:#ae81ff>5</span> days                runner-container-ansible
+</code></pre></div><p>このようにDooDではホスト側のDocker環境を利用することになる。つまり、Dockerのクライアントサーバシステムのクライアント部分だけをコンテナ側にもってきた形態。コンテナ側はホスト側のDockerバージョンとの整合を気をつける必要がある。</p>
 </div>
 <footer class=post-footer>
 <ul class=post-tags>

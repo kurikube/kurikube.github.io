@@ -79,10 +79,15 @@
 </h2>
 </header>
 <section class=entry-content>
-<p>0. 概要 Dockerコンテナ内部でコンテナを操作することは例えばGitLab Runnerなどでよく利用されるユースケースです。 コンテナからコンテナを操作する主要な方法である
-DinD (Docker in Docker) DooD (Docker outside of Docker) の2種類の方法を今記事では扱います。 1. DinD 2. DooD . 参考にしたサイト </p>
+<p>0.動作環境 AWS EC2 Ubuntu 18.04.6 Docker 20.10.12 1. 概要 Dockerコンテナ内部でコンテナを操作することは例えばGitLab Runnerなどでよく利用されるユースケースである。 コンテナからコンテナを操作する主要な方法である
+DinD (Docker in Docker): Dockerインストール済みのコンテナを利用し、コンテナ内でホストとは別のDockerデーモンを動かす方法。 DooD (Docker outside of Docker): Dockerインストール済みのコンテナを使用するのはDinDと同じだがdockerd、containerdは使用しない。代わりコンテナ側からホストのdocker.sock (/var/run/docker.sock)をマウントする。そのため、コンテナ上のDockerコマンドはホスト側のDocker環境で実行されることになる。 上記2種類の方法を今記事では扱う。
+2. DinD Docker 公式のDinDに対応しているイメージであるdocker:stable-dindを利用する。
+ubuntu@ip-172-31-17-145:~$ docker run --privileged --name dind -d docker:stable-dind デフォルトのままでは、Dockerコンテナはデバイスファイルにアクセスできないためコンテナ内でDockerデーモンを起動することはできない。 DinDコンテナの起動のためprivilegedフラグを付与し特権モードで動かす。
+起動した確認する。
+ubuntu@ip-172-31-17-145:~$ docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 21824f35109e docker:stable-dind "dockerd-entrypoint.…" 56 seconds ago Up 55 seconds 2375-2376/tcp dind DinDコンテナのシェルに入り、dockerコマンドを利用可能なことを確かめる。
+ubuntu@ip-172-31-17-145:~$ docker exec -it dind ash / # docker -v Docker version 19....</p>
 </section>
-<footer class=entry-footer><span title="2022-02-22 11:30:03 +0000 UTC">February 22, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<footer class=entry-footer><span title="2022-02-22 11:30:03 +0000 UTC">February 22, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to コンテナ内部からコンテナを作成する(DinD, DooD)" href=https://kurikube.github.io/post/dind_dood/></a>
 </article>
 <article class=post-entry>
