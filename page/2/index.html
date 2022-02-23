@@ -73,6 +73,17 @@
 <main class=main>
 <article class=post-entry>
 <header class=entry-header>
+<h2>DockerをCentOSにインストールするためのシェルスクリプト
+</h2>
+</header>
+<section class=entry-content>
+<p> CentOSにDockerをインストールするためのシェルスクリプトになります。 root権限で実行が楽です。セキュリティ的によく無いですが。 yum -y update yum -y upgrade yum install -y yum-utils device-mapper-persistent-data lvm2 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo yum install -y docker-ce docker-ce-cli containerd.io systemctl start docker systemctl enable docker </p>
+</section>
+<footer class=entry-footer><span title="2022-01-31 11:30:03 +0000 UTC">January 31, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to DockerをCentOSにインストールするためのシェルスクリプト" href=https://kurikube.github.io/post/20220130/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>DockerでJaegerを動かす(2022/1/30)
 </h2>
 </header>
@@ -203,22 +214,6 @@ less -R で読むと綺麗に読むことができます。
 </section>
 <footer class=entry-footer><span title="2022-01-28 11:30:03 +0000 UTC">January 28, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to scriptコマンドでコマンド実行の作業ログを保存する" href=https://kurikube.github.io/post/20210130/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>CentOS 7 にGoogle Chromeをインストールする
-</h2>
-</header>
-<section class=entry-content>
-<p>背景 CentOS 7 にはデフォルトでFirefoxがインストールされてます。しかし、Google Chromeの方がより便利なこともあるので、Chromeをインストールする方法を紹介します
-環境確認 [cloudg@localhost ~]$ cat /etc/redhat-release CentOS Linux release 7.9.2009 (Core) レポジトリファイルの作成 [cloudg@localhost ~]$ vi /etc/yum.repos.d/google.chrome.repo 下記の内容を記載する。
-[google-chrome] name=google-chrome baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch enabled=1 gpgcheck=1 gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub インストール [cloudg@localhost ~]$ yum install google-chrome-stable Internet の部分にGoogle Chromeが表示される 起動方法 下記コマンドで起動できる
-[cloudg@localhost ~]# google-chrome エラーが発生する場合 下記のエラーが発生することがある。
-[root@localhost ~]# google-chrome [4206:4206:0327/064251.530967:ERROR:zygote_host_impl_linux.cc(90)] Running as root without --no-sandbox is not supported. See https://crbug.com/63818 /opt/google/chrome/google-chromeの一番最後の行を変更する
-vi /opt/google/chrome/google-chrome exec -a "$0" "$HERE/chrome" "$@" --no-sandbox --user-data-dir=~ これで問題なく起動できるようになります。</p>
-</section>
-<footer class=entry-footer><span title="2022-01-27 11:30:03 +0000 UTC">January 27, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to CentOS 7 にGoogle Chromeをインストールする" href=https://kurikube.github.io/post/20220131/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

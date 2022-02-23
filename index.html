@@ -91,6 +91,18 @@
 </article>
 <article class=post-entry>
 <header class=entry-header>
+<h2>コンテナ内部からコンテナを作成する(DinD, DooD)
+</h2>
+</header>
+<section class=entry-content>
+<p>0. 概要 Dockerコンテナ内部でコンテナを操作することは例えばGitLab Runnerなどでよく利用されるユースケースです。 コンテナからコンテナを操作する主要な方法である
+DinD (Docker in Docker) DooD (Docker outside of Docker) の2種類の方法を今記事では扱います。 1. DinD 2. DooD . 参考にしたサイト </p>
+</section>
+<footer class=entry-footer><span title="2022-02-22 11:30:03 +0000 UTC">February 22, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to コンテナ内部からコンテナを作成する(DinD, DooD)" href=https://kurikube.github.io/post/dind_dood/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>GitLab Runner(Docker)をAnsibleでインストールする
 </h2>
 </header>
@@ -210,17 +222,6 @@ CPU・Memory sarコマンドのインストール sudo yum -y install sysstat CP
 </section>
 <footer class=entry-footer><span title="2022-01-31 11:30:03 +0000 UTC">January 31, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to CentOSのCPU・Memory・Disk・GPU使用率を測定する" href=https://kurikube.github.io/post/resource_sokutei/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>DockerをCentOSにインストールするためのシェルスクリプト
-</h2>
-</header>
-<section class=entry-content>
-<p> CentOSにDockerをインストールするためのシェルスクリプトになります。 root権限で実行が楽です。セキュリティ的によく無いですが。 yum -y update yum -y upgrade yum install -y yum-utils device-mapper-persistent-data lvm2 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo yum install -y docker-ce docker-ce-cli containerd.io systemctl start docker systemctl enable docker </p>
-</section>
-<footer class=entry-footer><span title="2022-01-31 11:30:03 +0000 UTC">January 31, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to DockerをCentOSにインストールするためのシェルスクリプト" href=https://kurikube.github.io/post/20220130/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
