@@ -95,7 +95,11 @@
 </h2>
 </header>
 <section class=entry-content>
-<p>0. 前提 1. 動作環境 . 最後に . 参考にしたサイト </p>
+<p>1. 動作環境 MacBook Air (M1, 2020) Homebrew 3.4.0 Docker Desktop Version 4.5.0 2. 「kui」とは GUIでkubectlと同等の操作をできるツール。 kubernetesのGUIとしてはdashboardがあるが、これは既存のリソースなどを確認するためのもので、kubectlによる操作を代替するものではない。 今回はkuiを使ってみて操作性などを確認してみる。
+3. インストール方法 Macならbrewでインストール可能。
+brew install --cask kui 4. 利用方法 kubectl kui get po GUIを起動することが出来る。
+5. 触ってみる 今回はNamespaceに限定してどのような操作が可能か確認する
+kubeconfigのコンテキスト、namespace、kuiのGUIの表示を左下のボタンから変更できる リソースを表示してみる（namespace） それぞれのnamespaceに関して詳細を表示できる 画面下部にはOSのshellもある 6. 参考サイト https://kui.tools/ </p>
 </section>
 <footer class=entry-footer><span title="2022-02-27 11:30:03 +0000 UTC">February 27, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to kubectl を GUIから扱えるようにするツール「kui」を使ってみる" href=https://kurikube.github.io/post/kui/></a>
