@@ -73,6 +73,23 @@
 <main class=main>
 <article class=post-entry>
 <header class=entry-header>
+<h2>CodeReady Containers（CRC）をリモート接続可能にする
+</h2>
+</header>
+<section class=entry-content>
+<p>CRC VMの内部動作を確認する CRC VMのIPアドレスを確認する
+[centos@ip-172-31-19-74 ~]$ crc ip 192.168.130.11 CRC VMへSSH接続する
+[centos@ip-172-31-19-74 ~]$ ssh -i ~/.crc/machines/crc/id_ecdsa core@$CRC_IP CRC VMの中でpodmanでdnsmasq(DNSサーバ)が起動していることが分かる
+[core@crc-xxcfw-master-0 ~]$ sudo podman ps -a CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 128a6fe17e5e quay.io/crcont/gvisor-tap-vsock:3231aba53905468c22e394493a0debc1a6cc6392 3 weeks ago Exited (0) 7 hours ago gvisor-tap-vsock e3593ab79e1d quay.io/crcont/dnsmasq:latest 3 weeks ago Up 7 hours ago 0.0.0.0:53->53/udp crc-dnsmasq CRC実行ホストのNetwork Manager設定 CRCセットアップ後のホスト上のdnsmasqのCRC用インスタンスは下記のようになっています。
+[centos@ip-172-31-19-74 ~]$ cat /etc/NetworkManager/dnsmasq.d/crc.conf server=/apps-crc.testing/192.168.130.11 server=/crc.testing/192.168.130.11 なお、このcrc.confはcrc setupおよびcrc start時にチェックされ、設定を変更することができません
+CRCホストの/etc/hosts CRCセットアップ後、CRCを実行するホストの/etc/hostsには設定が追加されます
+[centos@ip-172-31-19-74 ~]$ sudo cat /etc/hosts 127....</p>
+</section>
+<footer class=entry-footer><span title="2022-01-28 11:30:03 +0000 UTC">January 28, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to CodeReady Containers（CRC）をリモート接続可能にする" href=https://kurikube.github.io/post/20220124/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>scriptコマンドでコマンド実行の作業ログを保存する
 </h2>
 </header>
@@ -202,19 +219,6 @@ https://michimani.net/post/programming-delete-old-slack-messages/ from datetime 
 </section>
 <footer class=entry-footer><span title="2022-01-02 11:30:03 +0000 UTC">January 2, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to Slack APIを用いて一定期間より前のメッセージを自動削除する" href=https://kurikube.github.io/post/20220102/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Docker install用のshell-script
-</h2>
-</header>
-<section class=entry-content>
-<p>CentOSにDockerをインストールするためのシェルスクリプトです。
-root権限での実行が楽ですが、セキュリティ的によく無いので、sudoを付けての実行をおすすめします。
-yum -y update yum -y upgrade yum install -y yum-utils device-mapper-persistent-data lvm2 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo yum install -y docker-ce docker-ce-cli containerd.io systemctl start docker systemctl enable docker </p>
-</section>
-<footer class=entry-footer><span title="2021-01-24 11:30:03 +0000 UTC">January 24, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to Docker install用のshell-script" href=https://kurikube.github.io/post/20200124/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

@@ -75,6 +75,20 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>KubernetesのUIである「Dashboard」を使ってみる
+</h2>
+</header>
+<section class=entry-content>
+<p>0. 背景 以前KubernetesのKubectlを代替するツールであるkuiを触ってみた。 その関連ツールであるDashboardも触ってみたいと思ったので、本記事にまとめる。
+1. 動作環境 M1 Macbook AirのDocker Desktop 2. Dashboardをデプロイする 早速使ってみる
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.5/aio/deploy/recommended.yamlku Podが二つ起動している >> kubectl get po -n kubernetes-dashboard 03/01 8:09:48 &lt;0> NAME READY STATUS RESTARTS AGE dashboard-metrics-scraper-856586f554-rklvj 1/1 Running 0 44s kubernetes-dashboard-7979bc45d5-tx7hb 1/1 Running 0 44s 3.Dashboardアクセス用のService Accountの作成 Serivce account用のyamlを作成する
+>> cat temp.yaml 03/01 8:38:37 &lt;0> apiVersion: v1 kind: ServiceAccount metadata: name: admin-user namespace: kubernetes-dashboard --- apiVersion: rbac.authorization.k8s.io/v1 kind: ClusterRoleBinding metadata: name: admin-user roleRef: apiGroup: rbac....</p>
+</section>
+<footer class=entry-footer><span title="2022-02-28 11:30:03 +0000 UTC">February 28, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to KubernetesのUIである「Dashboard」を使ってみる" href=https://kurikube.github.io/post/dashboard/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>kubectl を GUIから扱えるようにするツール「kui」を使ってみる
 </h2>
 </header>
@@ -201,17 +215,6 @@ Module 1 - Create a Kubernetes cluster Cluster details この章ではクラス�
 </section>
 <footer class=entry-footer><span title="2022-02-02 11:30:03 +0000 UTC">February 2, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to Codepen埋め込み" href=https://kurikube.github.io/post/codepen/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>EC2上のMinikubeでOpenFaaSを動かす
-</h2>
-</header>
-<section class=entry-content>
-<p>0. 前提 1. 動作環境 . 最後に . 参考にしたサイト https://qiita.com/iqustechtips/items/ebf66e5f243efd93b399 https://al-batross.net/2021/04/06/openfaas-deploy-on-kubernetes/ </p>
-</section>
-<footer class=entry-footer><span title="2022-02-01 11:30:03 +0000 UTC">February 1, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to EC2上のMinikubeでOpenFaaSを動かす" href=https://kurikube.github.io/post/openfaas/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
