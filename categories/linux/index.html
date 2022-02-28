@@ -74,6 +74,17 @@
 </header>
 <article class="post-entry tag-entry">
 <header class=entry-header>
+<h2>kubectl を GUIから扱えるようにするツール「kui」を使ってみる
+</h2>
+</header>
+<section class=entry-content>
+<p>0. 前提 1. 動作環境 . 最後に . 参考にしたサイト </p>
+</section>
+<footer class=entry-footer><span title="2022-02-27 11:30:03 +0000 UTC">February 27, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to kubectl を GUIから扱えるようにするツール「kui」を使ってみる" href=https://kurikube.github.io/post/kui/></a>
+</article>
+<article class="post-entry tag-entry">
+<header class=entry-header>
 <h2>Oh My Bash!で Bashのプロンプトをカッコ良くする
 </h2>
 </header>
@@ -192,19 +203,11 @@ Deploying Using the Command Line developerユーザでログインする。
 <footer class=entry-footer><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to リモートサーバ上に立てたMinikubeで公開しているService(Type NodePort) を外部から利用可能にする" href=https://kurikube.github.io/post/minikube_remote/></a>
 </article>
-<article class="post-entry tag-entry">
-<header class=entry-header>
-<h2>OpenShift Code ReadyをCentosにインストールする（2022/1/29時点）
-</h2>
-</header>
-<section class=entry-content>
-<p>概要 OpenShift4.x以降はMinishiftがなくなり、OpenShift CodeReady Container（CRC）となっている。 以下では公式ドキュメントに沿って手元のベアメタルサーバへインストールを行う。このサーバで色々なことを試してみる。 https://crc.dev/crc/
-環境 ホストOS：CentOS7.7 構成図 マシン上でCRCをインストールすると自動的にNWが作成されてCRCが作成される 。 OpenShiftのWebコンソールへアクセスする際には、ベアメタルマシンへリモデスした上でマシン上のブラウザからアクセスする必要がある。 環境確認 [root@ip-172-31-19-74 ~]# cat /etc/redhat-release CentOS Linux release 7.7.1908 (Core) 手順 公式ドキュメントの手順に沿ってインストールする。
-1.NetworkManagerをインストールし、起動する [root@ip-172-31-19-74 ~]# yum -y install NetworkManager [root@ip-172-31-19-74 ~]# systemctl restart NetworkManager 2.資材をダウンロードして、解凍して、パスの通ったフォルダへ移動 [root@ip-172-31-19-74 ~]# yum -y install wget [root@ip-172-31-19-74 tmp]# curl -k -L https://developers.redhat.com/content-gateway/rest/mirror/pub/openshift-v4/clients/crc/latest/crc-linux-amd64.tar.xz -o /tmp/crc-linux-amd64.tar.xz #ダウンロードにかなり時間を要します。 [root@ip-172-31-19-74 ~]# cd /tmp [root@ip-172-31-19-74 tmp]# xz -dc /tmp/crc-linux-amd64.tar.xz | tar xfv - [root@ip-172-31-19-74 tmp]# cp -pi crc-linux-1....</p>
-</section>
-<footer class=entry-footer><span title="2022-01-10 11:30:03 +0000 UTC">January 10, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to OpenShift Code ReadyをCentosにインストールする（2022/1/29時点）" href=https://kurikube.github.io/post/20210131/></a>
-</article>
+<footer class=page-footer>
+<nav class=pagination>
+<a class=next href=https://kurikube.github.io/categories/linux/page/2/>Next Page »</a>
+</nav>
+</footer>
 </main>
 <footer class=footer>
 <span>&copy; 2022 <a href=https://kurikube.github.io/>通信キャリアで勤めるエンジニアのブログ</a></span>

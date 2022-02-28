@@ -75,6 +75,27 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>scriptコマンドでコマンド実行の作業ログを保存する
+</h2>
+</header>
+<section class=entry-content>
+<p>背景 Linuxでコマンドの実行ログを保存したいことは非常に多いと思います。これは、後で見返せるようにするためでもありますし、派遣社員などの場合は自分の身を守るための手段にもなります。
+使用方法 script &lt;ログを保存したいファイル名> ファイル名を指定しなかった場合は、カレントディレクトリにtypescript というファイルで保存されます
+日付の入ったファイル名で保存したい場合
+script `date +%Y%m%d`.log このようにすれば日付名で作業ログを保存できます。
+実際に使ってみます。 $ script スクリプトを開始しました、ファイルは typescript です $ date 2021年 3月 28日 日曜日 06:46:13 EDT 終了する場合はexitするかctrl+dを実行します
+$ exit exit スクリプトを終了しました、ファイルは typescript です ファイルにログが残っているか確認する
+$ cat typescript スクリプトは 2021年03月28日 06時46分11秒 に開始しました$ date 2021年 3月 28日 日曜日 06:46:13 EDT $ exit exit スクリプトは 2021年03月28日 06時47分10秒 に終了しました きちんと記録されていました。
+既存ファイルへの追記方法 次に、ファイルへの追記方法を記載します。 同じファイルに追記したい場合はオプション-aを使うことで可能です。
+ログファイルをlessコマンドで綺麗に読むためには scriptコマンドで取得したログにエスケープシーケンスが含まれる場合、普通のテキストとして読むとエスケープシーケンスがESCのように表示され可読性が非常に落ちます。この場合、
+less -R で読むと綺麗に読むことができます。
+参考記事 https://qiita.com/networkelements/items/aa4aec5417306b4c7e71 https://mk-55.hatenablog.com/entry/2017/05/21/013930 </p>
+</section>
+<footer class=entry-footer><span title="2022-01-28 11:30:03 +0000 UTC">January 28, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to scriptコマンドでコマンド実行の作業ログを保存する" href=https://kurikube.github.io/post/20210130/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>CentOS 7 にGoogle Chromeをインストールする
 </h2>
 </header>
@@ -196,19 +217,6 @@ yum -y update yum -y upgrade yum install -y yum-utils device-mapper-persistent-d
 </section>
 <footer class=entry-footer><span title="2021-01-24 11:30:03 +0000 UTC">January 24, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to Docker install用のshell-script" href=https://kurikube.github.io/post/20200124/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>GitLab CI/CDを学ぶのにおすすめの書籍
-</h2>
-</header>
-<section class=entry-content>
-<p>私がGitLab CI/CD(GitLab Runner)を学んだ方法 1. Qiitaの参考記事を読んでみる GitLab CI/CDパイプライン設定リファレンス の記事を一通り読んでみる →内容がボリュームありすぎて、理解できず。。
-2.GitLabの参考書籍から読んでみる Gitlab実践ガイド(インプレス)
-GitLab実践ガイド impress top gearシリーズ これは非常にわかりやすかったです。</p>
-</section>
-<footer class=entry-footer><span title="2021-01-23 11:30:03 +0000 UTC">January 23, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to GitLab CI/CDを学ぶのにおすすめの書籍" href=https://kurikube.github.io/post/20210124/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

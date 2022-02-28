@@ -82,7 +82,7 @@
 3. GoでJaegerにTrace情報を連携する Trace情報を渡すプログラムをGoで実装してみます。
 ライブラリをインストールする go get github.com/uber/jaeger-client-go go get github.com/opentracing/opentracing-go go get github.com/pkg/errors Goのブログラムを実装する trace_sampleという名前のTracerを作成し、そのTracerの中にhelloとworldの２種類のspanが流れるサンプルコードになっています。 package main import ( "fmt" "github.com/opentracing/opentracing-go" "github.com/uber/jaeger-client-go" "github.com/uber/jaeger-client-go/config" "time" ) func main() { cfg := config.Configuration{ Sampler: &config....</p>
 </section>
-<footer class=entry-footer><span title="2022-01-30 01:30:03 +0000 UTC">January 30, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
+<footer class=entry-footer><span title="2022-01-30 01:30:03 +0000 +0000">January 30, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to DockerでJaegerを動かす(2022/1/30)" href=https://kurikube.github.io/post/jaeger/></a>
 </article>
 </main>

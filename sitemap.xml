@@ -3,7 +3,25 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://kurikube.github.io/categories/</loc>
-    <lastmod>2022-02-22T11:30:03+00:00</lastmod>
+    <lastmod>2022-02-27T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/post/kui/</loc>
+    <lastmod>2022-02-27T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/tags/kubernetes/</loc>
+    <lastmod>2022-02-27T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/categories/linux/</loc>
+    <lastmod>2022-02-27T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/post/</loc>
+    <lastmod>2022-02-27T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/tags/</loc>
+    <lastmod>2022-02-27T11:30:03+00:00</lastmod>
+  </url><url>
+    <loc>https://kurikube.github.io/</loc>
+    <lastmod>2022-02-27T11:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/tags/first/</loc>
     <lastmod>2022-02-22T11:30:03+00:00</lastmod>
@@ -11,23 +29,11 @@
     <loc>https://kurikube.github.io/categories/first/</loc>
     <lastmod>2022-02-22T11:30:03+00:00</lastmod>
   </url><url>
-    <loc>https://kurikube.github.io/post/</loc>
-    <lastmod>2022-02-22T11:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://kurikube.github.io/tags/</loc>
-    <lastmod>2022-02-22T11:30:03+00:00</lastmod>
-  </url><url>
     <loc>https://kurikube.github.io/post/dind_dood/</loc>
-    <lastmod>2022-02-22T11:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://kurikube.github.io/</loc>
     <lastmod>2022-02-22T11:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/post/runner_docker_ansible/</loc>
     <lastmod>2022-02-10T11:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://kurikube.github.io/categories/linux/</loc>
-    <lastmod>2022-02-08T11:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/post/oh_my_bash/</loc>
     <lastmod>2022-02-08T11:30:03+00:00</lastmod>
@@ -51,9 +57,6 @@
     <lastmod>2022-02-04T11:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/post/gitlab_runner_k8s/</loc>
-    <lastmod>2022-02-04T11:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://kurikube.github.io/tags/kubernetes/</loc>
     <lastmod>2022-02-04T11:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/tags/openshift/</loc>
@@ -90,9 +93,6 @@
     <lastmod>2022-01-30T01:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/tags/jaeger/</loc>
-    <lastmod>2022-01-30T01:30:03+00:00</lastmod>
-  </url><url>
-    <loc>https://kurikube.github.io/categories/kubernetes/</loc>
     <lastmod>2022-01-30T01:30:03+00:00</lastmod>
   </url><url>
     <loc>https://kurikube.github.io/categories/hugo/</loc>

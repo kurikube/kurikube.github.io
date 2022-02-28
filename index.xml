@@ -9,7 +9,16 @@
       <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 22 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kubectl を GUIから扱えるようにするツール「kui」を使ってみる</title>
+      <link>https://kurikube.github.io/post/kui/</link>
+      <pubDate>Sun, 27 Feb 2022 11:30:03 +0000</pubDate>
+      
+      <guid>https://kurikube.github.io/post/kui/</guid>
+      <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
+    </item>
+    
     <item>
       <title>コンテナ内部からコンテナを作成する(DinD, DooD)</title>
       <link>https://kurikube.github.io/post/dind_dood/</link>
