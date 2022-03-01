@@ -29,14 +29,14 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://kurikube.github.io/post/http_post_same/">
 <meta property="og:image" content="https://kurikube.github.io/%3Cimage%20path/url%3E"><meta property="article:section" content="post">
-<meta property="article:published_time" content="2022-01-29T11:30:03+00:00">
-<meta property="article:modified_time" content="2022-01-29T11:30:03+00:00"><meta property="og:site_name" content="通信キャリアで働くエンジニアのブログ">
+<meta property="article:published_time" content="2022-02-26T11:30:03+00:00">
+<meta property="article:modified_time" content="2022-02-26T11:30:03+00:00"><meta property="og:site_name" content="通信キャリアで働くエンジニアのブログ">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://kurikube.github.io/%3Cimage%20path/url%3E">
 <meta name=twitter:title content="HTTPでPOSTした内容をおうむ返しで表示するHTTPサーバ(Flask)">
 <meta name=twitter:description content="某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://kurikube.github.io/post/"},{"@type":"ListItem","position":2,"name":"HTTPでPOSTした内容をおうむ返しで表示するHTTPサーバ(Flask)","item":"https://kurikube.github.io/post/http_post_same/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"HTTPでPOSTした内容をおうむ返しで表示するHTTPサーバ(Flask)","name":"HTTPでPOSTした内容をおうむ返しで表示するHTTPサーバ(Flask)","description":"某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。","keywords":["first"],"articleBody":"背景 webhookなどの自作スクリプトの動作確認などをする際に、 httpリクエストの対応相手側が受け取った情報を確認できるようにしたい\n動作要件 python3/flask （動作確認は、Python 3.7.3＠Macbookpro2019で行った）\n事前準備 $ pip3 install Flask $ python3 -m pip install Flask スクリプト from flask import Flask, request app = Flask(__name__) @app.route(\"/\", methods=['POST']) def webhook(): headers = request.headers print(headers) body = request.get_data().decode('utf-8') + '\\n' print(body) return body if __name__ == \"__main__\": app.run() 起動方法 スクリプトを実行するのみ。終了はCtrl+C ※環境に依っては、pythonの部分がpython3だったりpytohn3.xだったりします。\n$ python test.py * Serving Flask app \"test\" (lazy loading) * Environment: production WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead. * Debug mode: off * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit) 動作確認 別ターミナルを開いて、確認。確かにBODY部を応答している。 以下では、print(herders)をコメントアウトしてBODYのみ表示している\n$ curl -X POST -d $(echo \"hello\") http://127.0.0.1:5000/ hello ","wordCount":"108","inLanguage":"en","image":"https://kurikube.github.io/%3Cimage%20path/url%3E","datePublished":"2022-01-29T11:30:03Z","dateModified":"2022-01-29T11:30:03Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://kurikube.github.io/post/http_post_same/"},"publisher":{"@type":"Organization","name":"通信キャリアで勤めるエンジニアのブログ","logo":{"@type":"ImageObject","url":"https://kurikube.github.io/images/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"HTTPでPOSTした内容をおうむ返しで表示するHTTPサーバ(Flask)","name":"HTTPでPOSTした内容をおうむ返しで表示するHTTPサーバ(Flask)","description":"某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。","keywords":["first"],"articleBody":"背景 webhookなどの自作スクリプトの動作確認などをする際に、 httpリクエストの対応相手側が受け取った情報を確認できるようにしたい\n動作要件 python3/flask （動作確認は、Python 3.7.3＠Macbookpro2019で行った）\n事前準備 $ pip3 install Flask $ python3 -m pip install Flask スクリプト from flask import Flask, request app = Flask(__name__) @app.route(\"/\", methods=['POST']) def webhook(): headers = request.headers print(headers) body = request.get_data().decode('utf-8') + '\\n' print(body) return body if __name__ == \"__main__\": app.run() 起動方法 スクリプトを実行するのみ。終了はCtrl+C ※環境に依っては、pythonの部分がpython3だったりpytohn3.xだったりします。\n$ python test.py * Serving Flask app \"test\" (lazy loading) * Environment: production WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead. * Debug mode: off * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit) 動作確認 別ターミナルを開いて、確認。確かにBODY部を応答している。 以下では、print(herders)をコメントアウトしてBODYのみ表示している\n$ curl -X POST -d $(echo \"hello\") http://127.0.0.1:5000/ hello ","wordCount":"108","inLanguage":"en","image":"https://kurikube.github.io/%3Cimage%20path/url%3E","datePublished":"2022-02-26T11:30:03Z","dateModified":"2022-02-26T11:30:03Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://kurikube.github.io/post/http_post_same/"},"publisher":{"@type":"Organization","name":"通信キャリアで勤めるエンジニアのブログ","logo":{"@type":"ImageObject","url":"https://kurikube.github.io/images/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add('dark')</script>
@@ -83,7 +83,7 @@ HTTPでPOSTした内容をおうむ返しで表示するHTTPサーバ(Flask)
 <div class=post-description>
 某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。
 </div>
-<div class=post-meta><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me&nbsp;|&nbsp;<a href=https://github.com/kurikube/hugo-blog/tree/main/content/post/http_post_same/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a>
+<div class=post-meta><span title="2022-02-26 11:30:03 +0000 UTC">February 26, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me&nbsp;|&nbsp;<a href=https://github.com/kurikube/hugo-blog/tree/main/content/post/http_post_same/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a>
 </div>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3014928890570116" crossorigin=anonymous></script>
 </header> <div class=toc>
@@ -158,15 +158,15 @@ hello
 <li><a href=https://kurikube.github.io/tags/first/>first</a></li>
 </ul>
 <nav class=paginav>
-<a class=prev href=https://kurikube.github.io/post/jaeger/>
+<a class=prev href=https://kurikube.github.io/post/kui/>
 <span class=title>« Prev Page</span>
 <br>
-<span>DockerでJaegerを動かす(2022/1/30)</span>
+<span>kubectl を GUIから扱えるようにするツール「kui」を使ってみる</span>
 </a>
-<a class=next href=https://kurikube.github.io/post/20220101/>
+<a class=next href=https://kurikube.github.io/post/dind_dood/>
 <span class=title>Next Page »</span>
 <br>
-<span>Hugo + Papermod でカテゴリで分類する方法</span>
+<span>コンテナ内部からコンテナを作成する(DinD, DooD)</span>
 </a>
 </nav>
 <div class=share-buttons>
