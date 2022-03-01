@@ -124,6 +124,20 @@ CPU・Memory sarコマンドのインストール sudo yum -y install sysstat CP
 </article>
 <article class=post-entry>
 <header class=entry-header>
+<h2>HTTPでPOSTした内容をおうむ返しで表示するHTTPサーバ(Flask)
+</h2>
+</header>
+<section class=entry-content>
+<p>背景 webhookなどの自作スクリプトの動作確認などをする際に、 httpリクエストの対応相手側が受け取った情報を確認できるようにしたい
+動作要件 python3/flask （動作確認は、Python 3.7.3＠Macbookpro2019で行った）
+事前準備 $ pip3 install Flask $ python3 -m pip install Flask スクリプト from flask import Flask, request app = Flask(__name__) @app.route("/", methods=['POST']) def webhook(): headers = request.headers print(headers) body = request.get_data().decode('utf-8') + '\n' print(body) return body if __name__ == "__main__": app.run() 起動方法 スクリプトを実行するのみ。終了はCtrl+C ※環境に依っては、pythonの部分がpython3だったりpytohn3.xだったりします。
+$ python test.py * Serving Flask app "test" (lazy loading) * Environment: production WARNING: This is a development server. Do not use it in a production deployment....</p>
+</section>
+<footer class=entry-footer><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to HTTPでPOSTした内容をおうむ返しで表示するHTTPサーバ(Flask)" href=https://kurikube.github.io/post/http_post_same/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>Hugo + Papermod でカテゴリで分類する方法
 </h2>
 </header>
@@ -186,23 +200,6 @@ Deploying Using the Command Line developerユーザでログインする。
 </section>
 <footer class=entry-footer><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
 <a class=entry-link aria-label="post link to リモートサーバ上に立てたMinikubeで公開しているService(Type NodePort) を外部から利用可能にする" href=https://kurikube.github.io/post/minikube_remote/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>最小インストールしたCentOS7にGUIを導入する
-</h2>
-</header>
-<section class=entry-content>
-<p>背景 CentOS7を新規インストール時、不要なパッケージを入れたくなかったので「Minimal ISO」のイメージを使用しました。当然ながらGUI環境が入ってなかったので、GUIを使えるように、追加でインストールを行いました。
-GUI環境のインストール まずはGUI環境を以下のコマンドでインストールします。「groupinstall」を使えば、関連するパッケージ群を1つのグループとしてまとめてインストール可能です。
-sudo yum -y groupinstall "GNOME Desktop" GUIを有効化する GUI環境一式のインストール完了したら、以下のコマンドでGUIを有効にします。
-startx 有効化すると以下のような初期設定画面が表示されるので、言語設定などをします。 初期設定が完了すると、GUI環境で作業ができるようになる。 GUI環境で起動するようにする GUI環境は整ったが、このままではシステムを再起動するとCUIに戻ってしまいます。
-次回起動時もGUI環境で立ち上げたい場合は、システム起動時のランレベルを変えてあげる必要があります。ランレベルは簡単に言えば「起動モード」みたいなものです。
-sudo systemctl set-default graphical.target これで次回起動時からGUI環境で立ち上がるようになります。ちなみに、「やっぱり起動時はCUIにしたい」というときは以下のコマンドで元に戻せます。
-sudo systemctl set-default multi-user.target </p>
-</section>
-<footer class=entry-footer><span title="2022-01-28 12:30:03 +0000 UTC">January 28, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
-<a class=entry-link aria-label="post link to 最小インストールしたCentOS7にGUIを導入する" href=https://kurikube.github.io/post/20220128/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

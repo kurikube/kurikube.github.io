@@ -150,6 +150,20 @@ CPU・Memory sarコマンドのインストール sudo yum -y install sysstat CP
 </article>
 <article class="post-entry tag-entry">
 <header class=entry-header>
+<h2>HTTPでPOSTした内容をおうむ返しで表示するHTTPサーバ(Flask)
+</h2>
+</header>
+<section class=entry-content>
+<p>背景 webhookなどの自作スクリプトの動作確認などをする際に、 httpリクエストの対応相手側が受け取った情報を確認できるようにしたい
+動作要件 python3/flask （動作確認は、Python 3.7.3＠Macbookpro2019で行った）
+事前準備 $ pip3 install Flask $ python3 -m pip install Flask スクリプト from flask import Flask, request app = Flask(__name__) @app.route("/", methods=['POST']) def webhook(): headers = request.headers print(headers) body = request.get_data().decode('utf-8') + '\n' print(body) return body if __name__ == "__main__": app.run() 起動方法 スクリプトを実行するのみ。終了はCtrl+C ※環境に依っては、pythonの部分がpython3だったりpytohn3.xだったりします。
+$ python test.py * Serving Flask app "test" (lazy loading) * Environment: production WARNING: This is a development server. Do not use it in a production deployment....</p>
+</section>
+<footer class=entry-footer><span title="2022-01-29 11:30:03 +0000 UTC">January 29, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Me</footer>
+<a class=entry-link aria-label="post link to HTTPでPOSTした内容をおうむ返しで表示するHTTPサーバ(Flask)" href=https://kurikube.github.io/post/http_post_same/></a>
+</article>
+<article class="post-entry tag-entry">
+<header class=entry-header>
 <h2>Google Adsense掲載に至るまで（執筆中）
 </h2>
 </header>
