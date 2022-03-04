@@ -2,326 +2,326 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on 通信キャリアで勤めるエンジニアのブログ</title>
-    <link>https://kurikube.github.io/tags/</link>
+    <link>https://www.it-infra-pro.online/tags/</link>
     <description>Recent content in Tags on 通信キャリアで勤めるエンジニアのブログ</description>
     <image>
-      <url>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://www.it-infra-pro.online/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://www.it-infra-pro.online/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 28 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://www.it-infra-pro.online/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kubernetes</title>
-      <link>https://kurikube.github.io/tags/kubernetes/</link>
+      <link>https://www.it-infra-pro.online/tags/kubernetes/</link>
       <pubDate>Mon, 28 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/kubernetes/</guid>
+      <guid>https://www.it-infra-pro.online/tags/kubernetes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>first</title>
-      <link>https://kurikube.github.io/tags/first/</link>
+      <link>https://www.it-infra-pro.online/tags/first/</link>
       <pubDate>Sat, 26 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/first/</guid>
+      <guid>https://www.it-infra-pro.online/tags/first/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Chrome</title>
-      <link>https://kurikube.github.io/tags/chrome/</link>
+      <link>https://www.it-infra-pro.online/tags/chrome/</link>
       <pubDate>Sat, 05 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/chrome/</guid>
+      <guid>https://www.it-infra-pro.online/tags/chrome/</guid>
       <description></description>
     </item>
     
     <item>
       <title>gitlab</title>
-      <link>https://kurikube.github.io/tags/gitlab/</link>
+      <link>https://www.it-infra-pro.online/tags/gitlab/</link>
       <pubDate>Fri, 04 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/gitlab/</guid>
+      <guid>https://www.it-infra-pro.online/tags/gitlab/</guid>
       <description></description>
     </item>
     
     <item>
       <title>gitlab runner</title>
-      <link>https://kurikube.github.io/tags/gitlab-runner/</link>
+      <link>https://www.it-infra-pro.online/tags/gitlab-runner/</link>
       <pubDate>Fri, 04 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/gitlab-runner/</guid>
+      <guid>https://www.it-infra-pro.online/tags/gitlab-runner/</guid>
       <description></description>
     </item>
     
     <item>
       <title>OpenShift</title>
-      <link>https://kurikube.github.io/tags/openshift/</link>
+      <link>https://www.it-infra-pro.online/tags/openshift/</link>
       <pubDate>Thu, 03 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/openshift/</guid>
+      <guid>https://www.it-infra-pro.online/tags/openshift/</guid>
       <description></description>
     </item>
     
     <item>
       <title>minikube</title>
-      <link>https://kurikube.github.io/tags/minikube/</link>
+      <link>https://www.it-infra-pro.online/tags/minikube/</link>
       <pubDate>Tue, 01 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/minikube/</guid>
+      <guid>https://www.it-infra-pro.online/tags/minikube/</guid>
       <description></description>
     </item>
     
     <item>
       <title>openfaas</title>
-      <link>https://kurikube.github.io/tags/openfaas/</link>
+      <link>https://www.it-infra-pro.online/tags/openfaas/</link>
       <pubDate>Tue, 01 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/openfaas/</guid>
+      <guid>https://www.it-infra-pro.online/tags/openfaas/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Centos</title>
-      <link>https://kurikube.github.io/tags/centos/</link>
+      <link>https://www.it-infra-pro.online/tags/centos/</link>
       <pubDate>Mon, 31 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/centos/</guid>
+      <guid>https://www.it-infra-pro.online/tags/centos/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>https://kurikube.github.io/tags/docker/</link>
+      <link>https://www.it-infra-pro.online/tags/docker/</link>
       <pubDate>Mon, 31 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/docker/</guid>
+      <guid>https://www.it-infra-pro.online/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jaeger</title>
-      <link>https://kurikube.github.io/tags/jaeger/</link>
+      <link>https://www.it-infra-pro.online/tags/jaeger/</link>
       <pubDate>Sun, 30 Jan 2022 01:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/jaeger/</guid>
+      <guid>https://www.it-infra-pro.online/tags/jaeger/</guid>
       <description></description>
     </item>
     
     <item>
       <title>kinc</title>
-      <link>https://kurikube.github.io/tags/kinc/</link>
+      <link>https://www.it-infra-pro.online/tags/kinc/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/kinc/</guid>
+      <guid>https://www.it-infra-pro.online/tags/kinc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>knative</title>
-      <link>https://kurikube.github.io/tags/knative/</link>
+      <link>https://www.it-infra-pro.online/tags/knative/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/knative/</guid>
+      <guid>https://www.it-infra-pro.online/tags/knative/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GUI</title>
-      <link>https://kurikube.github.io/tags/gui/</link>
+      <link>https://www.it-infra-pro.online/tags/gui/</link>
       <pubDate>Fri, 28 Jan 2022 12:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/gui/</guid>
+      <guid>https://www.it-infra-pro.online/tags/gui/</guid>
       <description></description>
     </item>
     
     <item>
       <title>script</title>
-      <link>https://kurikube.github.io/tags/script/</link>
+      <link>https://www.it-infra-pro.online/tags/script/</link>
       <pubDate>Fri, 28 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/script/</guid>
+      <guid>https://www.it-infra-pro.online/tags/script/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ffmpeg</title>
-      <link>https://kurikube.github.io/tags/ffmpeg/</link>
+      <link>https://www.it-infra-pro.online/tags/ffmpeg/</link>
       <pubDate>Thu, 27 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/ffmpeg/</guid>
+      <guid>https://www.it-infra-pro.online/tags/ffmpeg/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ubuntu</title>
-      <link>https://kurikube.github.io/tags/ubuntu/</link>
+      <link>https://www.it-infra-pro.online/tags/ubuntu/</link>
       <pubDate>Thu, 27 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/ubuntu/</guid>
+      <guid>https://www.it-infra-pro.online/tags/ubuntu/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Proxy</title>
-      <link>https://kurikube.github.io/tags/proxy/</link>
+      <link>https://www.it-infra-pro.online/tags/proxy/</link>
       <pubDate>Wed, 26 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/proxy/</guid>
+      <guid>https://www.it-infra-pro.online/tags/proxy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Squid</title>
-      <link>https://kurikube.github.io/tags/squid/</link>
+      <link>https://www.it-infra-pro.online/tags/squid/</link>
       <pubDate>Wed, 26 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/squid/</guid>
+      <guid>https://www.it-infra-pro.online/tags/squid/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GitHub</title>
-      <link>https://kurikube.github.io/tags/github/</link>
+      <link>https://www.it-infra-pro.online/tags/github/</link>
       <pubDate>Wed, 26 Jan 2022 01:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/github/</guid>
+      <guid>https://www.it-infra-pro.online/tags/github/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Pelican</title>
-      <link>https://kurikube.github.io/tags/pelican/</link>
+      <link>https://www.it-infra-pro.online/tags/pelican/</link>
       <pubDate>Wed, 26 Jan 2022 01:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/pelican/</guid>
+      <guid>https://www.it-infra-pro.online/tags/pelican/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CCNP</title>
-      <link>https://kurikube.github.io/tags/ccnp/</link>
+      <link>https://www.it-infra-pro.online/tags/ccnp/</link>
       <pubDate>Tue, 11 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/ccnp/</guid>
+      <guid>https://www.it-infra-pro.online/tags/ccnp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cisco</title>
-      <link>https://kurikube.github.io/tags/cisco/</link>
+      <link>https://www.it-infra-pro.online/tags/cisco/</link>
       <pubDate>Tue, 11 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/cisco/</guid>
+      <guid>https://www.it-infra-pro.online/tags/cisco/</guid>
       <description></description>
     </item>
     
     <item>
       <title>資格</title>
-      <link>https://kurikube.github.io/tags/%E8%B3%87%E6%A0%BC/</link>
+      <link>https://www.it-infra-pro.online/tags/%E8%B3%87%E6%A0%BC/</link>
       <pubDate>Tue, 11 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/%E8%B3%87%E6%A0%BC/</guid>
+      <guid>https://www.it-infra-pro.online/tags/%E8%B3%87%E6%A0%BC/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>https://kurikube.github.io/tags/linux/</link>
+      <link>https://www.it-infra-pro.online/tags/linux/</link>
       <pubDate>Mon, 03 Jan 2022 12:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/linux/</guid>
+      <guid>https://www.it-infra-pro.online/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>書籍</title>
-      <link>https://kurikube.github.io/tags/%E6%9B%B8%E7%B1%8D/</link>
+      <link>https://www.it-infra-pro.online/tags/%E6%9B%B8%E7%B1%8D/</link>
       <pubDate>Sat, 23 Jan 2021 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/%E6%9B%B8%E7%B1%8D/</guid>
+      <guid>https://www.it-infra-pro.online/tags/%E6%9B%B8%E7%B1%8D/</guid>
       <description></description>
     </item>
     
     <item>
       <title>本</title>
-      <link>https://kurikube.github.io/tags/%E6%9C%AC/</link>
+      <link>https://www.it-infra-pro.online/tags/%E6%9C%AC/</link>
       <pubDate>Sat, 23 Jan 2021 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/%E6%9C%AC/</guid>
+      <guid>https://www.it-infra-pro.online/tags/%E6%9C%AC/</guid>
       <description></description>
     </item>
     
     <item>
       <title>AWS</title>
-      <link>https://kurikube.github.io/tags/aws/</link>
+      <link>https://www.it-infra-pro.online/tags/aws/</link>
       <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/aws/</guid>
+      <guid>https://www.it-infra-pro.online/tags/aws/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mac</title>
-      <link>https://kurikube.github.io/tags/mac/</link>
+      <link>https://www.it-infra-pro.online/tags/mac/</link>
       <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/mac/</guid>
+      <guid>https://www.it-infra-pro.online/tags/mac/</guid>
       <description></description>
     </item>
     
     <item>
       <title>VMware</title>
-      <link>https://kurikube.github.io/tags/vmware/</link>
+      <link>https://www.it-infra-pro.online/tags/vmware/</link>
       <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/vmware/</guid>
+      <guid>https://www.it-infra-pro.online/tags/vmware/</guid>
       <description></description>
     </item>
     
     <item>
       <title>vSphere</title>
-      <link>https://kurikube.github.io/tags/vsphere/</link>
+      <link>https://www.it-infra-pro.online/tags/vsphere/</link>
       <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/vsphere/</guid>
+      <guid>https://www.it-infra-pro.online/tags/vsphere/</guid>
       <description></description>
     </item>
     
     <item>
       <title>初心者</title>
-      <link>https://kurikube.github.io/tags/%E5%88%9D%E5%BF%83%E8%80%85/</link>
+      <link>https://www.it-infra-pro.online/tags/%E5%88%9D%E5%BF%83%E8%80%85/</link>
       <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/%E5%88%9D%E5%BF%83%E8%80%85/</guid>
+      <guid>https://www.it-infra-pro.online/tags/%E5%88%9D%E5%BF%83%E8%80%85/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hugo</title>
-      <link>https://kurikube.github.io/tags/hugo/</link>
+      <link>https://www.it-infra-pro.online/tags/hugo/</link>
       <pubDate>Sat, 25 Jan 2020 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/hugo/</guid>
+      <guid>https://www.it-infra-pro.online/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>youtube</title>
-      <link>https://kurikube.github.io/tags/youtube/</link>
+      <link>https://www.it-infra-pro.online/tags/youtube/</link>
       <pubDate>Sat, 25 Jan 2020 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/youtube/</guid>
+      <guid>https://www.it-infra-pro.online/tags/youtube/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CI/CD</title>
-      <link>https://kurikube.github.io/tags/ci/cd/</link>
+      <link>https://www.it-infra-pro.online/tags/ci/cd/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/tags/ci/cd/</guid>
+      <guid>https://www.it-infra-pro.online/tags/ci/cd/</guid>
       <description></description>
     </item>
     

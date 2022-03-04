@@ -2,83 +2,83 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Kubernetes on 通信キャリアで勤めるエンジニアのブログ</title>
-    <link>https://kurikube.github.io/tags/kubernetes/</link>
+    <link>https://www.it-infra-pro.online/tags/kubernetes/</link>
     <description>Recent content in Kubernetes on 通信キャリアで勤めるエンジニアのブログ</description>
     <image>
-      <url>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://www.it-infra-pro.online/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://www.it-infra-pro.online/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 28 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://www.it-infra-pro.online/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>KubernetesのUIである「Dashboard」を使ってみる</title>
-      <link>https://kurikube.github.io/post/dashboard/</link>
+      <link>https://www.it-infra-pro.online/post/dashboard/</link>
       <pubDate>Mon, 28 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/post/dashboard/</guid>
+      <guid>https://www.it-infra-pro.online/post/dashboard/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>kubectl を GUIから扱えるようにするツール「kui」を使ってみる</title>
-      <link>https://kurikube.github.io/post/kui/</link>
+      <link>https://www.it-infra-pro.online/post/kui/</link>
       <pubDate>Sun, 27 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/post/kui/</guid>
+      <guid>https://www.it-infra-pro.online/post/kui/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>GitLab RunnerをKubernetes(EKS)上で動かす(Kubernetes executor)</title>
-      <link>https://kurikube.github.io/post/gitlab_runner_k8s/</link>
+      <link>https://www.it-infra-pro.online/post/gitlab_runner_k8s/</link>
       <pubDate>Fri, 04 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/post/gitlab_runner_k8s/</guid>
+      <guid>https://www.it-infra-pro.online/post/gitlab_runner_k8s/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>OpenShift環境でKubernetes公式チュートリアルをやってみる</title>
-      <link>https://kurikube.github.io/post/openshift_k8s_tutorial/</link>
+      <link>https://www.it-infra-pro.online/post/openshift_k8s_tutorial/</link>
       <pubDate>Thu, 03 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/post/openshift_k8s_tutorial/</guid>
+      <guid>https://www.it-infra-pro.online/post/openshift_k8s_tutorial/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>EC2上のMinikubeでOpenFaaSを動かす</title>
-      <link>https://kurikube.github.io/post/openfaas/</link>
+      <link>https://www.it-infra-pro.online/post/openfaas/</link>
       <pubDate>Tue, 01 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/post/openfaas/</guid>
+      <guid>https://www.it-infra-pro.online/post/openfaas/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>DockerでJaegerを動かす(2022/1/30)</title>
-      <link>https://kurikube.github.io/post/jaeger/</link>
+      <link>https://www.it-infra-pro.online/post/jaeger/</link>
       <pubDate>Sun, 30 Jan 2022 01:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/post/jaeger/</guid>
+      <guid>https://www.it-infra-pro.online/post/jaeger/</guid>
       <description>DockerでJaegerを試してみました。分散トレーシングとは何かを知らないので、Jaegerを機に学習してみることにしました。</description>
     </item>
     
     <item>
       <title>Knativeでサーバレスを実現する</title>
-      <link>https://kurikube.github.io/post/knative/</link>
+      <link>https://www.it-infra-pro.online/post/knative/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/post/knative/</guid>
+      <guid>https://www.it-infra-pro.online/post/knative/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>リモートサーバ上に立てたMinikubeで公開しているService(Type NodePort) を外部から利用可能にする</title>
-      <link>https://kurikube.github.io/post/minikube_remote/</link>
+      <link>https://www.it-infra-pro.online/post/minikube_remote/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/post/minikube_remote/</guid>
+      <guid>https://www.it-infra-pro.online/post/minikube_remote/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     

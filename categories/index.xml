@@ -2,83 +2,83 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on 通信キャリアで勤めるエンジニアのブログ</title>
-    <link>https://kurikube.github.io/categories/</link>
+    <link>https://www.it-infra-pro.online/categories/</link>
     <description>Recent content in Categories on 通信キャリアで勤めるエンジニアのブログ</description>
     <image>
-      <url>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://www.it-infra-pro.online/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://www.it-infra-pro.online/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 28 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://www.it-infra-pro.online/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux</title>
-      <link>https://kurikube.github.io/categories/linux/</link>
+      <link>https://www.it-infra-pro.online/categories/linux/</link>
       <pubDate>Mon, 28 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/categories/linux/</guid>
+      <guid>https://www.it-infra-pro.online/categories/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>first</title>
-      <link>https://kurikube.github.io/categories/first/</link>
+      <link>https://www.it-infra-pro.online/categories/first/</link>
       <pubDate>Tue, 22 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/categories/first/</guid>
+      <guid>https://www.it-infra-pro.online/categories/first/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mac</title>
-      <link>https://kurikube.github.io/categories/mac/</link>
+      <link>https://www.it-infra-pro.online/categories/mac/</link>
       <pubDate>Sat, 05 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/categories/mac/</guid>
+      <guid>https://www.it-infra-pro.online/categories/mac/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>https://kurikube.github.io/categories/hugo/</link>
+      <link>https://www.it-infra-pro.online/categories/hugo/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/categories/hugo/</guid>
+      <guid>https://www.it-infra-pro.online/categories/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Papermod</title>
-      <link>https://kurikube.github.io/categories/papermod/</link>
+      <link>https://www.it-infra-pro.online/categories/papermod/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/categories/papermod/</guid>
+      <guid>https://www.it-infra-pro.online/categories/papermod/</guid>
       <description></description>
     </item>
     
     <item>
       <title>サーバレス</title>
-      <link>https://kurikube.github.io/categories/%E3%82%B5%E3%83%BC%E3%83%90%E3%83%AC%E3%82%B9/</link>
+      <link>https://www.it-infra-pro.online/categories/%E3%82%B5%E3%83%BC%E3%83%90%E3%83%AC%E3%82%B9/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/categories/%E3%82%B5%E3%83%BC%E3%83%90%E3%83%AC%E3%82%B9/</guid>
+      <guid>https://www.it-infra-pro.online/categories/%E3%82%B5%E3%83%BC%E3%83%90%E3%83%AC%E3%82%B9/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>https://kurikube.github.io/categories/python/</link>
+      <link>https://www.it-infra-pro.online/categories/python/</link>
       <pubDate>Sun, 02 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/categories/python/</guid>
+      <guid>https://www.it-infra-pro.online/categories/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Slack</title>
-      <link>https://kurikube.github.io/categories/slack/</link>
+      <link>https://www.it-infra-pro.online/categories/slack/</link>
       <pubDate>Sun, 02 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://kurikube.github.io/categories/slack/</guid>
+      <guid>https://www.it-infra-pro.online/categories/slack/</guid>
       <description></description>
     </item>
     
