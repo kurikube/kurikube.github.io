@@ -2,56 +2,56 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>first on 通信キャリアで勤めるエンジニアのブログ</title>
-    <link>https://www.it-infra-pro.online/categories/first/</link>
+    <link>https://kurikube.github.io/categories/first/</link>
     <description>Recent content in first on 通信キャリアで勤めるエンジニアのブログ</description>
     <image>
-      <url>https://www.it-infra-pro.online/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://www.it-infra-pro.online/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 22 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://www.it-infra-pro.online/categories/first/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/categories/first/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>コンテナ内部からコンテナを作成する(DinD, DooD)</title>
-      <link>https://www.it-infra-pro.online/post/dind_dood/</link>
+      <link>https://kurikube.github.io/post/dind_dood/</link>
       <pubDate>Tue, 22 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/dind_dood/</guid>
+      <guid>https://kurikube.github.io/post/dind_dood/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>GitLab Runner(Docker)をAnsibleでインストールする</title>
-      <link>https://www.it-infra-pro.online/post/runner_docker_ansible/</link>
+      <link>https://kurikube.github.io/post/runner_docker_ansible/</link>
       <pubDate>Thu, 10 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/runner_docker_ansible/</guid>
+      <guid>https://kurikube.github.io/post/runner_docker_ansible/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>VSCode Remote Containerを使ってみる</title>
-      <link>https://www.it-infra-pro.online/post/vscode_remote_container/</link>
+      <link>https://kurikube.github.io/post/vscode_remote_container/</link>
       <pubDate>Mon, 07 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/vscode_remote_container/</guid>
+      <guid>https://kurikube.github.io/post/vscode_remote_container/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>Codepen埋め込み</title>
-      <link>https://www.it-infra-pro.online/post/codepen/</link>
+      <link>https://kurikube.github.io/post/codepen/</link>
       <pubDate>Wed, 02 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/codepen/</guid>
+      <guid>https://kurikube.github.io/post/codepen/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>CentOSのCPU・Memory・Disk・GPU使用率を測定する</title>
-      <link>https://www.it-infra-pro.online/post/resource_sokutei/</link>
+      <link>https://kurikube.github.io/post/resource_sokutei/</link>
       <pubDate>Mon, 31 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/resource_sokutei/</guid>
+      <guid>https://kurikube.github.io/post/resource_sokutei/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     

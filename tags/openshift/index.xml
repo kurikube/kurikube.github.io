@@ -2,47 +2,47 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>OpenShift on 通信キャリアで勤めるエンジニアのブログ</title>
-    <link>https://www.it-infra-pro.online/tags/openshift/</link>
+    <link>https://kurikube.github.io/tags/openshift/</link>
     <description>Recent content in OpenShift on 通信キャリアで勤めるエンジニアのブログ</description>
     <image>
-      <url>https://www.it-infra-pro.online/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://www.it-infra-pro.online/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 03 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://www.it-infra-pro.online/tags/openshift/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/tags/openshift/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>OpenShift環境でKubernetes公式チュートリアルをやってみる</title>
-      <link>https://www.it-infra-pro.online/post/openshift_k8s_tutorial/</link>
+      <link>https://kurikube.github.io/post/openshift_k8s_tutorial/</link>
       <pubDate>Thu, 03 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/openshift_k8s_tutorial/</guid>
+      <guid>https://kurikube.github.io/post/openshift_k8s_tutorial/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>OpenShift Interactive Learning Portal ①Deploying Applications From Images</title>
-      <link>https://www.it-infra-pro.online/post/crc_openshift_interactive_learning_portal/</link>
+      <link>https://kurikube.github.io/post/crc_openshift_interactive_learning_portal/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/crc_openshift_interactive_learning_portal/</guid>
+      <guid>https://kurikube.github.io/post/crc_openshift_interactive_learning_portal/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>CodeReady Containers（CRC）をリモート接続可能にする</title>
-      <link>https://www.it-infra-pro.online/post/20220124/</link>
+      <link>https://kurikube.github.io/post/20220124/</link>
       <pubDate>Fri, 28 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20220124/</guid>
+      <guid>https://kurikube.github.io/post/20220124/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>OpenShift Code ReadyをCentosにインストールする（2022/1/29時点）</title>
-      <link>https://www.it-infra-pro.online/post/20210131/</link>
+      <link>https://kurikube.github.io/post/20210131/</link>
       <pubDate>Mon, 10 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20210131/</guid>
+      <guid>https://kurikube.github.io/post/20210131/</guid>
       <description>Desc Text.</description>
     </item>
     

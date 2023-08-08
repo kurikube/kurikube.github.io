@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>gitlab on 通信キャリアで勤めるエンジニアのブログ</title>
-    <link>https://www.it-infra-pro.online/tags/gitlab/</link>
+    <link>https://kurikube.github.io/tags/gitlab/</link>
     <description>Recent content in gitlab on 通信キャリアで勤めるエンジニアのブログ</description>
     <image>
-      <url>https://www.it-infra-pro.online/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://www.it-infra-pro.online/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 04 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://www.it-infra-pro.online/tags/gitlab/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/tags/gitlab/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GitLab RunnerをKubernetes(EKS)上で動かす(Kubernetes executor)</title>
-      <link>https://www.it-infra-pro.online/post/gitlab_runner_k8s/</link>
+      <link>https://kurikube.github.io/post/gitlab_runner_k8s/</link>
       <pubDate>Fri, 04 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/gitlab_runner_k8s/</guid>
+      <guid>https://kurikube.github.io/post/gitlab_runner_k8s/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>GitLab CI/CDを学ぶのにおすすめの書籍</title>
-      <link>https://www.it-infra-pro.online/post/20210124/</link>
+      <link>https://kurikube.github.io/post/20210124/</link>
       <pubDate>Sat, 23 Jan 2021 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20210124/</guid>
+      <guid>https://kurikube.github.io/post/20210124/</guid>
       <description>Desc Text.</description>
     </item>
     

@@ -2,353 +2,353 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>通信キャリアで勤めるエンジニアのブログ</title>
-    <link>https://www.it-infra-pro.online/</link>
+    <link>https://kurikube.github.io/</link>
     <description>Recent content on 通信キャリアで勤めるエンジニアのブログ</description>
     <image>
-      <url>https://www.it-infra-pro.online/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://www.it-infra-pro.online/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://kurikube.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 28 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://www.it-infra-pro.online/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Feb 2022 11:30:03 +0000</lastBuildDate><atom:link href="https://kurikube.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>KubernetesのUIである「Dashboard」を使ってみる</title>
-      <link>https://www.it-infra-pro.online/post/dashboard/</link>
+      <link>https://kurikube.github.io/post/dashboard/</link>
       <pubDate>Mon, 28 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/dashboard/</guid>
+      <guid>https://kurikube.github.io/post/dashboard/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>kubectl を GUIから扱えるようにするツール「kui」を使ってみる</title>
-      <link>https://www.it-infra-pro.online/post/kui/</link>
+      <link>https://kurikube.github.io/post/kui/</link>
       <pubDate>Sun, 27 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/kui/</guid>
+      <guid>https://kurikube.github.io/post/kui/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>HTTPでPOSTした内容をおうむ返しで表示するHTTPサーバ(Flask)</title>
-      <link>https://www.it-infra-pro.online/post/http_post_same/</link>
+      <link>https://kurikube.github.io/post/http_post_same/</link>
       <pubDate>Sat, 26 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/http_post_same/</guid>
+      <guid>https://kurikube.github.io/post/http_post_same/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>コンテナ内部からコンテナを作成する(DinD, DooD)</title>
-      <link>https://www.it-infra-pro.online/post/dind_dood/</link>
+      <link>https://kurikube.github.io/post/dind_dood/</link>
       <pubDate>Tue, 22 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/dind_dood/</guid>
+      <guid>https://kurikube.github.io/post/dind_dood/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>GitLab Runner(Docker)をAnsibleでインストールする</title>
-      <link>https://www.it-infra-pro.online/post/runner_docker_ansible/</link>
+      <link>https://kurikube.github.io/post/runner_docker_ansible/</link>
       <pubDate>Thu, 10 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/runner_docker_ansible/</guid>
+      <guid>https://kurikube.github.io/post/runner_docker_ansible/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>Oh My Bash!で Bashのプロンプトをカッコ良くする</title>
-      <link>https://www.it-infra-pro.online/post/oh_my_bash/</link>
+      <link>https://kurikube.github.io/post/oh_my_bash/</link>
       <pubDate>Tue, 08 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/oh_my_bash/</guid>
+      <guid>https://kurikube.github.io/post/oh_my_bash/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>VSCode Remote Containerを使ってみる</title>
-      <link>https://www.it-infra-pro.online/post/vscode_remote_container/</link>
+      <link>https://kurikube.github.io/post/vscode_remote_container/</link>
       <pubDate>Mon, 07 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/vscode_remote_container/</guid>
+      <guid>https://kurikube.github.io/post/vscode_remote_container/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>Chromeの拡張機能で名前解決の設定を変更する</title>
-      <link>https://www.it-infra-pro.online/post/chrome_name_resolve/</link>
+      <link>https://kurikube.github.io/post/chrome_name_resolve/</link>
       <pubDate>Sat, 05 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/chrome_name_resolve/</guid>
+      <guid>https://kurikube.github.io/post/chrome_name_resolve/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>GitLab RunnerをKubernetes(EKS)上で動かす(Kubernetes executor)</title>
-      <link>https://www.it-infra-pro.online/post/gitlab_runner_k8s/</link>
+      <link>https://kurikube.github.io/post/gitlab_runner_k8s/</link>
       <pubDate>Fri, 04 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/gitlab_runner_k8s/</guid>
+      <guid>https://kurikube.github.io/post/gitlab_runner_k8s/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>OpenShift環境でKubernetes公式チュートリアルをやってみる</title>
-      <link>https://www.it-infra-pro.online/post/openshift_k8s_tutorial/</link>
+      <link>https://kurikube.github.io/post/openshift_k8s_tutorial/</link>
       <pubDate>Thu, 03 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/openshift_k8s_tutorial/</guid>
+      <guid>https://kurikube.github.io/post/openshift_k8s_tutorial/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>Codepen埋め込み</title>
-      <link>https://www.it-infra-pro.online/post/codepen/</link>
+      <link>https://kurikube.github.io/post/codepen/</link>
       <pubDate>Wed, 02 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/codepen/</guid>
+      <guid>https://kurikube.github.io/post/codepen/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>EC2上のMinikubeでOpenFaaSを動かす</title>
-      <link>https://www.it-infra-pro.online/post/openfaas/</link>
+      <link>https://kurikube.github.io/post/openfaas/</link>
       <pubDate>Tue, 01 Feb 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/openfaas/</guid>
+      <guid>https://kurikube.github.io/post/openfaas/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>CentOSのCPU・Memory・Disk・GPU使用率を測定する</title>
-      <link>https://www.it-infra-pro.online/post/resource_sokutei/</link>
+      <link>https://kurikube.github.io/post/resource_sokutei/</link>
       <pubDate>Mon, 31 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/resource_sokutei/</guid>
+      <guid>https://kurikube.github.io/post/resource_sokutei/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>DockerをCentOSにインストールするためのシェルスクリプト</title>
-      <link>https://www.it-infra-pro.online/post/20220130/</link>
+      <link>https://kurikube.github.io/post/20220130/</link>
       <pubDate>Mon, 31 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20220130/</guid>
+      <guid>https://kurikube.github.io/post/20220130/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>DockerでJaegerを動かす(2022/1/30)</title>
-      <link>https://www.it-infra-pro.online/post/jaeger/</link>
+      <link>https://kurikube.github.io/post/jaeger/</link>
       <pubDate>Sun, 30 Jan 2022 01:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/jaeger/</guid>
+      <guid>https://kurikube.github.io/post/jaeger/</guid>
       <description>DockerでJaegerを試してみました。分散トレーシングとは何かを知らないので、Jaegerを機に学習してみることにしました。</description>
     </item>
     
     <item>
       <title>Hugo &#43; Papermod でカテゴリで分類する方法</title>
-      <link>https://www.it-infra-pro.online/post/20220101/</link>
+      <link>https://kurikube.github.io/post/20220101/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20220101/</guid>
+      <guid>https://kurikube.github.io/post/20220101/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>KEDA v2をkindで動かしてみる</title>
-      <link>https://www.it-infra-pro.online/post/keda/</link>
+      <link>https://kurikube.github.io/post/keda/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/keda/</guid>
+      <guid>https://kurikube.github.io/post/keda/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>Knativeでサーバレスを実現する</title>
-      <link>https://www.it-infra-pro.online/post/knative/</link>
+      <link>https://kurikube.github.io/post/knative/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/knative/</guid>
+      <guid>https://kurikube.github.io/post/knative/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>OpenShift Interactive Learning Portal ①Deploying Applications From Images</title>
-      <link>https://www.it-infra-pro.online/post/crc_openshift_interactive_learning_portal/</link>
+      <link>https://kurikube.github.io/post/crc_openshift_interactive_learning_portal/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/crc_openshift_interactive_learning_portal/</guid>
+      <guid>https://kurikube.github.io/post/crc_openshift_interactive_learning_portal/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>リモートサーバ上に立てたMinikubeで公開しているService(Type NodePort) を外部から利用可能にする</title>
-      <link>https://www.it-infra-pro.online/post/minikube_remote/</link>
+      <link>https://kurikube.github.io/post/minikube_remote/</link>
       <pubDate>Sat, 29 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/minikube_remote/</guid>
+      <guid>https://kurikube.github.io/post/minikube_remote/</guid>
       <description>某通信キャリアでインフラエンジニアとして勤める会社員のブログです。最近はkubernetesを特に触っており、EKS、Anthos、Tanzuなどの構築・利用経験があります。</description>
     </item>
     
     <item>
       <title>最小インストールしたCentOS7にGUIを導入する</title>
-      <link>https://www.it-infra-pro.online/post/20220128/</link>
+      <link>https://kurikube.github.io/post/20220128/</link>
       <pubDate>Fri, 28 Jan 2022 12:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20220128/</guid>
+      <guid>https://kurikube.github.io/post/20220128/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>CodeReady Containers（CRC）をリモート接続可能にする</title>
-      <link>https://www.it-infra-pro.online/post/20220124/</link>
+      <link>https://kurikube.github.io/post/20220124/</link>
       <pubDate>Fri, 28 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20220124/</guid>
+      <guid>https://kurikube.github.io/post/20220124/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>scriptコマンドでコマンド実行の作業ログを保存する</title>
-      <link>https://www.it-infra-pro.online/post/20210130/</link>
+      <link>https://kurikube.github.io/post/20210130/</link>
       <pubDate>Fri, 28 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20210130/</guid>
+      <guid>https://kurikube.github.io/post/20210130/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>CentOS 7 にGoogle Chromeをインストールする</title>
-      <link>https://www.it-infra-pro.online/post/20220131/</link>
+      <link>https://kurikube.github.io/post/20220131/</link>
       <pubDate>Thu, 27 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20220131/</guid>
+      <guid>https://kurikube.github.io/post/20220131/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>Ubuntu 20.04.3 LTSにffmpegをインストールする</title>
-      <link>https://www.it-infra-pro.online/post/20210129/</link>
+      <link>https://kurikube.github.io/post/20210129/</link>
       <pubDate>Thu, 27 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20210129/</guid>
+      <guid>https://kurikube.github.io/post/20210129/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>SquidでProxyサーバを構築する</title>
-      <link>https://www.it-infra-pro.online/post/20210128/</link>
+      <link>https://kurikube.github.io/post/20210128/</link>
       <pubDate>Wed, 26 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20210128/</guid>
+      <guid>https://kurikube.github.io/post/20210128/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>Pelicanを使って静的サイトを構築する</title>
-      <link>https://www.it-infra-pro.online/post/20210127/</link>
+      <link>https://kurikube.github.io/post/20210127/</link>
       <pubDate>Wed, 26 Jan 2022 01:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20210127/</guid>
+      <guid>https://kurikube.github.io/post/20210127/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>CCNP合格したので、勉強法まとめて見た</title>
-      <link>https://www.it-infra-pro.online/post/20210126/</link>
+      <link>https://kurikube.github.io/post/20210126/</link>
       <pubDate>Tue, 11 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20210126/</guid>
+      <guid>https://kurikube.github.io/post/20210126/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>OpenShift Code ReadyをCentosにインストールする（2022/1/29時点）</title>
-      <link>https://www.it-infra-pro.online/post/20210131/</link>
+      <link>https://kurikube.github.io/post/20210131/</link>
       <pubDate>Mon, 10 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20210131/</guid>
+      <guid>https://kurikube.github.io/post/20210131/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>hugo &#43; Papermod で作ったwebサイトに検索機能を追加する</title>
-      <link>https://www.it-infra-pro.online/post/20220103/</link>
+      <link>https://kurikube.github.io/post/20220103/</link>
       <pubDate>Mon, 03 Jan 2022 12:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20220103/</guid>
+      <guid>https://kurikube.github.io/post/20220103/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>Slack APIを用いて一定期間より前のメッセージを自動削除する</title>
-      <link>https://www.it-infra-pro.online/post/20220102/</link>
+      <link>https://kurikube.github.io/post/20220102/</link>
       <pubDate>Sun, 02 Jan 2022 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20220102/</guid>
+      <guid>https://kurikube.github.io/post/20220102/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>Docker install用のshell-script</title>
-      <link>https://www.it-infra-pro.online/post/20200124/</link>
+      <link>https://kurikube.github.io/post/20200124/</link>
       <pubDate>Sun, 24 Jan 2021 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20200124/</guid>
+      <guid>https://kurikube.github.io/post/20200124/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>GitLab CI/CDを学ぶのにおすすめの書籍</title>
-      <link>https://www.it-infra-pro.online/post/20210124/</link>
+      <link>https://kurikube.github.io/post/20210124/</link>
       <pubDate>Sat, 23 Jan 2021 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20210124/</guid>
+      <guid>https://kurikube.github.io/post/20210124/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>Apple M1搭載のMacBook Airにawsコマンドをインストールする</title>
-      <link>https://www.it-infra-pro.online/post/20220129/</link>
+      <link>https://kurikube.github.io/post/20220129/</link>
       <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20220129/</guid>
+      <guid>https://kurikube.github.io/post/20220129/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>【初心者向け】VMware (vSphere)について学ぶのにおすすめの書籍</title>
-      <link>https://www.it-infra-pro.online/post/20210125/</link>
+      <link>https://kurikube.github.io/post/20210125/</link>
       <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20210125/</guid>
+      <guid>https://kurikube.github.io/post/20210125/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>Hugoで作ったwebサイトにyoutubeの動画を埋め込む</title>
-      <link>https://www.it-infra-pro.online/post/20200125/</link>
+      <link>https://kurikube.github.io/post/20200125/</link>
       <pubDate>Sat, 25 Jan 2020 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20200125/</guid>
+      <guid>https://kurikube.github.io/post/20200125/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>Google Adsense掲載に至るまで（執筆中）</title>
-      <link>https://www.it-infra-pro.online/post/20200101/</link>
+      <link>https://kurikube.github.io/post/20200101/</link>
       <pubDate>Wed, 01 Jan 2020 11:30:03 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/post/20200101/</guid>
+      <guid>https://kurikube.github.io/post/20200101/</guid>
       <description>Desc Text.</description>
     </item>
     
     <item>
       <title>Search</title>
-      <link>https://www.it-infra-pro.online/search/</link>
+      <link>https://kurikube.github.io/search/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.it-infra-pro.online/search/</guid>
+      <guid>https://kurikube.github.io/search/</guid>
       <description>タイトル、本文、タグなどから記事を検索できます。
 空白区切りはOR検索になります。(AND検索はできません)</description>
     </item>
