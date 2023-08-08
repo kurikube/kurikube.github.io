@@ -343,15 +343,5 @@
       <description>Desc Text.</description>
     </item>
     
-    <item>
-      <title>Search</title>
-      <link>https://kurikube.github.io/search/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kurikube.github.io/search/</guid>
-      <description>タイトル、本文、タグなどから記事を検索できます。
-空白区切りはOR検索になります。(AND検索はできません)</description>
-    </item>
-    
   </channel>
 </rss>
